@@ -27,7 +27,7 @@ const links = [
   },
   {
     label: 'Business Units',
-    url: '/business-units'
+    url: '/business/units'
   },
   {
     label: 'Privacy Policy',

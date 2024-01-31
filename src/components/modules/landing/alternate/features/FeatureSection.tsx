@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Button from 'components/base/Button';
 import { Feature } from 'data/landing/alternate-landing-data';
 import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 interface FeatureSectionProps {
   feature: Feature;
@@ -11,6 +12,8 @@ interface FeatureSectionProps {
 }
 
 const FeatureSection = ({ feature, isLast }: FeatureSectionProps) => {
+  const link_to = feature.link;
+
   return (
     <Row
       className={classNames('flex-between-center px-xl-11', {
@@ -19,14 +22,17 @@ const FeatureSection = ({ feature, isLast }: FeatureSectionProps) => {
     >
       <Col md={6} className="order-1 order-md-0 text-center text-md-start">
         <h4 className="mb-3">{feature.title}</h4>
-        <p className="mb-5">{feature.description}</p>
-        <Button
-          variant="link"
-          endIcon={<FontAwesomeIcon icon={faAngleRight} />}
-          className="me-2 p-0 fs-9"
-        >
-          Check Demo
-        </Button>
+        <p className="mb-1">{feature.description}</p>
+        <p className="mb-5">{feature.additional}</p>
+        <Link to={link_to} className="btn btn-outline-primary">
+          <Button
+            variant="link"
+            endIcon={<FontAwesomeIcon icon={faAngleRight} />}
+            className="me-2 p-0 fs-9"
+          >
+            {feature.linkText}
+          </Button>
+        </Link>
       </Col>
       <Col md={5} className="mb-5 mb-md-0 text-center">
         <img

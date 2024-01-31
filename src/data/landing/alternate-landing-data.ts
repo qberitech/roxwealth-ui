@@ -29,8 +29,11 @@ export interface Feature {
   id: number;
   title: string;
   description: string;
+  additional?: string;
   lightImg: string;
   darkImg: string;
+  link: string;
+  linkText: string;
 }
 
 export interface Stat {
@@ -61,27 +64,35 @@ export interface TeamMember {
 export const features: Feature[] = [
   {
     id: 1,
-    title: 'Recieve the signals instantly',
+    title: 'Qberi Financial Services',
     description:
-      'Phoenix allows you to receive every signal instantly and fruitfully. No need for long waits.',
+      'Your trusted partner for comprehensive financial solutions in the heart of South Africa. We specialize in crafting tailored investment strategies and long-term insurance products that empower you to build a secure and prosperous future. With a commitment to excellence and a deep understanding of the South African financial landscape, we stand ready to guide you on your journey towards financial success and peace of mind.',
     lightImg: illustration34,
-    darkImg: illustration34_2
+    darkImg: illustration34_2,
+    link: '/business/qberi-in-sa',
+    linkText: 'Read more about Qberi Financial Services'
   },
   {
     id: 2,
-    title: 'Make everyday a joyride',
+    title: 'Qberi Software Solutions India',
     description:
-      'Phoenix helps you show reports and data in one place and make the journey a glee trip for everyone.',
+      'Qberi Software Solutions India is your premier destination for cutting-edge technology services, working globally from our base in India. With expertise in data integration, dynamic KPI dashboard creation, and e-commerce website development, we empower businesses to thrive in the digital age. ',
+    additional:
+      'At Qberi Software Sollutions India , we transform data into insights, ideas into innovation, and visions into reality. Let us be your technology partner of choice, helping you navigate the digital landscape and achieve remarkable success.',
     lightImg: illustration35,
-    darkImg: illustration35_2
+    darkImg: illustration35_2,
+    link: '/business/units',
+    linkText: 'Learn about Us'
   },
   {
     id: 3,
-    title: 'See Your Revenue Grow',
+    title: 'Media Spoor',
     description:
-      'Grow with Phoenix. We help you with everything you might need, We make it easy and keep it simple.',
+      'Media Spoor,  based in the USA but with affiliate offices in South Africa and New Zealand provides our clients with precise Media Monitoring and Sentiment Analysis. Our dedicated team harnesses publicly available news sources, even behind paywalls, to deliver comprehensive brand sentiment insights. With our proprietary InsightStream Media Dashboard, we keep you informed, empowered, and ahead of the curve in the fast-paced world of corporate media analysis. Discover the power of real-time intelligence with Media Spoor.',
     lightImg: illustration36,
-    darkImg: illustration36_2
+    darkImg: illustration36_2,
+    link: '/business/units',
+    linkText: 'Learn More '
   }
 ];
 
@@ -91,48 +102,57 @@ export const services: Feature[] = [
     title: 'Lightning Speed',
     description: 'Grow fast with Phoenix!',
     lightImg: icon1,
-    darkImg: darkIcon1
+    darkImg: darkIcon1,
+    link: '/business/units',
+    linkText: 'Read more about Qberi Financial Services'
   },
   {
     id: 2,
     title: 'Best Statistics',
     description: 'Get all reports at hand!',
     lightImg: icon2,
-    darkImg: darkIcon2
+    darkImg: darkIcon2,
+    link: '/business/units',
+    linkText: 'Learn about Us'
   },
   {
     id: 3,
     title: 'All-night Protection',
     description: 'Security Assured: Ensure data Safety with Phoenix!',
     lightImg: icon3,
-    darkImg: darkIcon3
+    darkImg: darkIcon3,
+    link: '/',
+    linkText: 'Learn More '
   },
   {
     id: 4,
     title: 'Editable Features',
     description: 'Edits made easy and safe!',
     lightImg: icon4,
-    darkImg: darkIcon4
+    darkImg: darkIcon4,
+    link: '/',
+    linkText: 'Learn More '
   }
 ];
 
 export const stats: Stat[] = [
   {
     id: 1,
-    title: 'Revenue',
-    value: 8976,
-    prefix: '$'
+    title: 'Articles Analyzed per Minute',
+    value: 4275,
+    prefix: '',
+    suffix: '+'
   },
   {
     id: 2,
-    title: 'User',
-    value: 308,
-    suffix: 'K'
+    title: 'Daily Sentiment Analysis',
+    value: 176,
+    suffix: ''
   },
   {
     id: 3,
     title: 'Countries',
-    value: 12
+    value: 7
   },
   {
     id: 4,

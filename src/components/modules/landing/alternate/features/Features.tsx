@@ -23,7 +23,7 @@ const Features = () => {
             demands, and contributes to our mission of global growth and impact.
           </p>
           <div className="text-center mt-5">
-            <Link to="/business-units" className="btn btn-outline-primary">
+            <Link to="/business/units" className="btn btn-outline-primary">
               See more{' '}
               <FontAwesomeIcon icon={faAngleRight} transform="down-1" />
             </Link>

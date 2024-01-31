@@ -180,6 +180,7 @@ import About from 'pages/pages/Mains/About';
 import PrivacyPolicy from 'pages/pages/Mains/Privacy';
 import Terms from 'pages/pages/Mains/Terms';
 import BusinessUnits from 'pages/pages/Mains/Business-Units';
+import QberiInSA from 'pages/pages/Businesses/Qberi_in_SA';
 
 const FontAwesomeExample = lazy(
   () => import('pages/modules/components/FontAwesomeExample')
@@ -216,6 +217,19 @@ const routes: RouteObject[] = [
       {
         path: '/business-units',
         element: <BusinessUnits />
+      },
+      {
+        path: '/business',
+        children: [
+          {
+            path: 'qberi-in-sa',
+            element: <QberiInSA />
+          },
+          {
+            path: 'units',
+            element: <BusinessUnits />
+          }
+        ]
       },
       {
         path: 'auth',

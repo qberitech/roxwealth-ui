@@ -45,7 +45,7 @@ const NavItemsHome = () => {
         to="/about-us"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">About</p>
+        <p className="lh-1 py-0 fs-9 fw-bold py-3">About Us</p>
       </Link>
       {/* <NavItem label="Solutions" url="/#features" /> */}
       <a
@@ -94,7 +94,7 @@ const NavItemsNotHome = () => {
         to="/about-us"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">About</p>
+        <p className="lh-1 py-0 fs-9 fw-bold py-3">About Us</p>
       </Link>
       <Link
         to="/privacy-policy"
