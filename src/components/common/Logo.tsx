@@ -12,13 +12,13 @@ interface LogoProps {
 const Logo = ({ width = 27, text = true, textClass, className }: LogoProps) => {
   return (
     <div className={classNames(className, 'd-flex align-items-center')}>
-      <img src={logo} alt="phoenix" width={width} />
+      <img src={logo} alt="Roxwealth" width={width} />
       {text && (
         <p
           className={classNames(textClass, 'logo-text ms-2')}
           style={{ fontFamily: 'Josefin Sans', color: '#C80815' }}
         >
-          Qberi
+          Roxwealth
         </p>
       )}
     </div>

@@ -21,8 +21,8 @@ const Alternate = () => {
   });
 
   useEffect(() => {
-    // Set Title as Qberi | Landing
-    document.title = 'Qberi';
+    // Set Title as Roxwealth | Landing
+    document.title = 'Roxwealth';
   }, []);
 
   return (
