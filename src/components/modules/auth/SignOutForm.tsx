@@ -14,7 +14,7 @@ const SignOutForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       <div className="mb-6">
         <h4 className="text-1000">Come back soon!</h4>
         <p className="text-700">
-          Thanks for using Phoenix. <br className="d-lg-none" />
+          Thanks for using Qberi. <br className="d-lg-none" />
           You are now successfully signed out.
         </p>
       </div>
