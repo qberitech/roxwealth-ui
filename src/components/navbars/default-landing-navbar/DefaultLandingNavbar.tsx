@@ -35,12 +35,13 @@ const NavItemsHome = () => {
   return (
     <>
       {/* <NavItem label="Home" url="#home" /> */}
-      <a
+
+      <Nav.Link
         href="#home"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
         <p className="lh-1 py-0 fs-9 fw-bold py-3">Home</p>
-      </a>
+      </Nav.Link>
       <Link
         to="/about-us"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
@@ -48,35 +49,35 @@ const NavItemsHome = () => {
         <p className="lh-1 py-0 fs-9 fw-bold py-3">About Us</p>
       </Link>
       {/* <NavItem label="Solutions" url="/#features" /> */}
-      <a
+      <Nav.Link
         href="#features"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
         <p className="lh-1 py-0 fs-9 fw-bold py-3">Business Units</p>
-      </a>
+      </Nav.Link>
       {/* <NavItem label="News" url="/#blog" /> */}
-      <a
+      <Nav.Link
         href="#blog"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
         <p className="lh-1 py-0 fs-9 fw-bold py-3">News</p>
-      </a>
+      </Nav.Link>
 
       {/* <NavItem label="Team" url="/#team" /> */}
-      <a
+      <Nav.Link
         href="#team"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
         <p className="lh-1 py-0 fs-9 fw-bold py-3">Teams</p>
-      </a>
+      </Nav.Link>
 
       {/* <NavItem label="Contact" url="/#contact" isLast /> */}
-      <a
+      <Nav.Link
         href="#contact"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
         <p className="lh-1 py-0 fs-9 fw-bold py-3">Contact Us</p>
-      </a>
+      </Nav.Link>
     </>
   );
 };
@@ -140,7 +141,11 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
         className={classNames(className, 'bg-white sticky-top landing-navbar')}
         ref={containerRef}
       >
-        <Navbar className="px-3 px-lg-7 px-xxl-3 container-small" expand="lg">
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          className="px-3 px-lg-7 px-xxl-3 container-small"
+        >
           <Navbar.Brand
             as={Link}
             to="/"
@@ -149,8 +154,8 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
             <Logo />
           </Navbar.Brand>
           <ThemeToggler className="mx-2 d-lg-none" />
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
             <div className="border-bottom d-lg-none mb-2">
               <SearchBox
                 placeholder="Search"
@@ -158,6 +163,7 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
                 inputClassName="rounded-pill my-4"
               />
             </div>
+
             <Nav className="me-auto pt-3 mb-lg-0" as="ul">
               {/* <NavItem label="Home" url="#home" />
               <NavItem label="Solutions" url="/#features" />
