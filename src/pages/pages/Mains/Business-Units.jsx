@@ -6,7 +6,7 @@ const BusinessUnits = () => {
   return (
     <>
       <DefaultLandingNavbar />
-      <div className="wrapper m-7">
+      <div className="wrapper">
         <div className="container mx-auto px-4 flex flex-col">
           <div className="flex flex-wrap justify-center text-center mb-7">
             <h1 className="text-7xl font-semibold">Business Units</h1>
