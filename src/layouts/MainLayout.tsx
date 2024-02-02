@@ -27,11 +27,17 @@ const MainLayout = () => {
     const appData = localStorage.getItem('appData');
     if (appData) {
       const data = JSON.parse(appData);
-      if (data.isLoggedIn) {
-        setIsLoggedIn(true);
+      const session = data.session;
+      if (session) {
+        if (session.isLoggedIn) {
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+          window.location.href = '/auth/sign-in';
+        }
       } else {
         setIsLoggedIn(false);
-        // window.location.href = '/auth/sign-in';
+        window.location.href = '/auth/sign-in';
       }
     } else {
       setIsLoggedIn(false);

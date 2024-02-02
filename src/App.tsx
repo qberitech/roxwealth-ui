@@ -7,6 +7,7 @@ import { useAppContext } from 'providers/AppProvider';
 import { useSettingsPanelContext } from 'providers/SettingsPanelProvider';
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+// import { PopUp } from 'components/banners/PopUp';
 
 const App = () => {
   const { isStylesheetLoaded } = useToggleStyle();
@@ -50,6 +51,7 @@ const App = () => {
       ) : (
         <>
           <Outlet />
+          {/* <PopUp show={false} message={'apple'} description={'apple'} /> */}
         </>
       )}
     </>

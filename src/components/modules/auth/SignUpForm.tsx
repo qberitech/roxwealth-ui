@@ -1,14 +1,103 @@
-import Button from 'components/base/Button';
-import AuthSocialButtons from 'components/common/AuthSocialButtons';
-import { Col, Form, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import AuthSocialButtons from 'components/common/AuthSocialButtons';
 
 const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
+  const [errorMessages, setErrorMessages] = useState<string[]>([]);
+  const [successMessage, setSuccessMessage] = useState<string>('');
+
   useEffect(() => {
-    // Set Title as Qberi | Sign Up
     document.title = 'Qberi | Sign Up';
   }, []);
+
+  const signUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    setErrorMessages([]);
+
+    const name = (document.getElementById('name') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement)
+      .value;
+    const confirmPassword = (
+      document.getElementById('confirmPassword') as HTMLInputElement
+    ).value;
+    const termsService = (
+      document.getElementById('termsService') as HTMLInputElement
+    ).checked;
+
+    const errors: string[] = [];
+
+    if (!name) {
+      errors.push('Name is required');
+    }
+
+    if (!email) {
+      errors.push('Email is required');
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      errors.push('Email is invalid');
+    }
+
+    if (!password) {
+      errors.push('Password is required');
+    } else if (password.length < 8) {
+      errors.push('Password must be at least 8 characters');
+    }
+
+    if (!confirmPassword) {
+      errors.push('Confirm Password is required');
+    } else if (password !== confirmPassword) {
+      errors.push('Passwords do not match');
+    }
+
+    if (!termsService) {
+      errors.push('Please accept the terms and conditions');
+    }
+
+    if (errors.length > 0) {
+      setErrorMessages(errors);
+      return;
+    }
+
+    try {
+      const URL = 'https://engine.qberi.com/api/register';
+      const data = {
+        name: name,
+        email: email,
+        password: password
+      };
+
+      const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;',
+          Accept: '*/*'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      // const responseJson = await response.json();
+      console.log(response);
+
+      setSuccessMessage(
+        'You have been registered successfully, Redirecting to Sign In page...'
+      );
+      // clear localStorage.appData.session
+      localStorage.removeItem('appData');
+      setTimeout(() => {
+        window.location.href = '/auth/sign-in';
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      setErrorMessages(['Something went wrong, Please Try Again!']);
+    }
+  };
+
   return (
     <>
       <div className="text-center mb-7">
@@ -31,13 +120,18 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
             id="email"
             type="email"
             placeholder="name@example.com"
+            required
           />
         </Form.Group>
         <Row className="g-3 mb-3">
           <Col sm={layout === 'card' ? 12 : 6} lg={6}>
             <Form.Group>
               <Form.Label htmlFor="password">Password</Form.Label>
-              <Form.Control id="password" type="text" placeholder="Password" />
+              <Form.Control
+                id="password"
+                type="text"
+                placeholder="Password ( minimum length 8 )"
+              />
             </Form.Group>
           </Col>
           <Col sm={layout === 'card' ? 12 : 6} lg={6}>
@@ -58,6 +152,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
             type="checkbox"
             name="termsService"
             id="termsService"
+            // make it required
+            required
           />
           <Form.Check.Label htmlFor="termsService" className="fs-9 text-none">
             {/* I accept the <Link to="/terms-conditions">terms </Link>and{' '} */}
@@ -72,7 +168,21 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
             </a>
           </Form.Check.Label>
         </Form.Check>
-        <Button variant="primary" className="w-100 mb-3">
+        <div className="mb-3">
+          <small className="text-danger">
+            {errorMessages.map((msg, i) => (
+              <div key={i}>{msg}</div>
+            ))}
+          </small>
+        </div>
+        <div className="mb-3">
+          <small className="text-success">{successMessage}</small>
+        </div>
+        <Button
+          variant="primary"
+          className="w-100 mb-3"
+          onClick={e => signUp(e)}
+        >
           Sign up
         </Button>
         <div className="text-center">

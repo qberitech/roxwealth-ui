@@ -1,4 +1,5 @@
 import React from 'react';
+import cors from 'cors';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 

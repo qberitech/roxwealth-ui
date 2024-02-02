@@ -6,25 +6,48 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-const credentials = {
-  email: 'sample@qberi.com',
-  password: 'password'
-};
+// Local Storage Template
+// {
+//   "appData":{
+//       "session":{
+//           "isLoggedIn":true,
+//           "sessionToken":"1234567890",
+//           "created_at":"2014-01-01 00:00:00",
+//           "updated_at":"2014-01-01 00:00:00"
+//       },
+//       "terms":{
+//           "accepted_terms":true,
+//           "accepted_at":"2014-01-01 00:00:00"
+//       },
+//       "login":{
+//           "remember_me":true,
+//           "email":"sample@qberi.com"
+//       }
+//   }
+// }
 
 const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
 
   useEffect(() => {
     document.title = 'Qberi | Sign In';
     const data = localStorage.getItem('appData');
-    if (data) {
-      const appData = JSON.parse(data);
-      console.log(data);
-      if (appData.isLoggedIn) {
-        window.location.href = '/dashboard/ecommerce';
-      }
+
+    if (!data) {
+      return;
+    }
+
+    const appData = JSON.parse(data);
+    const session = appData.session;
+    if (!session) {
+      return;
+    }
+
+    if (session.isLoggedIn) {
+      window.location.href = '/dashboard/ecommerce';
     }
   }, []);
 
@@ -37,21 +60,79 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   };
 
   const onClick = () => {
-    if (email === credentials.email && password === credentials.password) {
-      const data = {
-        isLoggedIn: true,
-        user: {
-          name: 'John Doe',
-          email: 'support@qberi.com',
-          role: 'admin'
+    const URL = 'https://engine.qberi.com/api/login';
+    const data = {
+      email: email,
+      password: password
+    };
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: '*/*',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+      },
+      responseType: 'text',
+      // mode: 'no-cors',
+      body: JSON.stringify(data)
+    };
+
+    const response = fetch(URL, options)
+      .then(response => {
+        if (response.ok) {
+          return response;
         }
-      };
-      localStorage.setItem('appData', JSON.stringify(data));
-      window.location.href = '/dashboard/ecommerce';
-    } else {
-      setError('Invalid credentials');
-      console.log(email, password);
-    }
+        throw new Error('Something went wrong');
+      })
+      .then(responseJson => {
+        if (
+          responseJson.status === 200 ||
+          responseJson.status === 201 ||
+          responseJson.status === 202
+        ) {
+          console.log('success login');
+
+          // login success code
+          setError('');
+
+          // set local storage
+          const date = new Date();
+          const session = {
+            sessionToken: 'demo',
+            isLoggedIn: true,
+            created_at: date.toISOString(),
+            updated_at: date.toISOString()
+          };
+
+          console.log(session);
+          const data = localStorage.getItem('appData');
+
+          if (data) {
+            const appData = JSON.parse(data);
+            appData.session = session;
+            localStorage.setItem('appData', JSON.stringify(appData));
+          } else {
+            const appData = {
+              session: session
+            };
+            localStorage.setItem('appData', JSON.stringify(appData));
+          }
+
+          setSuccessMessage('Login Success! Redirecting to Dashboard...');
+          setTimeout(() => {
+            window.location.href = '/dashboard/ecommerce';
+          }, 3000);
+        } else {
+          setError('Invalid Credentials, Please Try Again!');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        setError('Invalid Credentials, Please Try Again!');
+      });
+
+    console.log(response);
   };
 
   return (
@@ -117,6 +198,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         </Col>
       </Row>
       <p className="text-danger">{error}</p>
+      <p className="text-success text-3xl">{successMessage}</p>
 
       <Button variant="primary" className="w-100 mb-3" onClick={onClick}>
         Sign In
