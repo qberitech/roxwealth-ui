@@ -34,11 +34,11 @@ const FeatureSection = ({ feature, isLast }: FeatureSectionProps) => {
           </Button>
         </Link> */}
         <div className="mt-5">
-            <Link to={link_to} className="btn btn-outline-primary">
+          <Link to={link_to} className="btn btn-outline-primary">
             {feature.linkText}
-              <FontAwesomeIcon icon={faAngleRight} transform="down-1" />
-            </Link>
-          </div>
+            <FontAwesomeIcon icon={faAngleRight} transform="down-1" />
+          </Link>
+        </div>
       </Col>
       <Col md={5} className="mb-5 mb-md-0 text-center">
         <img

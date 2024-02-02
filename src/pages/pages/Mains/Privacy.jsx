@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
     <div className="terms-container">
       <DefaultLandingNavbar />
 
-      <div className="content-wrapper">
+      <div className="content-wrapper m-lg-5">
         <div className="about-description text-center mb-7 text-4xl">
           <h2 className="title">Privacy Policy</h2>
         </div>

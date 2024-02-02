@@ -3,8 +3,8 @@
 }
 
 .content-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
+  /* max-width: 800px;
+  margin: 0 auto; */
   padding: 20px;
 }
 
@@ -25,6 +25,7 @@
 }
 
 .terms-content {
+  text-align: justify;
   font-size: 20px;
   line-height: 1.6;
 }
@@ -39,6 +40,7 @@
 }
 
 .terms-list-item {
+  text-align: justify;
   margin-bottom: 10px;
   list-style: none;
   line-height: 1.6;

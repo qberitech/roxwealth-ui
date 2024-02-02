@@ -59,8 +59,8 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
     setPassword(e.target.value);
   };
 
-  const onClick = () => {
-    const URL = 'https://engine.qberi.com/api/login';
+  const onClick = async () => {
+    const URL = '/api/login';
     const data = {
       email: email,
       password: password

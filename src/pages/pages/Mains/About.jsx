@@ -17,7 +17,7 @@ const About = () => {
           <div className="flex flex-wrap justify-center text-center mb-7">
             <h1 className="text-7xl font-semibold">About Us</h1>
           </div>
-          <div className="flex flex-wrap p-5">
+          <div className="flex flex-wrap p-lg-5">
             <h2 className="text-3xl font-semibold mb-4">
               Introduction to Qberi's Business Divisions
             </h2>

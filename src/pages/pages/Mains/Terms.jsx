@@ -8,7 +8,7 @@ const Terms = () => {
     <div className="terms-container">
       <DefaultLandingNavbar />
 
-      <div className="content-wrapper">
+      <div className="content-wrapper m-lg-5">
         <div className="about-description text-center mb-3 mt-3">
           <h2 className="title">Terms and Conditions</h2>
         </div>
