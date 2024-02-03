@@ -1,18 +1,18 @@
 {
-    "appData":{
-        "session":{
-            "isLoggedIn":true,
-            "sessionToken":"1234567890",
-            "created_at":"2014-01-01 00:00:00",
-            "updated_at":"2014-01-01 00:00:00"
-        },
-        "terms":{
-            "accepted_terms":true,
-            "accepted_at":"2014-01-01 00:00:00"
-        },
-        "login":{
-            "remember_me":true,
-            "email":"sample@qberi.com"
-        }
+  "appData": {
+    "session": {
+      "isLoggedIn": true,
+      "sessionToken": "1234567890",
+      "created_at": "2014-01-01 00:00:00",
+      "updated_at": "2014-01-01 00:00:00"
+    },
+    "terms": {
+      "accepted_terms": true,
+      "accepted_at": "2014-01-01 00:00:00"
+    },
+    "login": {
+      "remember_me": true,
+      "email": "sample@qberi.com"
     }
+  }
 }

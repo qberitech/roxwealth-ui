@@ -27,6 +27,10 @@ const SignOutForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         >
           Go to sign in page
         </Button>
+        {/* Go to Home Page Button */}
+        <Button variant="link" as={Link} to="/" className="mt-3">
+          Go to home page
+        </Button>
       </div>
     </div>
   );

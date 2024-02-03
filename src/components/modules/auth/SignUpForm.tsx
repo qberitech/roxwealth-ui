@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
+import axios from 'axios';
 
 const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
@@ -9,12 +10,18 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 
   useEffect(() => {
     document.title = 'Qberi | Sign Up';
+    // check if user is already logged in
+    const data = localStorage.getItem('appData');
+    if (data) {
+      const appData = JSON.parse(data);
+      if (appData.session?.isLoggedIn) {
+        window.location.href = '/dashboard/ecommerce';
+      }
+    }
   }, []);
 
   const signUp = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    setErrorMessages([]);
 
     const name = (document.getElementById('name') as HTMLInputElement).value;
     const email = (document.getElementById('email') as HTMLInputElement).value;
@@ -60,41 +67,38 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       return;
     }
 
+    const data = {
+      name,
+      email,
+      password
+    };
+
+    const URL = 'https://engine.qberi.com/api/register';
+
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+
     try {
-      const URL = 'https://engine.qberi.com/api/register';
-      const data = {
-        name: name,
-        email: email,
-        password: password
-      };
-
-      const response = await fetch(URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;',
-          Accept: '*/*'
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (!response.ok) {
-        throw new Error('Something went wrong');
+      const response = await axios.post(URL, data, { headers });
+      console.log(response.data);
+      if (
+        response.status === 200 ||
+        response.status === 201 ||
+        response.status === 202
+      ) {
+        setSuccessMessage(
+          'You have successfully signed up, redirecting to the Sign-In Page ...'
+        );
+        setTimeout(() => {
+          window.location.href = '/auth/sign-in';
+        }, 1000);
+      } else {
+        setErrorMessages(['Registration failed']);
       }
-
-      // const responseJson = await response.json();
-      console.log(response);
-
-      setSuccessMessage(
-        'You have been registered successfully, Redirecting to Sign In page...'
-      );
-      // clear localStorage.appData.session
-      localStorage.removeItem('appData');
-      setTimeout(() => {
-        window.location.href = '/auth/sign-in';
-      }, 3000);
     } catch (error) {
       console.error(error);
-      setErrorMessages(['Something went wrong, Please Try Again!']);
+      setErrorMessages(['Registration failed']);
     }
   };
 
@@ -129,7 +133,7 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
               <Form.Label htmlFor="password">Password</Form.Label>
               <Form.Control
                 id="password"
-                type="text"
+                type="password"
                 placeholder="Password ( minimum length 8 )"
               />
             </Form.Group>
@@ -141,7 +145,7 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
               </Form.Label>
               <Form.Control
                 id="confirmPassword"
-                type="text"
+                type="password"
                 placeholder="Confirm Password"
               />
             </Form.Group>
@@ -152,17 +156,14 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
             type="checkbox"
             name="termsService"
             id="termsService"
-            // make it required
             required
           />
           <Form.Check.Label htmlFor="termsService" className="fs-9 text-none">
-            {/* I accept the <Link to="/terms-conditions">terms </Link>and{' '} */}
             I accept the{' '}
             <a href="/terms-conditions" target="_blank">
               terms
             </a>{' '}
             and{' '}
-            {/* <Link to="/privacy-policy" target='_blank'>privacy policy</Link> */}
             <a href="/privacy-policy" target="_blank">
               privacy policy
             </a>
@@ -178,11 +179,7 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         <div className="mb-3">
           <small className="text-success">{successMessage}</small>
         </div>
-        <Button
-          variant="primary"
-          className="w-100 mb-3"
-          onClick={e => signUp(e)}
-        >
+        <Button variant="primary" className="w-100 mb-3" onClick={signUp}>
           Sign up
         </Button>
         <div className="text-center">

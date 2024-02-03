@@ -5,26 +5,49 @@ import AuthSocialButtons from 'components/common/AuthSocialButtons';
 import { Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// Local Storage Template
-// {
-//   "appData":{
-//       "session":{
-//           "isLoggedIn":true,
-//           "sessionToken":"1234567890",
-//           "created_at":"2014-01-01 00:00:00",
-//           "updated_at":"2014-01-01 00:00:00"
-//       },
-//       "terms":{
-//           "accepted_terms":true,
-//           "accepted_at":"2014-01-01 00:00:00"
-//       },
-//       "login":{
-//           "remember_me":true,
-//           "email":"sample@qberi.com"
-//       }
-//   }
-// }
+interface SessionData {
+  isLoggedIn: boolean;
+  sessionToken: string;
+  created_at: string;
+  updated_at: string;
+}
+
+interface AppData {
+  session?: SessionData;
+  terms?: {
+    accepted_terms: boolean;
+    accepted_at: string;
+  };
+  login?: {
+    remember_me: boolean;
+    email: string;
+  };
+}
+
+const UpdateSession = (sessionToken: string) => {
+  const date = new Date();
+  const session: SessionData = {
+    sessionToken: sessionToken,
+    isLoggedIn: true,
+    created_at: date.toISOString(),
+    updated_at: date.toISOString()
+  };
+
+  const data = localStorage.getItem('appData');
+
+  if (data) {
+    const appData: AppData = JSON.parse(data);
+    appData.session = session;
+    localStorage.setItem('appData', JSON.stringify(appData));
+  } else {
+    const appData: AppData = {
+      session: session
+    };
+    localStorage.setItem('appData', JSON.stringify(appData));
+  }
+};
 
 const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   const [email, setEmail] = useState('');
@@ -36,103 +59,60 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
     document.title = 'Qberi | Sign In';
     const data = localStorage.getItem('appData');
 
-    if (!data) {
-      return;
-    }
-
-    const appData = JSON.parse(data);
-    const session = appData.session;
-    if (!session) {
-      return;
-    }
-
-    if (session.isLoggedIn) {
-      window.location.href = '/dashboard/ecommerce';
+    if (data) {
+      const appData: AppData = JSON.parse(data);
+      const session = appData.session;
+      if (session && session.isLoggedIn) {
+        window.location.href = '/dashboard/ecommerce';
+      }
     }
   }, []);
 
-  const changeEmail = (e: any) => {
+  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const changePassword = (e: any) => {
+  const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const onClick = () => {
+  const handleLogin = async () => {
     const URL = 'https://engine.qberi.com/api/login';
+    // const URL = 'https://catfact.ninja/fact';
+
     const data = {
       email: email,
       password: password
     };
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: '*/*',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-      },
-      responseType: 'text',
-      // mode: 'no-cors',
-      body: JSON.stringify(data)
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
 
-    const response = fetch(URL, options)
-      .then(response => {
-        if (response.ok) {
-          return response;
-        }
-        throw new Error('Something went wrong');
-      })
-      .then(responseJson => {
-        if (
-          responseJson.status === 200 ||
-          responseJson.status === 201 ||
-          responseJson.status === 202
-        ) {
-          console.log('success login');
+    try {
+      const response = await axios.post(URL, data, { headers: headers });
+      if (
+        response.status === 200 ||
+        response.status === 201 ||
+        response.status === 202
+      ) {
+        const responseData = response.data;
+        console.log(responseData);
 
-          // login success code
-          setError('');
-
-          // set local storage
-          const date = new Date();
-          const session = {
-            sessionToken: 'demo',
-            isLoggedIn: true,
-            created_at: date.toISOString(),
-            updated_at: date.toISOString()
-          };
-
-          console.log(session);
-          const data = localStorage.getItem('appData');
-
-          if (data) {
-            const appData = JSON.parse(data);
-            appData.session = session;
-            localStorage.setItem('appData', JSON.stringify(appData));
-          } else {
-            const appData = {
-              session: session
-            };
-            localStorage.setItem('appData', JSON.stringify(appData));
-          }
-
-          setSuccessMessage('Login Success! Redirecting to Dashboard...');
-          setTimeout(() => {
-            window.location.href = '/dashboard/ecommerce';
-          }, 3000);
-        } else {
-          setError('Invalid Credentials, Please Try Again!');
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        setError('Invalid Credentials, Please Try Again!');
-      });
-
-    console.log(response);
+        const sessionToken = '1234567890 ';
+        UpdateSession(sessionToken);
+        setSuccessMessage('Login successful, redirecting...');
+        setTimeout(() => {
+          window.location.href = '/dashboard/ecommerce';
+        }, 1000);
+      } else {
+        setError('Invalid email or password');
+      }
+    } catch (error) {
+      console.error(error);
+      setError('Invalid email or password');
+    }
   };
 
   return (
@@ -200,7 +180,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       <p className="text-danger">{error}</p>
       <p className="text-success text-3xl">{successMessage}</p>
 
-      <Button variant="primary" className="w-100 mb-3" onClick={onClick}>
+      <Button variant="primary" className="w-100 mb-3" onClick={handleLogin}>
         Sign In
       </Button>
       <div className="text-center">

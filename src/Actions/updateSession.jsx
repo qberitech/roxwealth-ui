@@ -5,7 +5,6 @@ const updateSession = () => {
   if (!session) {
     return false;
   }
-
   const now = new Date();
   session.updated_at = now;
   appData.session = session;
@@ -13,3 +12,5 @@ const updateSession = () => {
 
   return true;
 };
+
+export default updateSession;
