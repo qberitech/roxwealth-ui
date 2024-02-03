@@ -1,7 +1,6 @@
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import Button from 'components/base/Button';
 import { Feature } from 'data/landing/alternate-landing-data';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -24,15 +23,12 @@ const FeatureSection = ({ feature, isLast }: FeatureSectionProps) => {
         <h4 className="mb-3">{feature.title}</h4>
         <p className="mb-1">{feature.description}</p>
         <p className="mb-5">{feature.additional}</p>
-        <Link to={link_to} className="btn btn-outline-primary">
-          <Button
-            variant="link"
-            endIcon={<FontAwesomeIcon icon={faAngleRight} />}
-            className="me-2 p-0 fs-9"
-          >
-            {feature.linkText}
-          </Button>
-        </Link>
+        <div className="mt-5">
+          <Link to={link_to} className="btn btn-outline-primary">
+            {feature.linkText}{' '}
+            <FontAwesomeIcon icon={faAngleRight} transform="down-1" />
+          </Link>
+        </div>
       </Col>
       <Col md={5} className="mb-5 mb-md-0 text-center">
         <img
