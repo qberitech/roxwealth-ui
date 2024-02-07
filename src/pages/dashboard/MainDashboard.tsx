@@ -9,10 +9,25 @@ import EcomStats from 'components/stats/EcomStats';
 import { mapMarkerPoints } from 'data/mapMarkerPoints';
 import EcomProjectionVsActual from 'components/modules/e-commerce/dashboard/EcomProjectionVsActual';
 import EcomReturningCustomerRate from 'components/modules/e-commerce/dashboard/EcomReturningCustomerRate';
-import EcomTotalSells from 'components/modules/e-commerce/dashboard/EcomTotalSells';
+// import EcomTotalSells from 'components/modules/e-commerce/dashboard/EcomTotalSells';
 import EcomTopRegions from 'components/modules/e-commerce/dashboard/EcomTopRegions';
+// import sampleJson from '../../assets/SampleData.json';
+// import PerformanceTPPS from 'components/Graphs/Performance-TPPS';
+// import PerformanceCPS from 'components/Graphs/Performance-CPS';
+import PerformanceNAVS from 'components/Graphs/Performance-NAVS';
+// import { useState, useEffect } from 'react';
 
 const Ecommerce2 = () => {
+  // set to receive any data from the backend
+  // const [TPPS_Data, setTPPS_Data] = useState({});
+  // const [CPS_Data, setCPS_Data] = useState({});
+  // const [Nav_Data, setNav_Data] = useState({});
+  // useEffect(() => {
+  //   setTPPS_Data(sampleJson.tpps);
+  //   setCPS_Data(sampleJson.cps);
+  //   setNav_Data(sampleJson.nav);
+  // }, []);
+
   return (
     <>
       <div className="pb-5">
@@ -25,7 +40,10 @@ const Ecommerce2 = () => {
               </h5>
             </div>
             <EcomStats />
-            <EcomTotalSells />
+            {/* <EcomTotalSells /> */}
+            {/* <PerformanceTPPS data={TPPS_Data}   /> */}
+            {/* <PerformanceCPS data={CPS_Data} /> */}
+            <PerformanceNAVS />
           </Col>
           <Col xs={12} xxl={6}>
             <Row className="g-3">

@@ -3,52 +3,82 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import {
   faCircle,
-  faPause,
+  // faPause,
   faSquare,
-  faStar,
-  faXmark
+  // faXmark,
+  faStar
 } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 type StatType = {
   id: number | string;
   icon: IconProp;
-  title: string;
-  subTitle: string;
+  title: string | number;
+  subTitle: string | number;
   color: string;
 };
 
-const stats: StatType[] = [
-  {
-    id: 1,
-    icon: faStar,
-    title: '57 new orders',
-    subTitle: 'Awating processing',
-    color: 'success'
-  },
-  {
-    id: 2,
-    icon: faPause,
-    title: '5 orders',
-    subTitle: 'On hold',
-    color: 'warning'
-  },
-  {
-    id: 3,
-    icon: faXmark,
-    title: '15 products',
-    subTitle: 'Out of stock',
-    color: 'danger'
-  }
-];
+// const stats: StatType[] = [
+//   {
+//     id: 1,
+//     icon: faStar,
+//     title: '57 new orders',
+//     subTitle: 'Awating processing',
+//     color: 'success'
+//   },
+//   {
+//     id: 2,
+//     icon: faPause,
+//     title: '5 orders',
+//     subTitle: 'On hold',
+//     color: 'warning'
+//   },
+//   {
+//     id: 3,
+//     icon: faXmark,
+//     title: '15 products',
+//     subTitle: 'Out of stock',
+//     color: 'danger'
+//   }
+// ];
 
 const EcomStats = () => {
+  const [totalAssets, setTotalAssets] = useState(0);
+  const [ourStats, setOurStats] = useState({
+    id: 1,
+    icon: faStar,
+    title: '$ ' + totalAssets,
+    subTitle: 'Assets Under Management',
+    color: 'success'
+  });
+
+  useEffect(() => {
+    const URL =
+      'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
+    axios.get(URL).then(response => {
+      console.log(response.data);
+      setTotalAssets(response.data.amountInUsd);
+      const testStats = {
+        id: 1,
+        icon: faStar,
+        title: '$ ' + response.data.amountInUsd,
+        subTitle: 'Assets Under Management',
+        color: 'success'
+      };
+      setOurStats(testStats);
+    });
+  }, []);
   return (
     <Row className="align-items-center g-4 border-bottom pb-4 mb-6">
-      {stats.map(stat => (
+      {/* {stats.map(stat => (
         <Col xs={12} md="auto" key={stat.id}>
           <Stat stat={stat} />
         </Col>
-      ))}
+      ))} */}
+      <Col xs={12} md="auto">
+        <Stat stat={ourStats} />
+      </Col>
     </Row>
   );
 };
