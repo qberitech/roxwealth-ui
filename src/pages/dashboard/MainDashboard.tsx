@@ -42,7 +42,7 @@ const Ecommerce2 = () => {
             <EcomStats />
             {/* <EcomTotalSells /> */}
             {/* <PerformanceTPPS data={TPPS_Data}   /> */}
-            {/* <PerformanceCPS data={CPS_Data} /> */}
+            {/* <PerformanceCPS /> */}
             <PerformanceNAVS />
           </Col>
           <Col xs={12} xxl={6}>

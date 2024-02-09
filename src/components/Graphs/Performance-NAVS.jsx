@@ -87,7 +87,7 @@ const PerformanceNAVS = () => {
           <h2>Net Asset Value(NAV) - {mode}</h2>
         </Col>
         <Col>
-          <Form.Select size="sm" onClick={handleModeChange}>
+          <Form.Select size="sm" onChange={handleModeChange}>
             <option value="monthly">Monthly</option>
             <option value="daily">Daily</option>
           </Form.Select>

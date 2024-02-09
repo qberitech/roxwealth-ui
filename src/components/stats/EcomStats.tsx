@@ -19,30 +19,6 @@ type StatType = {
   color: string;
 };
 
-// const stats: StatType[] = [
-//   {
-//     id: 1,
-//     icon: faStar,
-//     title: '57 new orders',
-//     subTitle: 'Awating processing',
-//     color: 'success'
-//   },
-//   {
-//     id: 2,
-//     icon: faPause,
-//     title: '5 orders',
-//     subTitle: 'On hold',
-//     color: 'warning'
-//   },
-//   {
-//     id: 3,
-//     icon: faXmark,
-//     title: '15 products',
-//     subTitle: 'Out of stock',
-//     color: 'danger'
-//   }
-// ];
-
 const EcomStats = () => {
   const [totalAssets, setTotalAssets] = useState(0);
   const [ourStats, setOurStats] = useState({
@@ -52,30 +28,42 @@ const EcomStats = () => {
     subTitle: 'Assets Under Management',
     color: 'success'
   });
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const URL =
       'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
-    axios.get(URL).then(response => {
-      console.log(response.data);
-      setTotalAssets(response.data.amountInUsd);
-      const testStats = {
-        id: 1,
-        icon: faStar,
-        title: '$ ' + response.data.amountInUsd,
-        subTitle: 'Assets Under Management',
-        color: 'success'
-      };
-      setOurStats(testStats);
-    });
+    axios
+      .get(URL)
+      .then(response => {
+        console.log(response.data);
+        setTotalAssets(response.data.amountInUsd);
+        const amount = response.data.amountInUsd;
+        const testStats = {
+          id: 1,
+          icon: faStar,
+          title:
+            '$ ' +
+            amount.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2
+            }),
+          subTitle: 'Assets Under Management',
+          color: 'success'
+        };
+        setOurStats(testStats);
+      })
+      .catch(error => {
+        setError('Error fetching data from API ' + error);
+      });
   }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <Row className="align-items-center g-4 border-bottom pb-4 mb-6">
-      {/* {stats.map(stat => (
-        <Col xs={12} md="auto" key={stat.id}>
-          <Stat stat={stat} />
-        </Col>
-      ))} */}
       <Col xs={12} md="auto">
         <Stat stat={ourStats} />
       </Col>
@@ -86,7 +74,6 @@ const EcomStats = () => {
 const Stat = ({ stat }: { stat: StatType }) => {
   return (
     <Stack direction="horizontal" className="align-items-center">
-      {/* <img src={stat.icon} alt="" height={46} width={46} /> */}
       <span
         className="fa-layers"
         style={{ minHeight: '46px', minWidth: '46px' }}

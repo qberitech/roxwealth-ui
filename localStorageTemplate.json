@@ -13,6 +13,13 @@
     "login": {
       "remember_me": true,
       "email": "sample@qberi.com"
+    },
+    "userData": {
+      "email": "sample@qberi.com",
+      "name": "Demo Name",
+      "Mobile": "1234567890",
+      "profilePic": "http://www.qberi.com/images/profilePic.png",
+      "lastUpdated": "2014-01-01 00:00:00"
     }
   }
 }
