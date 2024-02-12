@@ -15,6 +15,7 @@ import EcomTopRegions from 'components/modules/e-commerce/dashboard/EcomTopRegio
 // import PerformanceTPPS from 'components/Graphs/Performance-TPPS';
 // import PerformanceCPS from 'components/Graphs/Performance-CPS';
 import PerformanceNAVS from 'components/Graphs/Performance-NAVS';
+import PerformanceNAVSLine from 'components/Graphs/Performance-NAVS-Line';
 // import { useState, useEffect } from 'react';
 
 const Ecommerce2 = () => {
@@ -44,6 +45,7 @@ const Ecommerce2 = () => {
             {/* <PerformanceTPPS data={TPPS_Data}   /> */}
             {/* <PerformanceCPS /> */}
             <PerformanceNAVS />
+            <PerformanceNAVSLine/>
           </Col>
           <Col xs={12} xxl={6}>
             <Row className="g-3">
