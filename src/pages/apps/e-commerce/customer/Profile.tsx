@@ -39,7 +39,14 @@ const Profile = () => {
           };
           setProfileDetails(details)
       })
+      .catch(error => {
+        setError('Error fetching data from API ' + error);
+      });
   },[])
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="pt-5 mb-9">
