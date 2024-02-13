@@ -58,14 +58,14 @@ import NavsExample from 'pages/modules/components/NavsExample';
 import TabsExample from 'pages/modules/components/TabsExample';
 import NavbarExample from 'pages/modules/components/NavbarExample';
 // import Ecommerce from 'pages/dashboard/ecommerce';
-// import EcommerceLayout from 'layouts/EcommerceLayout';
+import EcommerceLayout from 'layouts/EcommerceLayout';
 // import Homepage from 'pages/apps/e-commerce/customer/Homepage';
 // import ProductDetails from 'pages/apps/e-commerce/customer/ProductDetails';
 // import Cart from 'pages/apps/e-commerce/customer/Cart';
 // import Checkout from 'pages/apps/e-commerce/customer/checkout/Checkout';
 // import ProductsFilter from 'pages/apps/e-commerce/customer/ProductsFilter';
 // import ShippingInfo from 'pages/apps/e-commerce/customer/checkout/ShippingInfo';
-// import Profile from 'pages/apps/e-commerce/customer/Profile';
+import Profile from 'pages/apps/e-commerce/customer/Profile';
 // import Wishlist from 'pages/apps/e-commerce/customer/Wishlist';
 // import FavoriteStores from 'pages/apps/e-commerce/customer/FavoriteStores';
 // import Invoice from 'pages/apps/e-commerce/customer/Invoice';
@@ -278,8 +278,12 @@ const routes: RouteObject[] = [
               {
                 path: 'ecommerce',
                 element: <Ecommerce2 />
-              }
+              },
             ]
+          },
+          {
+            path: 'profile',
+            element: <Profile />
           },
           {
             path: '/apps',
@@ -935,50 +939,50 @@ const routes: RouteObject[] = [
       //   element: <EcommerceLayout />,
       //   path: '/apps/e-commerce/customer/',
       //   children: [
-      //     {
-      //       path: 'homepage',
-      //       element: <Homepage />
-      //     },
-      //     {
-      //       path: 'product-details',
-      //       element: <ProductDetails />
-      //     },
-      //     {
-      //       path: 'cart',
-      //       element: <Cart />
-      //     },
-      //     {
-      //       path: 'checkout',
-      //       element: <Checkout />
-      //     },
-      //     {
-      //       path: 'shipping-info',
-      //       element: <ShippingInfo />
-      //     },
-      //     {
-      //       path: 'profile',
-      //       element: <Profile />
-      //     },
-      //     {
-      //       path: 'products-filter',
-      //       element: <ProductsFilter />
-      //     },
-      //     {
-      //       path: 'wishlist',
-      //       element: <Wishlist />
-      //     },
-      //     {
-      //       path: 'favorite-stores',
-      //       element: <FavoriteStores />
-      //     },
-      //     {
-      //       path: 'order-tracking',
-      //       element: <OrderTracking />
-      //     },
-      //     {
-      //       path: 'invoice',
-      //       element: <Invoice />
-      //     }
+      //     // {
+      //     //   path: 'homepage',
+      //     //   element: <Homepage />
+      //     // },
+      //     // {
+      //     //   path: 'product-details',
+      //     //   element: <ProductDetails />
+      //     // },
+      //     // {
+      //     //   path: 'cart',
+      //     //   element: <Cart />
+      //     // },
+      //     // {
+      //     //   path: 'checkout',
+      //     //   element: <Checkout />
+      //     // },
+      //     // {
+      //     //   path: 'shipping-info',
+      //     //   element: <ShippingInfo />
+      //     // },
+      //     // {
+      //     //   path: 'profile',
+      //     //   element: <Profile />
+      //     // },
+      //     // {
+      //     //   path: 'products-filter',
+      //     //   element: <ProductsFilter />
+      //     // },
+      //     // {
+      //     //   path: 'wishlist',
+      //     //   element: <Wishlist />
+      //     // },
+      //     // {
+      //     //   path: 'favorite-stores',
+      //     //   element: <FavoriteStores />
+      //     // },
+      //     // {
+      //     //   path: 'order-tracking',
+      //     //   element: <OrderTracking />
+      //     // },
+      //     // {
+      //     //   path: 'invoice',
+      //     //   element: <Invoice />
+      //     // }
       //   ]
       // },
       // {

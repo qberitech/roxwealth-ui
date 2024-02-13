@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import { Card } from 'react-bootstrap';
 
-const EcoimDefaultAddressCard = () => {
+const EcoimDefaultAddressCard = ({details} : any) => {
   return (
     <Card className="h-100">
       <Card.Body>
@@ -29,13 +29,13 @@ const EcoimDefaultAddressCard = () => {
           <div className="d-flex justify-content-between gap-2 mb-3">
             <h5 className="text-1000 mb-0">Email</h5>
             <a className="lh-1" href="mailto:shatinon@jeemail.com">
-              shatinon@jeemail.com
+              {details.email}
             </a>
           </div>
           <div className="d-flex justify-content-between gap-2">
             <h5 className="text-1000 mb-0">Phone</h5>
             <a className="text-800" href="tel:+1234567890">
-              +1234567890
+              {'+ ' + details.mobile}
             </a>
           </div>
         </div>

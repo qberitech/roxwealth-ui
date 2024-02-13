@@ -9,7 +9,7 @@ import {
   faTwitter
 } from '@fortawesome/free-brands-svg-icons';
 
-const EcomProfileCard = () => {
+const EcomProfileCard = ({details} : any) => {
   return (
     <Card className="h-100">
       <Card.Body>
@@ -19,7 +19,7 @@ const EcomProfileCard = () => {
               <AvatarUpload size="5xl" src={team15} />
             </Col>
             <Col xs={12} sm="auto" className="flex-1">
-              <h3>Ansolo Lazinatov</h3>
+              <h3>{details.name}</h3>
               <p className="text-800">Joined 3 months ago</p>
               <div>
                 <a href="#!" className="me-2">

@@ -1,5 +1,6 @@
 import { faKey, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import Button from 'components/base/Button';
 import Section from 'components/base/Section';
 import EcoimDefaultAddressCard from 'components/cards/EcoimDefaultAddressCard';
@@ -7,9 +8,39 @@ import EcomProfileCard from 'components/cards/EcomProfileCard';
 import PageBreadcrumb from 'components/common/PageBreadcrumb';
 import ProfileDetailsTab from 'components/modules/e-commerce/profile/ProfileDetailsTab';
 import { defaultBreadcrumbItems } from 'data/commonData';
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
 const Profile = () => {
+
+  const [error,setError] = useState('')
+
+  // Email is Hardcoded for now have to make it dynamic later
+  const email = 'tony@avengers.com'
+  const [profileDetail,setProfileDetails] = useState({
+    email: '',
+    id: '',
+    mobile: '',
+    name: '',
+    profilePicture: ''
+  })
+  useEffect(() => {
+    const URL = `http://engine.qberi.com/api/getProfile/${email}`
+    axios
+      .get(URL)
+      .then(res => {
+          console.log(res.data)
+          const details = {
+            email: res.data.email,
+            id: res.data.id,
+            mobile: res.data.mobile,
+            name: res.data.name,
+            profilePicture: res.data.profilePicture
+          };
+          setProfileDetails(details)
+      })
+  },[])
+
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">
@@ -35,10 +66,10 @@ const Profile = () => {
         </Row>
         <Row className="g-3 mb-6">
           <Col xs={12} lg={8}>
-            <EcomProfileCard />
+            <EcomProfileCard details = {profileDetail}/>
           </Col>
           <Col xs={12} lg={4}>
-            <EcoimDefaultAddressCard />
+            <EcoimDefaultAddressCard details = {profileDetail}/>
           </Col>
         </Row>
         <ProfileDetailsTab />
