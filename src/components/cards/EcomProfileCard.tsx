@@ -9,7 +9,7 @@ import {
   faTwitter
 } from '@fortawesome/free-brands-svg-icons';
 
-const EcomProfileCard = ({details} : any) => {
+const EcomProfileCard = ({ details }: any) => {
   return (
     <Card className="h-100">
       <Card.Body>

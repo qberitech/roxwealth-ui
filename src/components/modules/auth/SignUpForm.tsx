@@ -15,7 +15,7 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
     if (data) {
       const appData = JSON.parse(data);
       if (appData.session?.isLoggedIn) {
-        window.location.href = '/dashboard/ecommerce';
+        window.location.href = '/dashboard/roxwealth';
       }
     }
   }, []);

@@ -9,6 +9,9 @@ import {
   // UilPuzzlePiece
 } from '@iconscout/react-unicons';
 
+// List of ICONS available in the template
+// phone, bookmark, message-square, mail, calendar, compass, help-circle, globe, tag, bell, users, clock, alert-triangle, lock, layout, file-text, trello, share-2, chart-pie, cube, document-layout-right, files-landscapes-alt, puzzle-piece
+
 export interface Route {
   name: string;
   icon?: IconProp | string | string[];
@@ -85,10 +88,10 @@ export const routes: RouteItems[] = [
     icon: UilCube,
     pages: [
       {
-        name: 'e-commerce',
+        name: 'Roxwealth',
         active: true,
         icon: 'shopping-cart',
-        path: '/dashboard/ecommerce'
+        path: '/dashboard/roxwealth'
       },
       {
         name: 'Account Summary',
@@ -103,6 +106,18 @@ export const routes: RouteItems[] = [
         path: '/dashboard/project-management',
         pathName: 'app-account-details',
         icon: 'clipboard'
+      }
+    ]
+  },
+  {
+    label: 'Settings',
+    icon: UilCube,
+    pages: [
+      {
+        name: 'Profile',
+        active: true,
+        icon: 'bookmark',
+        path: '/profile'
       }
     ]
   }

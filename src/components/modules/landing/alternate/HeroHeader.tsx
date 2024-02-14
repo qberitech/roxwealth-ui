@@ -41,7 +41,7 @@ const HeroHeader = () => {
               </Button>
               <Button
                 as={Link}
-                to="/dashboard/ecommerce"
+                to="/dashboard/roxwealth"
                 variant="link"
                 endIcon={
                   <FontAwesomeIcon icon={faAngleRight} className="ms-2 fs-9" />

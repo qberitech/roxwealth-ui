@@ -63,7 +63,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       const appData: AppData = JSON.parse(data);
       const session = appData.session;
       if (session && session.isLoggedIn) {
-        window.location.href = '/dashboard/ecommerce';
+        window.location.href = '/dashboard/roxwealth';
       }
     }
   }, []);

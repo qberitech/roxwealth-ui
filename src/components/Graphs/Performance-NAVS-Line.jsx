@@ -109,8 +109,7 @@ const PerformanceNAVS = () => {
           />
           <YAxis />
           <Tooltip />
-          <Line dataKey="NAV" fill="#8884d8" lineSize={40} dot={false}/>
-          
+          <Line dataKey="NAV" fill="#8884d8" lineSize={40} dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>
