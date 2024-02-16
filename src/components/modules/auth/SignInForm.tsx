@@ -102,9 +102,10 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 
         const sessionToken = '1234567890 ';
         UpdateSession(sessionToken);
+        setError('');
         setSuccessMessage('Login successful, redirecting...');
         setTimeout(() => {
-          window.location.href = '/dashboard/ecommerce';
+          window.location.href = '/dashboard/roxwealth';
         }, 1000);
       } else {
         setError('Invalid email or password');
