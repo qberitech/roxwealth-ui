@@ -15,7 +15,7 @@ const Profile = () => {
   const [error, setError] = useState('');
 
   // Email is Hardcoded for now have to make it dynamic later
-  const email = 'tony@avengers.com';
+  const [email, setEmail] = useState('tony@hero.com');
   const [profileDetail, setProfileDetails] = useState({
     email: '',
     id: '',
@@ -24,11 +24,15 @@ const Profile = () => {
     profilePicture: ''
   });
   useEffect(() => {
+    const appData = JSON.parse(localStorage.getItem('appData') || '{}');
+    if (appData && appData.userData) {
+      setEmail(appData.userData.email);
+      console.log('set user data');
+    }
     const URL = `http://engine.qberi.com/api/getProfile/${email}`;
     axios
       .get(URL)
       .then(res => {
-        console.log(res.data);
         const details = {
           email: res.data.email,
           id: res.data.id,

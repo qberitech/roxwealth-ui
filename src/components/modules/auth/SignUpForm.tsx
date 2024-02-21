@@ -4,6 +4,25 @@ import { Link } from 'react-router-dom';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
 import axios from 'axios';
 
+const addData = async (name: string, email: string) => {
+  const URL = 'https://engine.qberi.com/api/addProfile';
+  const data = {
+    name: name,
+    email: email,
+    mobile: '1234567890',
+    profilePicture: 'https://www.w3schools.com/howto/img_avatar.png'
+  };
+  const headers = {
+    'Content-Type': 'application/json'
+  };
+  try {
+    const response = await axios.post(URL, data, { headers });
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [successMessage, setSuccessMessage] = useState<string>('');
@@ -87,10 +106,12 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         response.status === 201 ||
         response.status === 202
       ) {
+        setErrorMessages([]);
         setSuccessMessage(
           'You have successfully signed up, redirecting to the Sign-In Page ...'
         );
         setTimeout(() => {
+          addData(name, email);
           window.location.href = '/auth/sign-in';
         }, 1000);
       } else {
