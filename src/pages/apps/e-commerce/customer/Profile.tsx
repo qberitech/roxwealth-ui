@@ -1,6 +1,5 @@
 import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
 import Button from 'components/base/Button';
 import Section from 'components/base/Section';
 import EcoimDefaultAddressCard from 'components/cards/EcoimDefaultAddressCard';
@@ -15,36 +14,39 @@ const Profile = () => {
   const [error, setError] = useState('');
 
   // Email is Hardcoded for now have to make it dynamic later
-  const [email, setEmail] = useState('tony@hero.com');
   const [profileDetail, setProfileDetails] = useState({
-    email: '',
-    id: '',
-    mobile: '',
-    name: '',
-    profilePicture: ''
+    email: 'Email Not Found',
+    id: 'Not Found',
+    mobile: 'XXXXXXXXXX',
+    name: 'Not Found',
+    profilePicture: 'Not Available'
   });
   useEffect(() => {
     const appData = JSON.parse(localStorage.getItem('appData') || '{}');
+    let myData = {
+      email: 'Email Not Found',
+      id: 'Not Found',
+      mobile: 'XXXXXXXXXX',
+      name: 'Not Found',
+      profilePicture: 'Not Available'
+    };
     if (appData && appData.userData) {
-      setEmail(appData.userData.email);
-      console.log('set user data');
+      myData.email = appData.userData.email;
+      myData.name = appData.userData.name;
+      myData.mobile = appData.userData.mobile;
+      myData.profilePicture = appData.userData.profilePicture;
+      setProfileDetails(myData);
+      console.log(myData);
+    } else {
+      setError('User Not Found');
+      myData = {
+        email: 'Email Not Found',
+        id: 'Not Found',
+        mobile: 'XXXXXXXXXX',
+        name: 'Not Found',
+        profilePicture: 'Not Available'
+      };
     }
-    const URL = `http://engine.qberi.com/api/getProfile/${email}`;
-    axios
-      .get(URL)
-      .then(res => {
-        const details = {
-          email: res.data.email,
-          id: res.data.id,
-          mobile: res.data.mobile,
-          name: res.data.name,
-          profilePicture: res.data.profilePicture
-        };
-        setProfileDetails(details);
-      })
-      .catch(error => {
-        setError('Error fetching data from API ' + error);
-      });
   }, []);
 
   if (error) {

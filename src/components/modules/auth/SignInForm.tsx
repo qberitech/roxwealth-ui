@@ -24,7 +24,50 @@ interface AppData {
     remember_me: boolean;
     email: string;
   };
+  userData?: {
+    email: string;
+  };
 }
+
+const updateUserData = async (email: string) => {
+  const URL = 'https://engine.qberi.com/api/getProfile/' + email;
+  let userData = {
+    email: email,
+    name: 'User Not Found',
+    mobile: '0000000000',
+    profilePicture: 'https://www.w3schools.com/howto/img_avatar.png'
+  };
+
+  try {
+    const response = await axios.get(URL);
+    if (
+      response.status === 200 ||
+      response.status === 201 ||
+      response.status === 202
+    ) {
+      const res = response.data;
+      userData = {
+        email: res.email,
+        name: res.name,
+        mobile: res.mobile,
+        profilePicture: res.profilePicture
+      };
+    }
+  } catch (error) {
+    console.error(error);
+  }
+  const data = localStorage.getItem('appData');
+  if (data) {
+    const appData: AppData = JSON.parse(data);
+    appData.userData = userData;
+    localStorage.setItem('appData', JSON.stringify(appData));
+  } else {
+    const appData: AppData = {
+      userData: userData
+    };
+    localStorage.setItem('appData', JSON.stringify(appData));
+  }
+};
 
 const UpdateSession = (sessionToken: string) => {
   const date = new Date();
@@ -86,8 +129,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
     };
 
     const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      'Content-Type': 'application/json'
     };
 
     try {
@@ -102,6 +144,8 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 
         const sessionToken = '1234567890 ';
         UpdateSession(sessionToken);
+        console.log('Session updated');
+        updateUserData(email);
         setError('');
         setSuccessMessage('Login successful, redirecting...');
         setTimeout(() => {

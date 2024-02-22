@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
 import axios from 'axios';
 
-const addData = async (name: string, email: string) => {
+const addProfile = async (name: string, email: string, mobile: string) => {
   const URL = 'https://engine.qberi.com/api/addProfile';
   const data = {
     name: name,
     email: email,
-    mobile: '1234567890',
+    mobile: mobile,
     profilePicture: 'https://www.w3schools.com/howto/img_avatar.png'
   };
   const headers = {
@@ -17,8 +17,10 @@ const addData = async (name: string, email: string) => {
   };
   try {
     const response = await axios.post(URL, data, { headers });
+    console.log('Success in adding profile');
     console.log(response.data);
   } catch (error) {
+    console.log('Error in adding profile');
     console.error(error);
   }
 };
@@ -52,6 +54,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
     const termsService = (
       document.getElementById('termsService') as HTMLInputElement
     ).checked;
+    const mobile = (document.getElementById('mobile') as HTMLInputElement)
+      .value;
 
     const errors: string[] = [];
 
@@ -110,8 +114,9 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         setSuccessMessage(
           'You have successfully signed up, redirecting to the Sign-In Page ...'
         );
+        console.log('Profile added');
+        addProfile(name, email, mobile);
         setTimeout(() => {
-          addData(name, email);
           window.location.href = '/auth/sign-in';
         }, 1000);
       } else {
@@ -147,6 +152,11 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
             placeholder="name@example.com"
             required
           />
+        </Form.Group>
+        {/* Take Input Mobile */}
+        <Form.Group className="mb-3 text-start">
+          <Form.Label htmlFor="mobile">Mobile</Form.Label>
+          <Form.Control id="mobile" type="text" placeholder="Mobile" />
         </Form.Group>
         <Row className="g-3 mb-3">
           <Col sm={layout === 'card' ? 12 : 6} lg={6}>
