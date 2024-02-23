@@ -21,10 +21,10 @@ const Terms = () => {
           <div className="terms-section">
             <h4 className="terms-subheading">1. Acceptance of Terms</h4>
             <p className="terms-content">
-              Welcome to Qberi. By accessing or using our website and services,
-              including any subsidiaries, joint ventures, investments, or
-              operations interests (collectively referred to as "Services"), you
-              agree to comply with and be bound by these Terms of Service
+              Welcome to Roxwealth. By accessing or using our website and
+              services, including any subsidiaries, joint ventures, investments,
+              or operations interests (collectively referred to as "Services"),
+              you agree to comply with and be bound by these Terms of Service
               ("Terms"). If you do not agree to these Terms, please do not use
               our Services.
             </p>
@@ -33,8 +33,8 @@ const Terms = () => {
           <div className="terms-section">
             <h4 className="terms-subheading">2. Scope of Services</h4>
             <p className="terms-content">
-              Qberi operates as a multinational organization with offices in the
-              United States, India, South Africa, Germany, and the United
+              Roxwealth operates as a multinational organization with offices in
+              the United States, India, South Africa, Germany, and the United
               Kingdom. Our Services encompass various international activities,
               including but not limited to investments, operations, and joint
               ventures. These activities may be subject to specific agreements

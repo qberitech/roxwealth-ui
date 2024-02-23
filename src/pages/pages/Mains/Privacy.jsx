@@ -13,13 +13,13 @@ const PrivacyPolicy = () => {
         </div>
 
         <div className="section section-terms">
-          <h3 className="terms-heading">Privacy Policy for Qberi</h3>
+          <h3 className="terms-heading">Privacy Policy for Roxwealth</h3>
           <p className="terms-effective-date">Effective Date: Jan 25, 2024</p>
 
           <div className="terms-section">
             <h4 className="terms-subheading">1. Introduction</h4>
             <p className="terms-content">
-              Welcome to Qberi ("we," "our," or "us"). This Privacy Policy
+              Welcome to Roxwealth ("we," "our," or "us"). This Privacy Policy
               explains how we collect, use, disclose, and protect your personal
               information when you access or use our website and services,
               including our subsidiaries, joint ventures, investments, and
