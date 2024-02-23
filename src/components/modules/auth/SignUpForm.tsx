@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import AuthSocialButtons from 'components/common/AuthSocialButtons';
+// import AuthSocialButtons from 'components/common/AuthSocialButtons';
+import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
 const addProfile = async (name: string, email: string, mobile: string) => {
@@ -134,7 +135,18 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         <h3 className="text-1000">Sign Up</h3>
         <p className="text-700">Create your account today</p>
       </div>
-      <AuthSocialButtons title="Sign up" />
+      {/* <AuthSocialButtons title="Sign up" /> */}
+      <GoogleLogin
+        theme='filled_blue'
+        onSuccess={credentialResponse => {
+          console.log(credentialResponse);
+          
+        }}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+      />
+      
       <div className="position-relative mt-4">
         <hr className="bg-200" />
         <div className="divider-content-center">or use email</div>

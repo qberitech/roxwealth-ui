@@ -19,6 +19,7 @@
     "@iconscout/react-unicons": "^2.0.2",
     "@picmo/popup-picker": "^5.8.5",
     "@react-leaflet/core": "^2.1.0",
+    "@react-oauth/google": "^0.12.1",
     "@tanstack/react-table": "^8.8.5",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",

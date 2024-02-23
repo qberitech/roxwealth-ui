@@ -6,12 +6,14 @@ import SettingsPanelProvider from 'providers/SettingsPanelProvider';
 import { RouterProvider } from 'react-router-dom';
 import { router } from 'Routes';
 import ChatWidgetProvider from 'providers/ChatWidgetProvider';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <GoogleOAuthProvider clientId=''>
     <AppProvider>
       <SettingsPanelProvider>
         <ChatWidgetProvider>
@@ -21,5 +23,6 @@ root.render(
         </ChatWidgetProvider>
       </SettingsPanelProvider>
     </AppProvider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
