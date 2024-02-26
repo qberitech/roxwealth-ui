@@ -13,16 +13,16 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId=''>
-    <AppProvider>
-      <SettingsPanelProvider>
-        <ChatWidgetProvider>
-          <BreakpointsProvider>
-            <RouterProvider router={router} />
-          </BreakpointsProvider>
-        </ChatWidgetProvider>
-      </SettingsPanelProvider>
-    </AppProvider>
+    <GoogleOAuthProvider clientId="{process.env['GOOGLE_AUTH_CLIENT_ID']}">
+      <AppProvider>
+        <SettingsPanelProvider>
+          <ChatWidgetProvider>
+            <BreakpointsProvider>
+              <RouterProvider router={router} />
+            </BreakpointsProvider>
+          </ChatWidgetProvider>
+        </SettingsPanelProvider>
+      </AppProvider>
     </GoogleOAuthProvider>
   </React.StrictMode>
 );

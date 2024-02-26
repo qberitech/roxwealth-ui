@@ -48,7 +48,7 @@ const Cta = () => {
                       fill="white"
                     />
                   </svg>
-                  Give us a knock
+                  Send us an email
                 </span>
               </Button>
             </div>

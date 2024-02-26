@@ -137,16 +137,15 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       </div>
       {/* <AuthSocialButtons title="Sign up" /> */}
       <GoogleLogin
-        theme='filled_blue'
+        theme="filled_blue"
         onSuccess={credentialResponse => {
           console.log(credentialResponse);
-          
         }}
         onError={() => {
           console.log('Login Failed');
         }}
       />
-      
+
       <div className="position-relative mt-4">
         <hr className="bg-200" />
         <div className="divider-content-center">or use email</div>

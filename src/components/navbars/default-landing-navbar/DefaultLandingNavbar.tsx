@@ -56,19 +56,19 @@ const NavItemsHome = () => {
         <p className="lh-1 py-0 fs-9 fw-bold py-3">Business Units</p>
       </Nav.Link>
       {/* <NavItem label="News" url="/#blog" /> */}
-      <Nav.Link
+      {/* <Nav.Link
         href="#blog"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
         <p className="lh-1 py-0 fs-9 fw-bold py-3">News</p>
-      </Nav.Link>
+      </Nav.Link> */}
 
       {/* <NavItem label="Team" url="/#team" /> */}
       <Nav.Link
         href="#team"
         className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
       >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Teams</p>
+        <p className="lh-1 py-0 fs-9 fw-bold py-3">Team</p>
       </Nav.Link>
 
       {/* <NavItem label="Contact" url="/#contact" isLast /> */}

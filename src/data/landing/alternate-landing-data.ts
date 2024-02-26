@@ -4,6 +4,8 @@ import illustration35 from 'assets/img/spot-illustrations/35.png';
 import illustration35_2 from 'assets/img/spot-illustrations/35_2.png';
 import illustration36 from 'assets/img/spot-illustrations/36.png';
 import illustration36_2 from 'assets/img/spot-illustrations/36_2.png';
+import illustration23 from 'assets/img/spot-illustrations/23.png';
+import illustration23_2 from 'assets/img/spot-illustrations/23_2.png';
 import icon1 from 'assets/img/icons/lightning-speed.png';
 import darkIcon1 from 'assets/img/icons/lightning-speed-dark.png';
 import icon2 from 'assets/img/icons/best-statistics.png';
@@ -93,6 +95,18 @@ export const features: Feature[] = [
     darkImg: illustration36_2,
     link: '/business/units',
     linkText: 'Learn More '
+  },
+  {
+    id: 4,
+    title: 'CARDIO-MED SOUTH AFRICA',
+    description:
+      'Established in 2004, Cardio Med has become a reputable name in the medical equipment industry. Originally focused on servicing and repairing medical equipment, our company has evolved to offer a comprehensive range of solutions, including the import and distribution of various medical products, accessories, and consumables. With a fully equipped workshop and a team of skilled professionals, Cardio Med ensures prompt and efficient service for all types of medical equipment. Our commitment to excellence extends beyond the initial sale, as we provide comprehensive after-sales support for all products supplied. ',
+    additional:
+      'Cardio Med upholds values of professionalism, quality, integrity, and customer focus in all our endeavors. By prioritizing the needs and satisfaction of our clients, they aim to deliver exceptional service and exceed expectations.',
+    lightImg: illustration23,
+    darkImg: illustration23_2,
+    link: '/business/units',
+    linkText: 'Learn More '
   }
 ];
 
@@ -100,7 +114,7 @@ export const services: Feature[] = [
   {
     id: 1,
     title: 'Lightning Speed',
-    description: 'Grow fast with Phoenix!',
+    description: 'Grow fast with Qberi.',
     lightImg: icon1,
     darkImg: darkIcon1,
     link: '/business/units',
@@ -118,7 +132,7 @@ export const services: Feature[] = [
   {
     id: 3,
     title: 'All-night Protection',
-    description: 'Security Assured: Ensure data Safety with Phoenix!',
+    description: 'Security Assured: Ensure data Safety with Qberi',
     lightImg: icon3,
     darkImg: darkIcon3,
     link: '/',

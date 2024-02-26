@@ -204,32 +204,32 @@ export type TeamMember = {
 export const defaultTeamMembers: TeamMember[] = [
   {
     image: team62,
-    name: 'John Smith',
-    designation: 'CEO, Global Cheat',
+    name: 'Jaco Du Plessis',
+    designation: 'CEO, Qberi',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'
   },
   {
     image: team63,
-    name: 'Marc Chiasson',
-    designation: 'Vice President',
+    name: 'Pranab Sinha',
+    designation: 'Developer',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'
   },
   {
     image: team64,
-    name: 'Lilah Lola',
-    designation: 'Marketing Manager',
+    name: 'Nitish Pandey',
+    designation: 'Developer',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'
   },
   {
     image: team65,
-    name: 'Thomas Doe',
-    designation: 'UX Designer',
+    name: 'Rohan Chowdhury',
+    designation: 'Developer',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'

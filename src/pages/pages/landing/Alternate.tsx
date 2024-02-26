@@ -6,7 +6,7 @@ import OneStopSolution from 'components/modules/landing/alternate/OneStopSolutio
 import Stats from 'components/modules/landing/alternate/Stats';
 // import Testimonial from 'components/modules/landing/alternate/Testimonial';
 import Cta from 'components/modules/showcase/Cta';
-import Blogs from 'components/modules/landing/alternate/blogs/Blogs';
+// import Blogs from 'components/modules/landing/alternate/blogs/Blogs';
 import Features from 'components/modules/landing/alternate/features/Features';
 import DefaultLandingNavbar from 'components/navbars/default-landing-navbar/DefaultLandingNavbar';
 import useSettingsMountEffect from 'hooks/useSettingsMountEffect';
@@ -36,7 +36,7 @@ const Alternate = () => {
       <Stats />
       <OneStopSolution />
       {/* <Pricing /> */}
-      <Blogs />
+      {/* <Blogs /> */}
       <AddressSection />
       <TeamSection />
       <Cta />

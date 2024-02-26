@@ -39,17 +39,14 @@ const TeamSection = () => {
             <h2>Our small team behind our success</h2>
           </Col>
           <Col md={6} className="text-center text-sm-start">
-            <p>
-              We have a small but strong development team to follow up on the
-              development process. Reach out to us for further information.
-            </p>
+            <p>Our small but efficient team.</p>
           </Col>
-          <Col md={6} className="text-center text-sm-start">
+          {/* <Col md={6} className="text-center text-sm-start">
             <p>
               The team is ready to answer all your questions within minutes. The
               efficient team is always at your beck and call.
             </p>
-          </Col>
+          </Col> */}
         </Row>
         <Row className="align-items-center ps-lg-11 pe-lg-9">
           {defaultTeamMembers.map(member => (

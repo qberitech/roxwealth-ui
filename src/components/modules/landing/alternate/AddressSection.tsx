@@ -1,5 +1,5 @@
 import { Col, Row } from 'react-bootstrap';
-import HelpCenter from '../default/address/HelpCenter';
+// import HelpCenter from '../default/address/HelpCenter';
 import QueryForm from '../default/address/QueryForm';
 
 const AddressSection = () => {
@@ -21,16 +21,18 @@ const AddressSection = () => {
           />
         </div> */}
         <Row className="g-5 g-lg-5">
-          <Col
+          {/* <Col
             xs={12}
             md={6}
             className="mb-5 mb-md-0 text-center text-md-start"
           >
             <HelpCenter />
-          </Col>
-          <Col xs={12} md={6} className="text-center text-md-start">
-            <QueryForm />
-          </Col>
+          </Col> */}
+          <center>
+            <Col xs={12} md={8} className="text-center text-md-start">
+              <QueryForm />
+            </Col>
+          </center>
         </Row>
       </div>
     </section>
