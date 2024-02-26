@@ -1,4 +1,5 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { useState, useEffect } from 'react';
 // import { faHourglassHalf } from '@fortawesome/free-regular-svg-icons';
 import {
   Icon,
@@ -11,7 +12,6 @@ import {
 
 // List of ICONS available in the template
 // phone, bookmark, message-square, mail, calendar, compass, help-circle, globe, tag, bell, users, clock, alert-triangle, lock, layout, file-text, trello, share-2, chart-pie, cube, document-layout-right, files-landscapes-alt, puzzle-piece
-
 export interface Route {
   name: string;
   icon?: IconProp | string | string[];
@@ -36,6 +36,23 @@ export interface RouteItems {
   megaMenu?: boolean;
   active?: boolean;
 }
+
+const appData = JSON.parse(localStorage.getItem('appData') || '{}');
+
+// Initialize isAdmin with false
+let isAdmin = false;
+
+// Check if user role is admin and update localStorage
+
+// In our Case bruce@avengers.com is admin
+if (appData.userData && appData.userData.email === 'bruce@avengers.com') {
+  appData.userData.isAdmin = true;
+  localStorage.setItem('appData', JSON.stringify(appData));
+  isAdmin = true;
+}
+
+// Now isAdmin holds the admin status
+console.log('Is Admin:', isAdmin);
 
 export const routes: RouteItems[] = [
   // {
@@ -118,7 +135,7 @@ export const routes: RouteItems[] = [
         active: true,
         icon: 'bookmark',
         path: '/profile'
-      }
+      },
     ]
   }
   // {
@@ -1476,3 +1493,22 @@ export const routes: RouteItems[] = [
   //   ]
   // }
 ];
+if (isAdmin) {
+  // Check if the "Admin" page doesn't exist, then push it
+  if (!routes[1].pages.some(page => page.name === 'Admin')) {
+    routes[1].pages.push({
+      name: 'Admin',
+      active: true,
+      icon: 'settings',
+      path: '/users'
+    });
+  }
+} else {
+  // Find the index of the "Admin" page if it exists
+  const adminPageIndex = routes[1].pages.findIndex(page => page.name === 'Admin');
+  
+  // If the "Admin" page exists, remove it
+  if (adminPageIndex !== -1) {
+    routes[1].pages.splice(adminPageIndex, 1);
+  }
+}

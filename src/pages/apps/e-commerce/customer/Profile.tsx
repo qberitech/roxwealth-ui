@@ -13,7 +13,6 @@ import { Col, Row } from 'react-bootstrap';
 const Profile = () => {
   const [error, setError] = useState('');
 
-  // Email is Hardcoded for now have to make it dynamic later
   const [profileDetail, setProfileDetails] = useState({
     email: 'Email Not Found',
     id: 'Not Found',
