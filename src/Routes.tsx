@@ -182,7 +182,8 @@ import PrivacyPolicy from 'pages/pages/Mains/Privacy';
 import Terms from 'pages/pages/Mains/Terms';
 import BusinessUnits from 'pages/pages/Mains/Business-Units';
 import QberiInSA from 'pages/pages/Businesses/Qberi_in_SA';
-import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
+// import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
+import Admin from 'pages/pages/Mains/Admin';
 
 // const FontAwesomeExample = lazy(
 //   () => import('pages/modules/components/FontAwesomeExample')
@@ -288,9 +289,13 @@ const routes: RouteObject[] = [
             element: <Profile />
           },
           {
-            path: 'users',
-            element: <CustomerDetails />
+            path: 'admin',
+            element: <Admin />
           },
+          // {
+          //   path: 'users',
+          //   element: <CustomerDetails />
+          // },
           // {
           //   path: '/apps',
           //   children: [

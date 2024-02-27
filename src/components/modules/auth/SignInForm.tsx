@@ -29,13 +29,21 @@ interface AppData {
   };
 }
 
+const admins = [
+  'nitish2@qberi.com',
+  'rohan@qberi.com',
+  'pranab@qberi.com',
+  'jaco@qberi.com'
+];
+
 const updateUserData = async (email: string) => {
   const URL = 'https://engine.qberi.com/api/getProfile/' + email;
   let userData = {
     email: email,
     name: 'User Not Found',
     mobile: '0000000000',
-    profilePicture: 'https://www.w3schools.com/howto/img_avatar.png'
+    profilePicture: 'https://www.w3schools.com/howto/img_avatar.png',
+    role: 'user'
   };
 
   try {
@@ -50,7 +58,8 @@ const updateUserData = async (email: string) => {
         email: res.email,
         name: res.name,
         mobile: res.mobile,
-        profilePicture: res.profilePicture
+        profilePicture: res.profilePicture,
+        role: admins.includes(res.email) ? 'admin' : 'user'
       };
     }
   } catch (error) {

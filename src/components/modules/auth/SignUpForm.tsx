@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import AuthSocialButtons from 'components/common/AuthSocialButtons';
-import { GoogleLogin } from '@react-oauth/google';
+import AuthSocialButtons from 'components/common/AuthSocialButtons';
+// import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
 const addProfile = async (name: string, email: string, mobile: string) => {
@@ -135,8 +135,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         <h3 className="text-1000">Sign Up</h3>
         <p className="text-700">Create your account today</p>
       </div>
-      {/* <AuthSocialButtons title="Sign up" /> */}
-      <GoogleLogin
+      <AuthSocialButtons title="Sign up" />
+      {/* <GoogleLogin
         theme="filled_blue"
         onSuccess={credentialResponse => {
           console.log(credentialResponse);
@@ -144,7 +144,10 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         onError={() => {
           console.log('Login Failed');
         }}
-      />
+        // make size="large" for larger button
+        size="large"
+
+      /> */}
 
       <div className="position-relative mt-4">
         <hr className="bg-200" />

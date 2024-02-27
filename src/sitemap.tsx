@@ -1,5 +1,4 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { useState, useEffect } from 'react';
 // import { faHourglassHalf } from '@fortawesome/free-regular-svg-icons';
 import {
   Icon,
@@ -44,11 +43,8 @@ let isAdmin = false;
 
 // Check if user role is admin and update localStorage
 
-// In our Case bruce@avengers.com is admin
-if (appData.userData && appData.userData.email === 'bruce@avengers.com') {
-  appData.userData.isAdmin = true;
-  localStorage.setItem('appData', JSON.stringify(appData));
-  isAdmin = true;
+if (appData.userData) {
+  isAdmin = appData.userData.role === 'admin';
 }
 
 // Now isAdmin holds the admin status
@@ -136,6 +132,13 @@ export const routes: RouteItems[] = [
         icon: 'bookmark',
         path: '/profile'
       },
+      // show admin options only if user is admin
+      {
+        name: 'Admin',
+        active: isAdmin,
+        icon: 'lock',
+        path: '/admin'
+      }
     ]
   }
   // {
@@ -1505,8 +1508,10 @@ if (isAdmin) {
   }
 } else {
   // Find the index of the "Admin" page if it exists
-  const adminPageIndex = routes[1].pages.findIndex(page => page.name === 'Admin');
-  
+  const adminPageIndex = routes[1].pages.findIndex(
+    page => page.name === 'Admin'
+  );
+
   // If the "Admin" page exists, remove it
   if (adminPageIndex !== -1) {
     routes[1].pages.splice(adminPageIndex, 1);

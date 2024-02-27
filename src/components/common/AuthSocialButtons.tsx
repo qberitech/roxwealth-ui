@@ -1,12 +1,18 @@
-import { faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from 'components/base/Button';
+// import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import Button from 'components/base/Button';
 // import React from 'react';
-
+import { GoogleLogin } from '@react-oauth/google';
 const AuthSocialButtons = ({ title }: { title: string }) => {
+  const onGoogleSuccess = (response: any) => {
+    const credential = response.credential;
+    console.log(credential);
+    console.log(title);
+  };
+
   return (
     <>
-      <Button
+      {/* <Button
         variant="phoenix-secondary"
         className="w-100 mb-3"
         startIcon={
@@ -14,7 +20,14 @@ const AuthSocialButtons = ({ title }: { title: string }) => {
         }
       >
         {title} with google
-      </Button>
+      </Button> */}
+      <GoogleLogin
+        theme="filled_blue"
+        onSuccess={onGoogleSuccess}
+        onError={() => console.log('Login Failed')}
+        size="large"
+        text="continue_with"
+      />
       {/* <Button
         variant="phoenix-secondary"
         className="w-100"

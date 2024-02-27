@@ -14,45 +14,77 @@ const QberiInSA = () => {
             </h1>
           </div>
           <div className="flex flex-wrap">
-            <h2 className="text-3xl font-semibold mb-4">
-              Introduction to Qberi's SA Business Divisions
+            <h2 className="text-3xl font-semibold mb-2">
+              Welcome to Qberi Financial Services South Africa
             </h2>
             <p className="text-lg text-gray-800 text-justify">
-              Within the dynamic tapestry of Qberi's operations, our commitment
-              to "quietly building excellence, resilience, and ingenuity"
-              resonates throughout each of our business divisions. As a
-              multinational organization headquartered in Boulder, Colorado, and
-              with a global presence, we have strategically forged these
-              divisions to not only meet the diverse demands of the modern
-              business landscape but also to uphold our unwavering dedication to
-              excellence.
+              At Qberi Financial Services, we're dedicated to guiding you toward
+              a future of financial security and success. Partnering with
+              industry-leading providers including Allan Gray, Momentum, Sanlam,
+              Satrix, Liberty Life, Stanlib, and Sygnia, we offer a
+              comprehensive range of investment and long-term insurance products
+              tailored to your unique needs and goals.
             </p>
+            <h3 className="text-2xl font-semibold mb-2">
+              Investments Tailored to You.
+            </h3>
             <p className="text-lg text-gray-800 text-justify">
-              In this section, we invite you to embark on a journey through the
-              intricate web of Qberi's business units, each representing a
-              unique facet of our multifaceted enterprise. These divisions,
-              guided by our motto, serve as the silent architects of our
-              success, continually shaping the landscape of venture capital, KPI
-              dashboard development, market expansion, financial management, and
-              pioneering solutions for industries as varied as hospitality,
-              construction, and media.
+              Whether you're saving for retirement, planning for your children's
+              education, or looking to grow your wealth, Qberi Financial
+              Services provides investment solutions designed to match your
+              objectives. From actively managed funds by Allan Gray and Stanlib
+              to index-tracking ETFs from Satrix and Sygnia, we offer a diverse
+              range of investment options to suit every risk profile and
+              investment style.
             </p>
+            <h3 className="text-2xl font-semibold mb-2">
+              Protect What Matters Most
+            </h3>
             <p className="text-lg text-gray-800 text-justify">
-              Join us as we explore the strategic insights, collaborative
-              endeavors, and resource allocations that drive the success of each
-              division, all while remaining true to our motto. Here, excellence
-              is not merely achieved but quietly built, resilience is not loudly
-              proclaimed but steadfastly practiced, and ingenuity is not loudly
-              trumpeted but consistently pursued.
+              We understand the importance of safeguarding your loved ones and
+              assets. That's why we offer a variety of long-term insurance
+              solutions from trusted providers like Momentum, Sanlam, and
+              Liberty Life. From life cover and disability insurance to income
+              protection and funeral plans, Qberi Financial Services has you
+              covered, ensuring that you and your family have the financial
+              protection you need.
             </p>
+            <h3 className="text-2xl font-semibold mb-2">
+              Why Choose Qberi Financial Services?
+            </h3>
+            <ul className="text-lg text-gray-800 text-justify">
+              <li className="mb-1">
+                <strong>Expert Guidance: </strong>
+                <p className="text-lg text-gray-800 text-justify">
+                  Our team of experienced financial advisors is committed to
+                  providing personalized advice and guidance tailored to your
+                  unique financial situation and goals.
+                </p>
+              </li>
+              <li className="mb-1">
+                <strong> Extensive Product Range:</strong>
+                <p className="text-lg text-gray-800 text-justify">
+                  With access to a wide range of investment and insurance
+                  products from leading providers, we offer comprehensive
+                  solutions to meet your specific needs.
+                </p>
+              </li>
+              <li className="mb-1">
+                <strong>Trust and Transparency:</strong>
+                <p className="text-lg text-gray-800 text-justify">
+                  At Qberi Financial Services, we prioritize trust, integrity,
+                  and transparency in all our interactions. You can rely on us
+                  to always act in your best interests and provide honest,
+                  reliable advice.{' '}
+                </p>
+              </li>
+            </ul>
             <p className="text-lg text-gray-800 text-justify">
-              Uncover the world of Qberi's business divisions, where our
-              commitment to quietly building excellence, resilience, and
-              ingenuity underpins our dedication to delivering tailored
-              expertise that meets the unique demands of diverse markets and
-              industries. As we navigate this dynamic terrain, our motto remains
-              at the heart of our pursuit, a testament to our unwavering
-              commitment to global growth and
+              Start Your Journey to Financial Prosperity Today Take control of
+              your financial future with Qberi Financial Services. Contact us
+              today to schedule a consultation and begin your journey towards
+              financial prosperity. Let us be your partner on the path to a
+              brighter financial future.
             </p>
           </div>
         </div>
