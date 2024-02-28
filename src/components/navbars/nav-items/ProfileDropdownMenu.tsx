@@ -1,5 +1,5 @@
 import Avatar from 'components/base/Avatar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Dropdown, Nav } from 'react-bootstrap';
 import avatar from 'assets/img/team/72x72/57.webp';
 import FeatherIcon from 'feather-icons-react';
@@ -40,6 +40,13 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
       link: '/language'
     }
   ]);
+  const [email, setEmail] = useState('Email Not Found');
+  useEffect(() => {
+    const appData = JSON.parse(localStorage.getItem('appData') || '{}');
+    if (appData && appData.userData) {
+      setEmail(appData.userData.email);
+    }
+  });
   return (
     <Dropdown.Menu
       align="end"
@@ -52,7 +59,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
         <Card.Body className="p-0">
           <div className="d-flex flex-column align-items-center justify-content-center gap-2 pt-4 pb-3">
             <Avatar src={avatar} size="xl" />
-            <h6 className="text-black">Jerry Seinfield</h6>
+            <h6 className="text-black">{email}</h6>
           </div>
           {/* <div className="mb-3 mx-3">
             <Form.Control
