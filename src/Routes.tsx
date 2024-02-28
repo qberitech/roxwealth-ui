@@ -58,9 +58,9 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 // import TabsExample from 'pages/modules/components/TabsExample';
 // import NavbarExample from 'pages/modules/components/NavbarExample';
 // import Ecommerce from 'pages/dashboard/ecommerce';
-// import EcommerceLayout from 'layouts/EcommerceLayout';
+import EcommerceLayout from 'layouts/EcommerceLayout';
 // import Homepage from 'pages/apps/e-commerce/customer/Homepage';
-// import ProductDetails from 'pages/apps/e-commerce/customer/ProductDetails';
+import ProductDetails from 'pages/apps/e-commerce/customer/ProductDetails';
 // import Cart from 'pages/apps/e-commerce/customer/Cart';
 // import Checkout from 'pages/apps/e-commerce/customer/checkout/Checkout';
 // import ProductsFilter from 'pages/apps/e-commerce/customer/ProductsFilter';
@@ -71,7 +71,7 @@ import Profile from 'pages/apps/e-commerce/customer/Profile';
 // import Invoice from 'pages/apps/e-commerce/customer/Invoice';
 // import OrderTracking from 'pages/apps/e-commerce/customer/OrderTracking';
 // import AddProduct from 'pages/apps/e-commerce/admin/AddProduct';
-// import Products from 'pages/apps/e-commerce/admin/Products';
+import Products from 'pages/apps/e-commerce/admin/Products';
 // import Customers from 'pages/apps/e-commerce/admin/Customers';
 // import Orders from 'pages/apps/e-commerce/admin/Orders';
 // import OrderDetails from 'pages/apps/e-commerce/admin/OrderDetails';
@@ -255,6 +255,24 @@ const routes: RouteObject[] = [
           }
         ]
       },
+      // {
+      //   path: 'ecommerce/product-details',
+      //   element: <ProductDetails />
+      // },
+      {
+        path: 'ecommerce',
+        element: <EcommerceLayout />,
+        children: [
+          {
+            path: 'products',
+            element: <Products />
+          },
+          {
+            path: 'product-details',
+            element: <ProductDetails />
+          }
+        ]
+      },
       {
         path: '/',
         element: (
@@ -291,6 +309,15 @@ const routes: RouteObject[] = [
           {
             path: 'admin',
             element: <Admin />
+          },
+          {
+            path: 'ecommerce',
+            children: [
+              {
+                path: 'products-list',
+                element: <Products />
+              }
+            ]
           },
           // {
           //   path: 'users',

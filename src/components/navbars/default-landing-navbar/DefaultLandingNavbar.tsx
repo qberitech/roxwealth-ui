@@ -9,115 +9,66 @@ import classNames from 'classnames';
 import { useEffect, useRef, useState } from 'react';
 import DropdownSearchBox from 'components/common/DropdownSearchBox';
 import SearchResult from 'components/common/SearchResult';
+import { Dropdown } from 'react-bootstrap';
 
-// const NavItem = ({
-//   label,
-//   url,
-//   isLast
-// }: {
-//   label: string;
-//   url: string;
-//   isLast?: boolean;
-// }) => {
-//   return (
-//     <Nav.Item
-//       as="li"
-//       className={classNames({ 'border-bottom border-bottom-lg-0': !isLast })}
-//     >
-//       <Nav.Link href={url} className="lh-1 py-0 fs-9 fw-bold py-3">
-//         {label}
-//       </Nav.Link>
-//     </Nav.Item>
-//   );
-// };
-
-const NavItemsHome = () => {
+const NavItem = ({
+  label,
+  url,
+  isLast
+}: {
+  label: string;
+  url: string;
+  isLast?: boolean;
+}) => {
   return (
-    <>
-      {/* <NavItem label="Home" url="#home" /> */}
-
-      <Nav.Link
-        href="#home"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Home</p>
+    <Nav.Item
+      as="li"
+      className={classNames({ 'border-bottom border-bottom-lg-0': !isLast })}
+    >
+      <Nav.Link href={url} className="lh-1 py-0 fs-9 fw-bold py-3">
+        {label}
       </Nav.Link>
-      <Link
-        to="/about-us"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">About Us</p>
-      </Link>
-      {/* <NavItem label="Solutions" url="/#features" /> */}
-      <Nav.Link
-        href="#features"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Business Units</p>
-      </Nav.Link>
-      {/* <NavItem label="News" url="/#blog" /> */}
-      {/* <Nav.Link
-        href="#blog"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">News</p>
-      </Nav.Link> */}
-
-      {/* <NavItem label="Team" url="/#team" /> */}
-      <Nav.Link
-        href="#team"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Team</p>
-      </Nav.Link>
-
-      {/* <NavItem label="Contact" url="/#contact" isLast /> */}
-      <Nav.Link
-        href="#contact"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Contact Us</p>
-      </Nav.Link>
-    </>
+    </Nav.Item>
   );
 };
 
-const NavItemsNotHome = () => {
+const DropdownComponent = () => {
   return (
-    <>
-      <Link
-        to="/"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Home</p>
-      </Link>
-      <Link
-        to="/about-us"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">About Us</p>
-      </Link>
-      <Link
-        to="/privacy-policy"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Privacy Policy</p>
-      </Link>
-      <Link
-        to="/terms-conditions"
-        className="btn btn-link p-0 text-900 order-1 order-lg-0 px-2"
-      >
-        <p className="lh-1 py-0 fs-9 fw-bold py-3">Terms of Service</p>
-      </Link>
-    </>
+    <Dropdown.Menu>
+      <Dropdown.Item href="/privacy-policy">Privacy Policy</Dropdown.Item>
+      <Dropdown.Item href="/terms-conditions">Terms of Service</Dropdown.Item>
+      <Dropdown.Item href="/business/units">Business Units</Dropdown.Item>
+    </Dropdown.Menu>
+  );
+};
+
+const MyNavBar = () => {
+  return (
+    <Nav className="me-auto pt-3 mb-lg-1" as="ul">
+      <NavItem label="Home" url="/#home" />
+      <NavItem label="About Us" url="/about-us" />
+      <NavItem label="Business units" url="/#features" />
+      <NavItem label="Team" url="/#team" />
+      <NavItem label="Contact Us" url="/#contact" isLast />
+      {/* Add the dropdown menu, saying more  */}
+      {/* things to add: terms and conditions, privacy policy, business units */}
+      <Dropdown as="li" className="border-bottom border-bottom-lg-0">
+        <Dropdown.Toggle
+          className="lh-1 fs-9 fw-bold py-3"
+          variant="transparent"
+          id="dropdown-basic"
+        >
+          More
+        </Dropdown.Toggle>
+        <DropdownComponent />
+      </Dropdown>
+    </Nav>
   );
 };
 
 const DefaultLandingNavbar = ({ className }: { className?: string }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [openSearchModal, setOpenSearchModal] = useState(false);
-
-  const [isHomePage, setIsHomePage] = useState(true);
 
   useEffect(() => {
     const toggleShadowClass = () => {
@@ -127,8 +78,6 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
         containerRef.current?.classList.remove('navbar-shadow');
       }
     };
-
-    setIsHomePage(window.location.pathname === '/');
 
     document.addEventListener('scroll', () => toggleShadowClass());
 
@@ -164,16 +113,7 @@ const DefaultLandingNavbar = ({ className }: { className?: string }) => {
               />
             </div>
 
-            <Nav className="me-auto pt-3 mb-lg-0" as="ul">
-              {/* <NavItem label="Home" url="#home" />
-              <NavItem label="Solutions" url="/#features" />
-              <NavItem label="News" url="/#blog" />
-              <NavItem label="Team" url="/#team" />
-              <NavItem label="About" url="/about-us" />
-              <NavItem label="Contact" url="/#contact" isLast /> */}
-              {isHomePage ? <NavItemsHome /> : <NavItemsNotHome />}
-            </Nav>
-
+            <MyNavBar />
             <div className="d-grid d-lg-flex gap-4 align-items-center">
               <ThemeToggler className="d-none d-lg-block" />
               <Button

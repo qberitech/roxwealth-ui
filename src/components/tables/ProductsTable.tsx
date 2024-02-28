@@ -19,7 +19,7 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
       const { productImage } = original;
       return (
         <Link
-          to="/apps/e-commerce/customer/product-details"
+          to="/ecommerce/product-details"
           className="rounded-2 border d-inline-block"
         >
           <img src={productImage} alt="" width={53} />
@@ -39,7 +39,7 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
       const { product } = original;
       return (
         <Link
-          to="/apps/e-commerce/customer/product-details"
+          to="/ecommerce/product-details"
           className="fw-semi-bold line-clamp-3"
         >
           {product}

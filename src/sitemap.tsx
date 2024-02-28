@@ -132,12 +132,24 @@ export const routes: RouteItems[] = [
         icon: 'bookmark',
         path: '/profile'
       },
-      // show admin options only if user is admin
       {
         name: 'Admin',
         active: isAdmin,
         icon: 'lock',
         path: '/admin'
+      }
+    ]
+  },
+  {
+    label: 'HOSPITALMERCH.COM',
+    active: true,
+    icon: UilCube,
+    pages: [
+      {
+        name: 'Products',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/ecommerce/products'
       }
     ]
   }
@@ -1496,24 +1508,3 @@ export const routes: RouteItems[] = [
   //   ]
   // }
 ];
-if (isAdmin) {
-  // Check if the "Admin" page doesn't exist, then push it
-  if (!routes[1].pages.some(page => page.name === 'Admin')) {
-    routes[1].pages.push({
-      name: 'Admin',
-      active: true,
-      icon: 'settings',
-      path: '/users'
-    });
-  }
-} else {
-  // Find the index of the "Admin" page if it exists
-  const adminPageIndex = routes[1].pages.findIndex(
-    page => page.name === 'Admin'
-  );
-
-  // If the "Admin" page exists, remove it
-  if (adminPageIndex !== -1) {
-    routes[1].pages.splice(adminPageIndex, 1);
-  }
-}
