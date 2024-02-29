@@ -10,6 +10,8 @@ import { Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import validateSession from 'Actions/validateSession';
+// import { s } from '@fullcalendar/core/internal-common';
 // import { Link } from 'react-router-dom';
 
 const MainLayout = () => {
@@ -24,42 +26,14 @@ const MainLayout = () => {
 
   useEffect(() => {
     // Check if the user is logged in
-    const appData = localStorage.getItem('appData');
-    if (appData) {
-      const data = JSON.parse(appData);
-      const session = data.session;
-      if (session) {
-        if (session.isLoggedIn) {
-          setIsLoggedIn(true);
-        } else {
-          setIsLoggedIn(false);
-          window.location.href = '/auth/sign-in';
-        }
-      } else {
-        setIsLoggedIn(false);
-        window.location.href = '/auth/sign-in';
-      }
-    } else {
-      setIsLoggedIn(false);
+    if (!validateSession()) {
       window.location.href = '/auth/sign-in';
     }
+    setIsLoggedIn(true);
   }, []);
 
   return (
     <Container fluid className="px-0">
-      {/* {(navbarPosition === 'vertical' || navbarPosition === 'combo') && (
-        <NavbarVertical />
-      )}
-      {navbarPosition === 'vertical' && <NavbarTopDefault />}
-      {(navbarPosition === 'horizontal' || navbarPosition === 'combo') && (
-        <NavbarTopHorizontal />
-      )}
-      {navbarPosition === 'dual' && <NavbarDual />}
-
-      <div className={classNames(contentClass, 'content')}>
-        <Outlet />
-        <Footer className={classNames(footerClass, 'position-absolute')} />
-      </div> */}
       {isLoggedIn ? (
         <>
           {(navbarPosition === 'vertical' || navbarPosition === 'combo') && (

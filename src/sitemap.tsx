@@ -46,10 +46,6 @@ let isAdmin = false;
 if (appData.userData) {
   isAdmin = appData.userData.role === 'admin';
 }
-
-// Now isAdmin holds the admin status
-console.log('Is Admin:', isAdmin);
-
 export const routes: RouteItems[] = [
   // {
   //   label: 'dashboard',

@@ -20,8 +20,8 @@
       "Mobile": "1234567890",
       "profilePic": "http://www.qberi.com/images/profilePic.png",
       "lastUpdated": "2014-01-01 00:00:00",
-      "isAdmin" : false,
-      "role" : "user"
+      "isAdmin": false,
+      "role": "user"
     }
   }
 }

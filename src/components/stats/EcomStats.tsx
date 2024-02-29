@@ -33,8 +33,13 @@ const EcomStats = () => {
   useEffect(() => {
     const URL =
       'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
+    const sessionToken = localStorage.getItem('sessionToken');
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionToken}`
+    };
     axios
-      .get(URL)
+      .get(URL, { headers: headers })
       .then(response => {
         console.log(response.data);
         setTotalAssets(response.data.amountInUsd);

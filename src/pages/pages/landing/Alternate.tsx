@@ -21,7 +21,6 @@ const Alternate = () => {
   });
 
   useEffect(() => {
-    // Set Title as Qberi | Landing
     document.title = 'Qberi';
   }, []);
 

@@ -4,9 +4,16 @@ import { Link } from 'react-router-dom';
 import Button from 'components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import Logout from 'Actions/logout';
+import { useEffect } from 'react';
 
 const SignOutForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
-  console.log(layout);
+  useEffect(() => {
+    console.log('SignOutForm : ', layout);
+    Logout();
+    document.title = 'Qberi | Sign Out';
+  }, []);
+
   return (
     <div className="text-center mb-6 mx-auto">
       <img className="mb-7 d-dark-none" src={lightImg} alt="phoenix" />

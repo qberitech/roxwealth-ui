@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
 // import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import validateSession from 'Actions/validateSession';
 
 const addProfile = async (name: string, email: string, mobile: string) => {
   const URL = 'https://engine.qberi.com/api/addProfile';
@@ -33,12 +34,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   useEffect(() => {
     document.title = 'Qberi | Sign Up';
     // check if user is already logged in
-    const data = localStorage.getItem('appData');
-    if (data) {
-      const appData = JSON.parse(data);
-      if (appData.session?.isLoggedIn) {
-        window.location.href = '/dashboard/roxwealth';
-      }
+    if (validateSession()) {
+      window.location.href = '/dashboard/roxwealth';
     }
   }, []);
 

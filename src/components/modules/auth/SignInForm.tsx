@@ -6,6 +6,7 @@ import { Col, Form, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import validateSession from 'Actions/validateSession';
 
 interface SessionData {
   isLoggedIn: boolean;
@@ -36,7 +37,7 @@ const admins = [
   'jaco@qberi.com'
 ];
 
-const updateUserData = async (email: string) => {
+const updateUserData = async (email: string, sessionToken: string) => {
   const URL = 'https://engine.qberi.com/api/getProfile/' + email;
   let userData = {
     email: email,
@@ -47,13 +48,20 @@ const updateUserData = async (email: string) => {
   };
 
   try {
-    const response = await axios.get(URL);
+    // add the authorization header to the request
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionToken}`
+    };
+    const response = await axios.get(URL, { headers: headers });
     if (
       response.status === 200 ||
       response.status === 201 ||
       response.status === 202
     ) {
       const res = response.data;
+      console.log(sessionToken);
+      console.log(res);
       userData = {
         email: res.email,
         name: res.name,
@@ -109,14 +117,8 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 
   useEffect(() => {
     document.title = 'Qberi | Sign In';
-    const data = localStorage.getItem('appData');
-
-    if (data) {
-      const appData: AppData = JSON.parse(data);
-      const session = appData.session;
-      if (session && session.isLoggedIn) {
-        window.location.href = '/dashboard/roxwealth';
-      }
+    if (validateSession()) {
+      window.location.href = '/dashboard/roxwealth';
     }
   }, []);
 
@@ -130,7 +132,6 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
 
   const handleLogin = async () => {
     const URL = 'https://engine.qberi.com/api/login';
-    // const URL = 'https://catfact.ninja/fact';
 
     const data = {
       email: email,
@@ -149,12 +150,16 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         response.status === 202
       ) {
         const responseData = response.data;
-        console.log(responseData);
-
-        const sessionToken = '1234567890 ';
+        // ResponseData Format: AUTH-TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4OTJjZWIxMi02ZjNkLTRiYzEtYjJlMi1jZmZkNjU3NjkzMTIiLCJpYXQiOjE3MDkxODYzMDEsImlzcyI6IllvZGEtUWJlcmkgQmFja2VuZCBTZXJ2aWNlIiwiZXhwIjoxNzA5MjcyNzAxLCJlbWFpbElkIjoibml0aXNoMkBxYmVyaS5jb20iLCJpZCI6Ijg5MmNlYjEyLTZmM2QtNGJjMS1iMmUyLWNmZmQ2NTc2OTMxMiJ9.aLTuTjO05ytSXLRW7ZVI_4cX8rX3WjOdzUBHc8AoYUSIJ5f9A2oWTUZeejGv513Igd6DUC6vd8tJ1qGdFbFXng; Path=/; Max-Age=604800; Expires=Thu, 07 Mar 2024 05:58:21 GMT; Secure; HttpOnly
+        const sessionToken = responseData.split('=')[1].split(';')[0];
+        if (!sessionToken) {
+          setError('Invalid email or password');
+          return;
+        }
+        localStorage.setItem('sessionToken', sessionToken);
         UpdateSession(sessionToken);
         console.log('Session updated');
-        updateUserData(email);
+        updateUserData(email, sessionToken);
         setError('');
         setSuccessMessage('Login successful, redirecting...');
         setTimeout(() => {
