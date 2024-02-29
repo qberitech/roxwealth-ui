@@ -1,6 +1,6 @@
 import ProductDescription from 'components/modules/e-commerce/ProductDescription';
 import ProductDetailsTab from 'components/modules/e-commerce/ProductDetailsTab';
-import { topElectronicProducts } from 'data/e-commerce/products';
+import { topElectronicProducts } from 'hospitalmerch/data/products';
 import SimilarProducts from 'components/sliders/SimilarProducts';
 import Section from 'components/base/Section';
 import PageBreadcrumb from 'components/common/PageBreadcrumb';

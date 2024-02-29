@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Badge from 'components/base/Badge';
 import Button from 'components/base/Button';
 import Rating from 'components/base/Rating';
-import { Product as ProductType } from 'data/e-commerce/products';
+import { Product as ProductType } from 'hospitalmerch/data/products';
 import { currencyFormat } from 'helpers/utils';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';

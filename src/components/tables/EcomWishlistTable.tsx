@@ -8,7 +8,7 @@ import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 import {
   WishlistProductType,
   wishlistProducts
-} from 'data/e-commerce/products';
+} from 'hospitalmerch/data/products';
 import Button from 'components/base/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons';
