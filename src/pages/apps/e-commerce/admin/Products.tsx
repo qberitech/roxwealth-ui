@@ -79,13 +79,11 @@ const Products = () => {
     sortable: true,
     selection: true
   });
-
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     table.setGlobalFilter(e.target.value || undefined);
   };
-
   return (
-    <div className="m-5">
+    <div>
       <PageBreadcrumb items={defaultBreadcrumbItems} />
       <div className="mb-9">
         <h2 className="mb-4">Products</h2>

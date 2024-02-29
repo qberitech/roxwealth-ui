@@ -109,6 +109,23 @@ export type ProductsTableProductType = {
   publishedOn: string;
 };
 
+export type Batteries = {
+  cellBrand: string;
+  cellCapacity: string;
+  cellQuantity: number;
+  cellType: string;
+  color: string; // Renamed from 'colour' to match the provided data
+  compatibleDevices: string[]; // Renamed from 'compatibleDevice' to match the provided data
+  dimensions: string;
+  id: string;
+  medicalEquipmentName: string;
+  modelNumber: string;
+  otherCompatibleModels: string[];
+  pictureUrl: string;
+  price: number;
+  productName: string;
+}
+
 export const topDealsProducts: Product[] = [
   {
     id: 1,
@@ -557,177 +574,220 @@ export const allProducts: Product[] = [
   }
 ];
 
+const URL =
+  'https://engine.qberi.com/api/allBatteryDetails';
+const sessionToken = localStorage.getItem('sessionToken');
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${sessionToken}`
+};
+
+let data;
+
 axios
-  .get('https://engine.qberi.com/api/allMedicalEquipments')
+  .get(URL, { headers: headers })
   .then(function (response) {
-    console.log('Response:', response.data);
+    data = response.data
+    console.log('Response:', data);
   })
   .catch(function (error) {
     console.error('Error:', error);
   });
 
-export const productsTableData: ProductsTableProductType[] = [
+export const productsTableData: Batteries[] = [
   {
-    product:
-      'Fitbit Sense Advanced Smartwatch with Tools for Heart Health, Stress Management & Skin Temperature Trends, Carbon/Graphite, One Size (S & L Bands...',
-    productImage: product1,
-    price: 39,
-    category: 'Plants',
-    tags: ['Health', 'Exercise', 'Discipline', 'Lifestyle', 'Fitness'],
-    starred: false,
-    vendor: 'Blue Olive Plant sellers. Inc',
-    publishedOn: 'Nov 12, 10:45 PM'
-  },
-  {
-    product: 'iPhone 13 pro max-Pacific Blue-128GB storage',
-    productImage: product2,
-    price: 87,
-    category: 'Furniture',
-    tags: ['Class', 'Camera', 'Discipline', 'invincible', 'Pro', 'Swag'],
-    starred: true,
-    vendor: 'Beatrice Furnitures',
-    publishedOn: 'Nov 11, 7:36 PM'
-  },
-  {
-    product: 'Apple MacBook Pro 13 inch-M1-8/256GB-space',
-    productImage: product3,
-    price: 9,
-    category: 'Plants',
-    tags: ['Efficiency', 'Handy', 'Apple', 'Creativity', 'Gray'],
-    starred: false,
-    vendor: 'PlantPlanet',
-    publishedOn: 'Nov 11, 8:16 AM'
-  },
-  {
-    product: 'Apple iMac 24" 4K Retina Display M1 8 Core CPU...',
-    productImage: product4,
-    priceMin: 8,
-    priceMax: 58,
-    category: 'Toys',
-    tags: ['Color', 'Stunning', 'Retina', 'Green', 'PC killer'],
-    starred: false,
-    vendor: 'Kizzstore',
-    publishedOn: 'Nov 8, 6:39 PM'
-  },
-  {
-    product: 'Razer Kraken v3 x Wired 7.1 Surroung Sound Gaming headset',
-    productImage: product5,
-    price: 120,
-    category: 'Fashion',
-    tags: ['Music', 'Audio', 'Meeting', 'Record', 'Sound'],
-    starred: false,
-    vendor: 'Inertia Fashion',
-    publishedOn: 'Nov 8, 5:32 PM'
-  },
-  {
-    product: 'PlayStation 5 DualSense Wireless Controller',
-    productImage: product6,
-    price: 239,
-    category: 'Gadgets',
-    tags: ['Game', 'Control', 'Nav', 'Playstation', 'Wireless'],
-    starred: false,
-    vendor: 'FutureTech Inc',
-    publishedOn: 'Nov 6, 11:34 PM'
-  },
-  {
-    product: '2021 Apple 12.9-inch iPad Pro (Wi‑Fi, 128GB) - Space Gray',
-    productImage: product7,
-    price: 4,
-    category: 'Food',
-    tags: ['Ipad', 'Pro', 'Creativity', 'Thunderbolt', 'Space'],
-    starred: false,
-    vendor: 'Maimuna’s Bakery',
-    publishedOn: 'Nov 1, 7:45 AM'
-  },
-  {
-    product: 'Amazon Basics Matte Black Wired Keyboard - US Layout (QWERTY)',
-    productImage: product8,
-    price: 98,
-    category: 'Fashion',
-    tags: ['Keyboard', 'Smooth', 'Butter', 'RGB', 'Black'],
-    starred: false,
-    vendor: 'Green fashion',
-    publishedOn: 'Nov 3, 12:27 PM'
-  },
-  {
-    product: 'Apple Magic Mouse (Wireless, Rechargable) - Silver',
-    productImage: product10,
-    price: 568,
-    category: 'Fashion',
-    tags: ['Apple', 'Wireless', 'Battery', 'Magic', 'Performance'],
-    starred: false,
-    vendor: 'Eastacy',
-    publishedOn: 'Nov 1, 9:39 AM'
-  },
-  {
-    product: 'HORI Racing Wheel Apex for PlayStation 4_3, and PC',
-    productImage: product12,
-    price: 17,
-    category: 'Drinks',
-    tags: ['Steering', 'Gaming', 'PS4/3', 'Racing', 'Apex'],
-    starred: false,
-    vendor: 'BrewerBro',
-    publishedOn: 'Oct 30, 3:49 PM'
-  },
-  {
-    product: 'Apple Pencil (2nd Generation)',
-    productImage: product21,
-    price: 28,
-    category: 'Fashion',
-    tags: ['Apple', 'Creativity', 'Color', 'Stunning', 'Apex'],
-    starred: false,
-    vendor: 'Eastacy',
-    publishedOn: 'Nov 25, 5:00 PM'
-  },
-  {
-    product: 'Apple AirPods (2nd Generation)',
-    productImage: product16,
-    price: 20,
-    category: 'Fashion',
-    tags: ['Music', 'Audio', 'Meeting', 'Record', 'Sound'],
-    starred: true,
-    vendor: 'FutureTech Inc',
-    publishedOn: 'Sep 20, 1:00 PM'
-  },
-  {
-    product: 'Xbox Series S',
-    productImage: product17,
-    price: 30,
-    category: 'Gadget',
-    tags: ['Lifestyle', 'Audio', 'Magic', 'Performance', 'Apex'],
-    starred: false,
-    vendor: 'FutureTech Inc',
-    publishedOn: 'Oct 18, 3:40 PM'
-  },
-  {
-    product: 'Seagate Portable 2TB External Hard Drive Portable HDD',
-    productImage: product18,
+    cellBrand: "ABC Batteries",
+    cellCapacity: "3000 mAh",
+    cellQuantity: 4,
+    cellType: "Lithium-ion",
+    color: "Black",
+    compatibleDevices: ['Device A', 'Device B'],
+    dimensions: "10x5x3 inches",
+    id: "ae7034e8-274e-4b2c-bf51-19b0863477a4",
+    medicalEquipmentName: "Portable Ventilator",
+    modelNumber: "RB-123",
+    otherCompatibleModels: ['Model X', 'Model Y'],
+    pictureUrl: 'https://example.com/image1.jpg',
     price: 50,
-    category: 'Accessories',
-    tags: ['Portable', 'Gaming', 'Magic', 'Performance', 'Black'],
-    starred: false,
-    vendor: 'Kizzstore',
-    publishedOn: 'Sep 20, 1:00 PM'
+    productName: "Rechargeable Battery",
   },
   {
-    product:
-      'Intel Core i9-11900K Desktop Processor 8 Cores up to 5.3 GHz Unlocked',
-    productImage: product19,
-    price: 80,
-    category: 'Accessories',
-    tags: ['Intel', 'Gaming', 'Apex', 'Performance', 'Lifestyle'],
-    starred: true,
-    vendor: 'BrewerBro',
-    publishedOn: 'Dec 01, 12:00 PM'
-  },
-  {
-    product: 'ASUS TUF Gaming F15 Gaming Laptop',
-    productImage: product20,
-    price: 150,
-    category: 'Computer',
-    tags: ['Gaming', 'Battery', 'Performance', 'Wireless'],
-    starred: false,
-    vendor: 'Kizzstore',
-    publishedOn: 'Dec 01, 12:00 PM'
+    cellBrand: "ABC Batteries",
+    cellCapacity: "3000 mAh",
+    cellQuantity: 4,
+    cellType: "Lithium-ion",
+    color: "Black",
+    compatibleDevices: ['Device A', 'Device B'],
+    dimensions: "10x5x3 inches",
+    id: "ae7034e8-274e-4b2c-bf51-19b0863477a4",
+    medicalEquipmentName: "Portable Ventilator",
+    modelNumber: "RB-123",
+    otherCompatibleModels: ['Model X', 'Model Y'],
+    pictureUrl: 'https://example.com/image1.jpg',
+    price: 50,
+    productName: "Rechargeable Battery",
   }
+  // {
+  //   product:
+  //     'Fitbit Sense Advanced Smartwatch with Tools for Heart Health, Stress Management & Skin Temperature Trends, Carbon/Graphite, One Size (S & L Bands...',
+  //   productImage: product1,
+  //   price: 39,
+  //   category: 'Plants',
+  //   tags: ['Health', 'Exercise', 'Discipline', 'Lifestyle', 'Fitness'],
+  //   starred: false,
+  //   vendor: 'Blue Olive Plant sellers. Inc',
+  //   publishedOn: 'Nov 12, 10:45 PM'
+  // },
+  // {
+  //   product: 'iPhone 13 pro max-Pacific Blue-128GB storage',
+  //   productImage: product2,
+  //   price: 87,
+  //   category: 'Furniture',
+  //   tags: ['Class', 'Camera', 'Discipline', 'invincible', 'Pro', 'Swag'],
+  //   starred: true,
+  //   vendor: 'Beatrice Furnitures',
+  //   publishedOn: 'Nov 11, 7:36 PM'
+  // },
+  // {
+  //   product: 'Apple MacBook Pro 13 inch-M1-8/256GB-space',
+  //   productImage: product3,
+  //   price: 9,
+  //   category: 'Plants',
+  //   tags: ['Efficiency', 'Handy', 'Apple', 'Creativity', 'Gray'],
+  //   starred: false,
+  //   vendor: 'PlantPlanet',
+  //   publishedOn: 'Nov 11, 8:16 AM'
+  // },
+  // {
+  //   product: 'Apple iMac 24" 4K Retina Display M1 8 Core CPU...',
+  //   productImage: product4,
+  //   priceMin: 8,
+  //   priceMax: 58,
+  //   category: 'Toys',
+  //   tags: ['Color', 'Stunning', 'Retina', 'Green', 'PC killer'],
+  //   starred: false,
+  //   vendor: 'Kizzstore',
+  //   publishedOn: 'Nov 8, 6:39 PM'
+  // },
+  // {
+  //   product: 'Razer Kraken v3 x Wired 7.1 Surroung Sound Gaming headset',
+  //   productImage: product5,
+  //   price: 120,
+  //   category: 'Fashion',
+  //   tags: ['Music', 'Audio', 'Meeting', 'Record', 'Sound'],
+  //   starred: false,
+  //   vendor: 'Inertia Fashion',
+  //   publishedOn: 'Nov 8, 5:32 PM'
+  // },
+  // {
+  //   product: 'PlayStation 5 DualSense Wireless Controller',
+  //   productImage: product6,
+  //   price: 239,
+  //   category: 'Gadgets',
+  //   tags: ['Game', 'Control', 'Nav', 'Playstation', 'Wireless'],
+  //   starred: false,
+  //   vendor: 'FutureTech Inc',
+  //   publishedOn: 'Nov 6, 11:34 PM'
+  // },
+  // {
+  //   product: '2021 Apple 12.9-inch iPad Pro (Wi‑Fi, 128GB) - Space Gray',
+  //   productImage: product7,
+  //   price: 4,
+  //   category: 'Food',
+  //   tags: ['Ipad', 'Pro', 'Creativity', 'Thunderbolt', 'Space'],
+  //   starred: false,
+  //   vendor: 'Maimuna’s Bakery',
+  //   publishedOn: 'Nov 1, 7:45 AM'
+  // },
+  // {
+  //   product: 'Amazon Basics Matte Black Wired Keyboard - US Layout (QWERTY)',
+  //   productImage: product8,
+  //   price: 98,
+  //   category: 'Fashion',
+  //   tags: ['Keyboard', 'Smooth', 'Butter', 'RGB', 'Black'],
+  //   starred: false,
+  //   vendor: 'Green fashion',
+  //   publishedOn: 'Nov 3, 12:27 PM'
+  // },
+  // {
+  //   product: 'Apple Magic Mouse (Wireless, Rechargable) - Silver',
+  //   productImage: product10,
+  //   price: 568,
+  //   category: 'Fashion',
+  //   tags: ['Apple', 'Wireless', 'Battery', 'Magic', 'Performance'],
+  //   starred: false,
+  //   vendor: 'Eastacy',
+  //   publishedOn: 'Nov 1, 9:39 AM'
+  // },
+  // {
+  //   product: 'HORI Racing Wheel Apex for PlayStation 4_3, and PC',
+  //   productImage: product12,
+  //   price: 17,
+  //   category: 'Drinks',
+  //   tags: ['Steering', 'Gaming', 'PS4/3', 'Racing', 'Apex'],
+  //   starred: false,
+  //   vendor: 'BrewerBro',
+  //   publishedOn: 'Oct 30, 3:49 PM'
+  // },
+  // {
+  //   product: 'Apple Pencil (2nd Generation)',
+  //   productImage: product21,
+  //   price: 28,
+  //   category: 'Fashion',
+  //   tags: ['Apple', 'Creativity', 'Color', 'Stunning', 'Apex'],
+  //   starred: false,
+  //   vendor: 'Eastacy',
+  //   publishedOn: 'Nov 25, 5:00 PM'
+  // },
+  // {
+  //   product: 'Apple AirPods (2nd Generation)',
+  //   productImage: product16,
+  //   price: 20,
+  //   category: 'Fashion',
+  //   tags: ['Music', 'Audio', 'Meeting', 'Record', 'Sound'],
+  //   starred: true,
+  //   vendor: 'FutureTech Inc',
+  //   publishedOn: 'Sep 20, 1:00 PM'
+  // },
+  // {
+  //   product: 'Xbox Series S',
+  //   productImage: product17,
+  //   price: 30,
+  //   category: 'Gadget',
+  //   tags: ['Lifestyle', 'Audio', 'Magic', 'Performance', 'Apex'],
+  //   starred: false,
+  //   vendor: 'FutureTech Inc',
+  //   publishedOn: 'Oct 18, 3:40 PM'
+  // },
+  // {
+  //   product: 'Seagate Portable 2TB External Hard Drive Portable HDD',
+  //   productImage: product18,
+  //   price: 50,
+  //   category: 'Accessories',
+  //   tags: ['Portable', 'Gaming', 'Magic', 'Performance', 'Black'],
+  //   starred: false,
+  //   vendor: 'Kizzstore',
+  //   publishedOn: 'Sep 20, 1:00 PM'
+  // },
+  // {
+  //   product:
+  //     'Intel Core i9-11900K Desktop Processor 8 Cores up to 5.3 GHz Unlocked',
+  //   productImage: product19,
+  //   price: 80,
+  //   category: 'Accessories',
+  //   tags: ['Intel', 'Gaming', 'Apex', 'Performance', 'Lifestyle'],
+  //   starred: true,
+  //   vendor: 'BrewerBro',
+  //   publishedOn: 'Dec 01, 12:00 PM'
+  // },
+  // {
+  //   product: 'ASUS TUF Gaming F15 Gaming Laptop',
+  //   productImage: product20,
+  //   price: 150,
+  //   category: 'Computer',
+  //   tags: ['Gaming', 'Battery', 'Performance', 'Wireless'],
+  //   starred: false,
+  //   vendor: 'Kizzstore',
+  //   publishedOn: 'Dec 01, 12:00 PM'
+  // }
 ];

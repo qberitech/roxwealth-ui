@@ -3,7 +3,7 @@ import AdvanceTable from 'components/base/AdvanceTable';
 import { currencyFormat } from 'helpers/utils';
 import { Link } from 'react-router-dom';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
-import { ProductsTableProductType } from 'hospitalmerch/data/products';
+import { Batteries } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
 import StarCheckbox from 'components/base/StarCheckbox';
 import RevealDropdown, {
@@ -11,18 +11,18 @@ import RevealDropdown, {
 } from 'components/base/RevealDropdown';
 import ActionDropdownItems from 'components/common/ActionDropdownItems';
 
-export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
+export const productsTablecolumns: ColumnDef<Batteries>[] = [
   {
-    id: 'productImage',
-    accessorKey: '',
+    id: 'pictureUrl',
+    accessorKey: 'Picture',
     cell: ({ row: { original } }) => {
-      const { productImage } = original;
+      const { pictureUrl } = original;
       return (
         <Link
           to="/ecommerce/product-details"
           className="rounded-2 border d-inline-block"
         >
-          <img src={productImage} alt="" width={53} />
+          <img src={pictureUrl} alt="" width={53} />
         </Link>
       );
     },
@@ -33,16 +33,16 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
     enableSorting: false
   },
   {
-    accessorKey: 'product',
+    accessorKey: 'productName',
     header: 'Product name',
     cell: ({ row: { original } }) => {
-      const { product } = original;
+      const { productName } = original;
       return (
         <Link
           to="/ecommerce/product-details"
           className="fw-semi-bold line-clamp-3"
         >
-          {product}
+          {productName}
         </Link>
       );
     },
@@ -53,15 +53,12 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
   },
   {
     id: 'price',
-    accessorFn: ({ price, priceMax, priceMin }) =>
-      `${price} ${priceMax} ${priceMin}`,
+    accessorFn: ({ price }) =>
+      `${price}`,
     header: 'Price',
     cell: ({ row: { original } }) => {
-      const { price, priceMax, priceMin } = original;
+      const { price } = original;
       return price
-        ? currencyFormat(price)
-        : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-          `${currencyFormat(priceMin!)} - ${currencyFormat(priceMax!)}`;
     },
     meta: {
       headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },
@@ -69,22 +66,22 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
     }
   },
   {
-    accessorKey: 'category',
-    header: 'Category',
+    accessorKey: 'cellType',
+    header: 'Cell Type',
     meta: {
       headerProps: { style: { width: 150 }, className: 'ps-4' },
       cellProps: { className: 'fs-9 fw-semi-bold ps-4 text-600' }
     }
   },
   {
-    id: 'compatibleDevice',
-    accessorFn: ({ tags }) => tags.join(''),
+    id: 'compatibleDevices',
+    accessorFn: ({ compatibleDevices }) => compatibleDevices.join(''),
     header: 'Compatible Devices',
     cell: ({ row: { original } }) => {
-      const { tags } = original;
+      const { compatibleDevices } = original;
       return (
         <div className="d-flex flex-wrap gap-2">
-          {tags.map(tag => (
+          {compatibleDevices.map(tag => (
             <Link key={tag} to="#!" className="text-decoration-none">
               <Badge variant="tag">{tag}</Badge>
             </Link>
@@ -108,21 +105,21 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
       cellProps: { className: 'ps-4 text-center' }
     }
   },
+  // {
+  //   accessorKey: 'dimensions',
+  //   header: 'dimensions',
+  //   cell: ({ row: { original } }) => {
+  //     const { dimensions } = original;
+  //     return {dimensions};
+  //   },
+  //   meta: {
+  //     headerProps: { style: { width: 200 }, className: 'ps-4' },
+  //     cellProps: { className: 'ps-4 fw-semi-bold text-start' }
+  //   }
+  // },
   {
-    accessorKey: 'vendor',
-    header: 'Vendor',
-    cell: ({ row: { original } }) => {
-      const { vendor } = original;
-      return <Link to="#!">{vendor}</Link>;
-    },
-    meta: {
-      headerProps: { style: { width: 200 }, className: 'ps-4' },
-      cellProps: { className: 'ps-4 fw-semi-bold text-start' }
-    }
-  },
-  {
-    accessorKey: 'publishedOn',
-    header: 'Published on',
+    accessorKey: 'cellCapacity',
+    header: 'Cell Capacity ',
     meta: {
       headerProps: { style: { width: 50 }, className: 'ps-4' },
       cellProps: { className: 'text-600 ps-4' }
