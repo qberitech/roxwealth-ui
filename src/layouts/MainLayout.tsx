@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Footer from 'components/footers/Footer';
 import NavbarDual from 'components/navbars/navbar-dual/NavbarDual';
-import NavbarTopHorizontal from 'components/navbars/navbar-horizontal/NavbarTopHorizontal';
+// import NavbarTopHorizontal from 'components/navbars/navbar-horizontal/NavbarTopHorizontal';
 import NavbarTopDefault from 'components/navbars/navbar-top/NavbarTopDefault';
 import NavbarVertical from 'components/navbars/navbar-vertical/NavbarVertical';
 import { useAppContext } from 'providers/AppProvider';
@@ -12,7 +12,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import validateSession from 'Actions/validateSession';
 // import { s } from '@fullcalendar/core/internal-common';
-// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const MainLayout = () => {
   const {
@@ -24,10 +24,13 @@ const MainLayout = () => {
   // Check if the user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Check if the user is logged in
     if (!validateSession()) {
-      window.location.href = '/auth/sign-in';
+      navigate('/auth/sign-in');
+      return;
     }
     setIsLoggedIn(true);
   }, []);
@@ -40,9 +43,9 @@ const MainLayout = () => {
             <NavbarVertical />
           )}
           {navbarPosition === 'vertical' && <NavbarTopDefault />}
-          {(navbarPosition === 'horizontal' || navbarPosition === 'combo') && (
+          {/* {(navbarPosition === 'horizontal' || navbarPosition === 'combo') && (
             <NavbarTopHorizontal />
-          )}
+          )} */}
           {navbarPosition === 'dual' && <NavbarDual />}
 
           <div className={classNames(contentClass, 'content')}>

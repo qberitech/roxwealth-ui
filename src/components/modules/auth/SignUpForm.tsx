@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
-// import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import validateSession from 'Actions/validateSession';
 
@@ -31,11 +30,13 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   const [errorMessages, setErrorMessages] = useState<string[]>([]);
   const [successMessage, setSuccessMessage] = useState<string>('');
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = 'Qberi | Sign Up';
     // check if user is already logged in
     if (validateSession()) {
-      window.location.href = '/dashboard/roxwealth';
+      navigate('/dashboard/roxwealth');
     }
   }, []);
 
@@ -115,7 +116,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         console.log('Profile added');
         addProfile(name, email, mobile);
         setTimeout(() => {
-          window.location.href = '/auth/sign-in';
+          // window.location.href = '/auth/sign-in';
+          navigate('/auth/sign-in');
         }, 1000);
       } else {
         setErrorMessages(['Registration failed']);

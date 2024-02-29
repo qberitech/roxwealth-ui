@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     const appData = localStorage.getItem('appData');
     const data = JSON.parse(appData);
@@ -14,7 +16,7 @@ const Admin = () => {
       return;
     }
     if (userData.role !== 'admin') {
-      window.location.href = '/dashboard/roxwealth';
+      navigate('/dashboard/roxwealth');
     }
     setUser(userData);
   }, []);

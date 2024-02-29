@@ -24,25 +24,27 @@ const EcommerceFooter = () => {
           <Col xs={12} lg={4}>
             <Logo className="mb-3" />
             <p className="text-700 mb-1 fw-semi-bold lh-sm fs-9">
-              Phoenix is an admin dashboard template with fascinating features
-              and amazing layout. The template is responsive to all major
-              browsers and is compatible with all available devices and screen
-              sizes.
+              Qberi is an admin dashboard template with fascinating features and
+              amazing layout. The template is responsive to all major browsers
+              and is compatible with all available devices and screen sizes.
             </p>
           </Col>
           <Col xs={6} md="auto">
-            <h5 className="fw-bolder mb-3">About Phoenix</h5>
+            <h5 className="fw-bolder mb-3">About Qberi</h5>
             <Stack>
-              <LinkItem to="#!">Careers</LinkItem>
-              <LinkItem to="#!">Affiliate Program</LinkItem>
-              <LinkItem to="#!">Privacy Policy</LinkItem>
-              <LinkItem to="#!">Terms & Conditions</LinkItem>
+              {/* <LinkItem to="/">Careers</LinkItem> */}
+              {/* <LinkItem to="#!">Affiliate Program</LinkItem> */}
+              <LinkItem to="/">Home</LinkItem>
+              <LinkItem to="/about-us">About Us</LinkItem>
+              <LinkItem to="/privacy-policy">Privacy Policy</LinkItem>
+              <LinkItem to="/terms-Conditions">Terms & Conditions</LinkItem>
+              <LinkItem to="/business/units">Contact Us</LinkItem>
             </Stack>
           </Col>
           <Col xs={6} md="auto">
             <h5 className="fw-bolder mb-3">Stay Connected</h5>
             <Stack>
-              <LinkItem to="#!">Blogs</LinkItem>
+              {/* <LinkItem to="#!">Blogs</LinkItem> */}
               <Link to="#!" className="mb-1 fw-semi-bold fs-9">
                 <FontAwesomeIcon
                   icon={faFacebookSquare}

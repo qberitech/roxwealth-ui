@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
 import { Col, Form, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import validateSession from 'Actions/validateSession';
 
+// Define interface for session data
 interface SessionData {
   isLoggedIn: boolean;
   sessionToken: string;
@@ -15,21 +16,19 @@ interface SessionData {
   updated_at: string;
 }
 
+// Define interface for application data
 interface AppData {
   session?: SessionData;
-  terms?: {
-    accepted_terms: boolean;
-    accepted_at: string;
-  };
-  login?: {
-    remember_me: boolean;
-    email: string;
-  };
   userData?: {
     email: string;
+    name: string;
+    mobile: string;
+    profilePicture: string;
+    role: string;
   };
 }
 
+// List of admin emails
 const admins = [
   'nitish2@qberi.com',
   'rohan2@qberi.com',
@@ -37,56 +36,42 @@ const admins = [
   'jaco@qberi.com'
 ];
 
+// Function to update user data in localStorage
 const updateUserData = async (email: string, sessionToken: string) => {
   const URL = 'https://engine.qberi.com/api/getProfile/' + email;
-  let userData = {
-    email: email,
-    name: 'User Not Found',
-    mobile: '0000000000',
-    profilePicture: 'https://www.w3schools.com/howto/img_avatar.png',
-    role: 'user'
-  };
 
   try {
-    // add the authorization header to the request
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${sessionToken}`
     };
     const response = await axios.get(URL, { headers: headers });
-    if (
-      response.status === 200 ||
-      response.status === 201 ||
-      response.status === 202
-    ) {
+    if (response.status === 200) {
       const res = response.data;
-      console.log(sessionToken);
-      console.log(res);
-      userData = {
+      const userData = {
         email: res.email,
         name: res.name,
         mobile: res.mobile,
         profilePicture: res.profilePicture,
         role: admins.includes(res.email) ? 'admin' : 'user'
       };
+      saveUserData(userData); // Save user data to localStorage
     }
   } catch (error) {
-    console.error(error);
-  }
-  const data = localStorage.getItem('appData');
-  if (data) {
-    const appData: AppData = JSON.parse(data);
-    appData.userData = userData;
-    localStorage.setItem('appData', JSON.stringify(appData));
-  } else {
-    const appData: AppData = {
-      userData: userData
-    };
-    localStorage.setItem('appData', JSON.stringify(appData));
+    console.error('Error fetching user data:', error);
   }
 };
 
-const UpdateSession = (sessionToken: string) => {
+// Function to save user data to localStorage
+const saveUserData = (userData: AppData['userData']) => {
+  const data = localStorage.getItem('appData');
+  const appData: AppData = data ? JSON.parse(data) : {};
+  appData.userData = userData;
+  localStorage.setItem('appData', JSON.stringify(appData));
+};
+
+// Function to update session in localStorage
+const updateSession = (sessionToken: string) => {
   const date = new Date();
   const session: SessionData = {
     sessionToken: sessionToken,
@@ -96,84 +81,61 @@ const UpdateSession = (sessionToken: string) => {
   };
 
   const data = localStorage.getItem('appData');
-
-  if (data) {
-    const appData: AppData = JSON.parse(data);
-    appData.session = session;
-    localStorage.setItem('appData', JSON.stringify(appData));
-  } else {
-    const appData: AppData = {
-      session: session
-    };
-    localStorage.setItem('appData', JSON.stringify(appData));
-  }
+  const appData: AppData = data ? JSON.parse(data) : {};
+  appData.session = session;
+  localStorage.setItem('appData', JSON.stringify(appData));
 };
 
+// SignInForm component
 const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const history = useNavigate(); // useHistory hook to manipulate browser history
 
   useEffect(() => {
     document.title = 'Qberi | Sign In';
     if (validateSession()) {
-      window.location.href = '/dashboard/roxwealth';
+      history('/dashboard/roxwealth');
     }
-  }, []);
+  }, [history]);
 
+  // Handle email input change
   const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
+  // Handle password input change
   const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
+  // Handle login button click
   const handleLogin = async () => {
     const URL = 'https://engine.qberi.com/api/login';
-
-    const data = {
-      email: email,
-      password: password
-    };
-
-    const headers = {
-      'Content-Type': 'application/json'
-    };
+    const data = { email, password };
 
     try {
-      const response = await axios.post(URL, data, { headers: headers });
-      if (
-        response.status === 200 ||
-        response.status === 201 ||
-        response.status === 202
-      ) {
-        const responseData = response.data;
-        // ResponseData Format: AUTH-TOKEN=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4OTJjZWIxMi02ZjNkLTRiYzEtYjJlMi1jZmZkNjU3NjkzMTIiLCJpYXQiOjE3MDkxODYzMDEsImlzcyI6IllvZGEtUWJlcmkgQmFja2VuZCBTZXJ2aWNlIiwiZXhwIjoxNzA5MjcyNzAxLCJlbWFpbElkIjoibml0aXNoMkBxYmVyaS5jb20iLCJpZCI6Ijg5MmNlYjEyLTZmM2QtNGJjMS1iMmUyLWNmZmQ2NTc2OTMxMiJ9.aLTuTjO05ytSXLRW7ZVI_4cX8rX3WjOdzUBHc8AoYUSIJ5f9A2oWTUZeejGv513Igd6DUC6vd8tJ1qGdFbFXng; Path=/; Max-Age=604800; Expires=Thu, 07 Mar 2024 05:58:21 GMT; Secure; HttpOnly
-        const sessionToken = responseData.split('=')[1].split(';')[0];
-        if (!sessionToken) {
-          setError('Invalid email or password');
-          return;
-        }
+      const response = await axios.post(URL, data);
+      const sessionToken = response.headers['auth-token']; // Get session token from response headers
+      if (sessionToken) {
         localStorage.setItem('sessionToken', sessionToken);
-        UpdateSession(sessionToken);
-        console.log('Session updated');
-        updateUserData(email, sessionToken);
-        setError('');
+        updateSession(sessionToken); // Update session in localStorage
+        updateUserData(email, sessionToken); // Update user data in localStorage
         setSuccessMessage('Login successful, redirecting...');
         setTimeout(() => {
-          window.location.href = '/dashboard/roxwealth';
+          history('/dashboard/roxwealth');
         }, 1000);
       } else {
         setError('Invalid email or password');
       }
     } catch (error) {
-      console.error(error);
+      console.error('Login error:', error);
       setError('Invalid email or password');
     }
   };
-
   return (
     <>
       <div className="text-center mb-7">

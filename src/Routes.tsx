@@ -184,6 +184,7 @@ import BusinessUnits from 'pages/pages/Mains/Business-Units';
 import QberiInSA from 'pages/pages/Businesses/Qberi_in_SA';
 // import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
 import Admin from 'pages/pages/Mains/Admin';
+import AddProduct from 'pages/apps/e-commerce/admin/AddProduct';
 
 // const FontAwesomeExample = lazy(
 //   () => import('pages/modules/components/FontAwesomeExample')
@@ -270,6 +271,10 @@ const routes: RouteObject[] = [
           {
             path: 'product-details',
             element: <ProductDetails />
+          },
+          {
+            path: 'add-product',
+            element: <AddProduct />
           }
         ]
       },
