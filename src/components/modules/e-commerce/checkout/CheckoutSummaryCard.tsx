@@ -1,5 +1,5 @@
 import Button from 'components/base/Button';
-import { cartItems } from 'data/e-commerce/products';
+import { cartItems } from 'hospitalmerch/data/products';
 import { currencyFormat } from 'helpers/utils';
 import React from 'react';
 import { Card, Col, Row } from 'react-bootstrap';

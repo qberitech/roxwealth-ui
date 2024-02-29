@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Product } from 'data/e-commerce/products';
+import { Product } from 'hospitalmerch/data/products';
 import ProductCard from 'components/common/ProductCard';
 import Swiper from 'components/base/Swiper';
 import { SwiperSlide } from 'swiper/react';

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import {
   WishlistProductType,
   wishlistProducts
-} from 'data/e-commerce/products';
+} from 'hospitalmerch/data/products';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 
 const columns: ColumnDef<WishlistProductType>[] = [

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Scrollbar from 'components/base/Scrollbar';
 import ProductFilterItems from 'components/modules/e-commerce/products-filter/ProductFilterItems';
 import ProductCard from 'components/common/ProductCard';
-import { allProducts } from 'data/e-commerce/products';
+import { allProducts } from 'hospitalmerch/data/products';
 import {
   faChevronLeft,
   faChevronRight,

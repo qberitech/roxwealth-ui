@@ -7,7 +7,7 @@ import {
   bestOfferProducts,
   topDealsProducts,
   topElectronicProducts
-} from 'data/e-commerce/products';
+} from 'hospitalmerch/data/products';
 import ecom4 from 'assets/img/e-commerce/4.png';
 import EcomTopDeals from 'components/sliders/EcomTopDeals';
 import EcomTopElectronics from 'components/sliders/EcomTopElectronics';
