@@ -1,4 +1,4 @@
-import { faFileExport, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import FilterButtonGroup, {
@@ -11,7 +11,7 @@ import ProductsTable, {
   productsTablecolumns
 } from 'components/tables/ProductsTable';
 import { defaultBreadcrumbItems } from 'data/commonData';
-import { productsTableData } from 'data/e-commerce/products';
+import { productsTableData } from 'hospitalmerch/data/products';
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
 import { ChangeEvent } from 'react';
@@ -85,7 +85,7 @@ const Products = () => {
   };
 
   return (
-    <div>
+    <div className="m-5">
       <PageBreadcrumb items={defaultBreadcrumbItems} />
       <div className="mb-9">
         <h2 className="mb-4">Products</h2>
@@ -101,14 +101,20 @@ const Products = () => {
                 <FilterButtonGroup menus={filterMenus} />
               </div>
               <div className="ms-xxl-auto">
-                <Button variant="link" className="text-900 me-4 px-0">
+                {/* <Button variant="link" className="text-900 me-4 px-0">
                   <FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />
                   Export
-                </Button>
-                <Button variant="primary">
-                  <FontAwesomeIcon icon={faPlus} className="me-2" />
-                  Add product
-                </Button>
+                </Button> */}
+                <div className="d-flex justify-content-between">
+                  <Button variant="primary" className="mx-2">
+                    <FontAwesomeIcon icon={faPlus} className="me-2" />
+                    Add product
+                  </Button>
+                  <Button variant="danger" className="mx-2">
+                    <FontAwesomeIcon icon={faMinus} className="me-2" />
+                    Remove Product
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

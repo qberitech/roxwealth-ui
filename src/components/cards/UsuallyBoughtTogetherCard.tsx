@@ -1,6 +1,6 @@
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { SuggestedProductType } from 'data/e-commerce/products';
+import { SuggestedProductType } from 'hospitalmerch/data/products';
 import { currencyFormat } from 'helpers/utils';
 import { useState } from 'react';
 import { Button, Card, Form, Stack } from 'react-bootstrap';

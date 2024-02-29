@@ -1,7 +1,7 @@
 import WidgetsSectionTitle from './WidgetsSectionTitle';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import EcomCartTable from 'components/tables/EcomCartTable';
-import { cartItems } from 'data/e-commerce/products';
+import { cartItems } from 'hospitalmerch/data/products';
 import { Col, Row } from 'react-bootstrap';
 import { PaymentMethod } from '../e-commerce/checkout/PaymentMethod';
 import EcomCartSummaryCard from 'components/cards/EcomCartSummaryCard';

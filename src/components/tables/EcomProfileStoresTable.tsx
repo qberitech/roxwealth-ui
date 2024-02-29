@@ -5,7 +5,7 @@ import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
 import { Link } from 'react-router-dom';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
-import { StoreProductType, storeProducts } from 'data/e-commerce/products';
+import { StoreProductType, storeProducts } from 'hospitalmerch/data/products';
 import Rating from 'components/base/Rating';
 import RevealDropdown, {
   RevealDropdownTrigger

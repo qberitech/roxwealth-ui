@@ -3,7 +3,7 @@ import EcomCartSummaryCard from 'components/cards/EcomCartSummaryCard';
 import PageBreadcrumb from 'components/common/PageBreadcrumb';
 import EcomCartTable from 'components/tables/EcomCartTable';
 import { defaultBreadcrumbItems } from 'data/commonData';
-import { cartItems } from 'data/e-commerce/products';
+import { cartItems } from 'hospitalmerch/data/products';
 import { Col, Row } from 'react-bootstrap';
 
 const Cart = () => {

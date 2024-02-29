@@ -10,7 +10,7 @@ import ProductReview from 'components/list-items/ProductReview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReviewModal from 'components/modals/ReviewModal';
 import UsuallyBoughtTogetherCard from 'components/cards/UsuallyBoughtTogetherCard';
-import { suggestedProducts } from 'data/e-commerce/products';
+import { suggestedProducts } from 'hospitalmerch/data/products';
 import useLightbox from 'hooks/useLightbox';
 import Lightbox from 'components/base/LightBox';
 import {

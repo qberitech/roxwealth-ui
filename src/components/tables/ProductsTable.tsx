@@ -3,7 +3,7 @@ import AdvanceTable from 'components/base/AdvanceTable';
 import { currencyFormat } from 'helpers/utils';
 import { Link } from 'react-router-dom';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
-import { ProductsTableProductType } from 'data/e-commerce/products';
+import { ProductsTableProductType } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
 import StarCheckbox from 'components/base/StarCheckbox';
 import RevealDropdown, {
@@ -77,9 +77,9 @@ export const productsTablecolumns: ColumnDef<ProductsTableProductType>[] = [
     }
   },
   {
-    id: 'tags',
+    id: 'compatibleDevice',
     accessorFn: ({ tags }) => tags.join(''),
-    header: 'Tags',
+    header: 'Compatible Devices',
     cell: ({ row: { original } }) => {
       const { tags } = original;
       return (
