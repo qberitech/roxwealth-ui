@@ -103,6 +103,12 @@ export const routes: RouteItems[] = [
         path: '/dashboard/roxwealth'
       },
       {
+        name: 'Hospital Merch',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/ecommerce/products'
+      },
+      {
         name: 'Account Summary',
         active: true,
         path: '/dashboard/crm',
@@ -133,19 +139,6 @@ export const routes: RouteItems[] = [
         active: isAdmin,
         icon: 'lock',
         path: '/admin'
-      }
-    ]
-  },
-  {
-    label: 'HOSPITALMERCH.COM',
-    active: true,
-    icon: UilCube,
-    pages: [
-      {
-        name: 'Products',
-        active: true,
-        icon: 'shopping-cart',
-        path: '/ecommerce/products'
       }
     ]
   }

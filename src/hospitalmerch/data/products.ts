@@ -24,6 +24,7 @@ import honda from 'assets/img/brands/honda.png';
 import xiaomi from 'assets/img/brands/xiaomi.png';
 import huawei from 'assets/img/brands/huawei.png';
 import intel from 'assets/img/brands/intel.png';
+import axios from 'axios';
 
 export type Product = {
   id: number;
@@ -555,6 +556,15 @@ export const allProducts: Product[] = [
     colors: 2
   }
 ];
+
+axios
+  .get('https://engine.qberi.com/api/allMedicalEquipments')
+  .then(function (response) {
+    console.log('Response:', response.data);
+  })
+  .catch(function (error) {
+    console.error('Error:', error);
+  });
 
 export const productsTableData: ProductsTableProductType[] = [
   {
