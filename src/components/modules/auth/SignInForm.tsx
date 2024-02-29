@@ -32,7 +32,7 @@ interface AppData {
 
 const admins = [
   'nitish2@qberi.com',
-  'rohan@qberi.com',
+  'rohan2@qberi.com',
   'pranab@qberi.com',
   'jaco@qberi.com'
 ];
