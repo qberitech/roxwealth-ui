@@ -1,55 +1,52 @@
-import axios from "axios";
+import axios from 'axios';
 export type Batteries = {
-    cellBrand: string;
-    cellCapacity: string;
-    cellQuantity: number;
-    cellType: string;
-    color: string; // Renamed from 'colour' to match the provided data
-    compatibleDevices: string[]; // Renamed from 'compatibleDevice' to match the provided data
-    dimensions: string;
-    id: string;
-    medicalEquipmentName: string;
-    modelNumber: string;
-    otherCompatibleModels: string[];
-    pictureUrl: string;
-    price: number;
-    productName: string;
-  };
-
-
+  cellBrand: string;
+  cellCapacity: string;
+  cellQuantity: number;
+  cellType: string;
+  color: string; // Renamed from 'colour' to match the provided data
+  compatibleDevices: string[]; // Renamed from 'compatibleDevice' to match the provided data
+  dimensions: string;
+  id: string;
+  medicalEquipmentName: string;
+  modelNumber: string;
+  otherCompatibleModels: string[];
+  pictureUrl: string;
+  price: number;
+  productName: string;
+};
 
 const getBatteries = async () => {
-    
-    const URL = 'https://engine.qberi.com/api/allBatteryDetails';
-    const sessionToken = localStorage.getItem('sessionToken');
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionToken}`
-    };
+  const URL = 'https://engine.qberi.com/api/allBatteryDetails';
+  const sessionToken = localStorage.getItem('sessionToken');
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sessionToken}`
+  };
 
-    const response = await axios.get(URL, { headers })
-    
-    const battery_list :any = [];
-    response.data.forEach((battery: any) => {
-        battery_list.push({
-            cellBrand: battery.cellBrand,
-            cellCapacity: battery.cellCapacity,
-            cellQuantity: battery.cellQuantity,
-            cellType: battery.cellType,
-            color: battery.colour,
-            compatibleDevices: battery.compatibleDevice,
-            dimensions: battery.dimensions,
-            id: battery.id,
-            medicalEquipmentName: battery.medicalEquipmentName,
-            modelNumber: battery.modelNumber,
-            otherCompatibleModels: battery.otherCompatibleModels,
-            pictureUrl: battery.pictureUrl,
-            price: battery.price,
-            productName: battery.productName
-        });
-    }); 
+  const response = await axios.get(URL, { headers });
 
-    return battery_list;
-}
+  const battery_list: any = [];
+  response.data.forEach((battery: any) => {
+    battery_list.push({
+      cellBrand: battery.cellBrand,
+      cellCapacity: battery.cellCapacity,
+      cellQuantity: battery.cellQuantity,
+      cellType: battery.cellType,
+      color: battery.colour,
+      compatibleDevices: battery.compatibleDevice,
+      dimensions: battery.dimensions,
+      id: battery.id,
+      medicalEquipmentName: battery.medicalEquipmentName,
+      modelNumber: battery.modelNumber,
+      otherCompatibleModels: battery.otherCompatibleModels,
+      pictureUrl: battery.pictureUrl,
+      price: battery.price,
+      productName: battery.productName
+    });
+  });
+
+  return battery_list;
+};
 
 export default getBatteries;

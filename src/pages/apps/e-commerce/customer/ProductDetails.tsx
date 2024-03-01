@@ -3,20 +3,20 @@ import ProductDetailsTab from 'components/modules/e-commerce/ProductDetailsTab';
 import { topElectronicProducts } from 'hospitalmerch/data/products';
 import SimilarProducts from 'components/sliders/SimilarProducts';
 import Section from 'components/base/Section';
-import PageBreadcrumb from 'components/common/PageBreadcrumb';
-import { ecomBreadcrumbItems } from 'data/commonData';
+import { productsTableData } from 'hospitalmerch/data/products';
 
+console.log(productsTableData);
 const ProductDetails = () => {
+  let productData = productsTableData;
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">
-        <PageBreadcrumb items={ecomBreadcrumbItems} className="mb-3" />
-        <ProductDescription />
+        <ProductDescription data={productData} />
       </Section>
 
       <Section small className="py-0">
         <div className="mb-9">
-          <ProductDetailsTab />
+          <ProductDetailsTab data={productData} />
         </div>
       </Section>
 

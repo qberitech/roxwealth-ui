@@ -10,9 +10,14 @@ import { Col, Row, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import QuantityButtons from 'components/common/QuantityButtons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faShareAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArchive,
+  faShareAlt,
+  faShoppingCart
+} from '@fortawesome/free-solid-svg-icons';
 
-const ProductDescription = () => {
+const ProductDescription = ({ data }: { data: any }) => {
+  console.log(data);
   const [selectedVariantKey, setSelectedVariantKey] = useState('blue');
   const [quantity, setQuantity] = useState(1);
 
@@ -32,8 +37,8 @@ const ProductDescription = () => {
             size="lg"
             className="rounded-pill w-100 me-3 px-2 px-sm-4 fs--1 fs-sm-0"
           >
-            <FontAwesomeIcon icon={faHeart} className="me-2" />
-            Add to wishlist
+            <FontAwesomeIcon icon={faArchive} className="me-2" />
+            Buy Now
           </Button>
           <Button
             variant="warning"
@@ -48,36 +53,46 @@ const ProductDescription = () => {
       <Col xs={12} lg={6}>
         <Stack className="justify-content-between h-100">
           <div className="mb-3">
-            <div className="d-flex flex-wrap">
-              <div className="me-2">
-                <Rating readonly initialValue={5} />
-              </div>
-              <p className="text-primary fw-semi-bold mb-2">
-                6548 People rated and reviewed
-              </p>
-            </div>
-            <h3 className="mb-3 lh-sm">
-              24" iMac® with Retina 4.5K display - Apple M1 8GB Memory - 256GB
-              SSD - w/Touch ID (Latest Model) - Blue
-            </h3>
+            <h3 className="mb-3 lh-sm">{data[0].productName}</h3>
             <div className="d-flex flex-wrap align-items-start mb-3">
               <span className="badge bg-success fs-9 rounded-pill me-2 fw-semi-bold">
                 #1 Best seller
               </span>
               <Link to="#!" className="fw-semi-bold">
-                in Phoenix sell analytics 2021
+                in Hospital Merch sell analytics 2021
               </Link>
             </div>
             <div className="d-flex flex-wrap align-items-center">
-              <h1 className="me-3">{currencyFormat(1349.99)}</h1>
-              <p className="text-500 text-decoration-line-through fs-6 mb-0 me-3">
+              <h1 className="me-3">${data[0].price}</h1>
+              {/* <p className="text-500 text-decoration-line-through fs-6 mb-0 me-3">
                 {currencyFormat(1499.99)}
-              </p>
-              <p className="text-warning-500 fw-bolder fs-6 mb-0">10% off</p>
+              </p> */}
+              {/* <p className="text-warning-500 fw-bolder fs-6 mb-0">10% off</p> */}
             </div>
             <p className="text-success fw-semi-bold fs-7 mb-2"> In stock</p>
             <p className="mb-2 text-800">
-              <strong className="text-1000">
+              <strong className="text-1000">Cell Brand : </strong>
+              {data[0].cellBrand}
+              <br />
+              <strong className="text-1000">Model Number : </strong>
+              {data[0].modelNumber}
+              <br />
+              <strong className="text-1000">Cell Capacity : </strong>
+              {data[0].cellCapacity}
+              <br />
+              <strong className="text-1000">Cell Quantity : </strong>
+              {data[0].cellQuantity}
+              <br />
+              <strong className="text-1000">Cell Type : </strong>
+              {data[0].cellType}
+              <br />
+              <strong className="text-1000">Dimensions : </strong>
+              {data[0].dimensions}
+              <br />
+              <strong className="text-1000">Medical Equipment Name : </strong>
+              {data[0].medicalEquipmentName}
+              <br />
+              {/* <strong className="text-1000">
                 Do you want it on Saturday, July 29th?
               </strong>{' '}
               Choose <strong className="text-1000">Saturday Delivery </strong>at
@@ -86,26 +101,26 @@ const ProductDescription = () => {
               <Link className="fw-bold" to="#!">
                 Details.{' '}
               </Link>
-              <strong className="text-1000">Gift wrapping is available.</strong>
+              <strong className="text-1000">Gift wrapping is available.</strong> */}
             </p>
-            <p className="text-danger-500 fw-bold mb-5 mb-lg-0">
+            {/* <p className="text-danger-500 fw-bold mb-5 mb-lg-0">
               Special offer ends in 23:00:45 hours
-            </p>
+            </p> */}
           </div>
 
           <div>
             <div className="mb-3">
               <p className="fw-semi-bold mb-2 text-900">
-                Color :{' '}
-                <span className="text-1100">{selectedVariant?.name}</span>
+                Color : {data[0].color}
+                {/* <span className="text-1100">{selectedVariant?.name}</span> */}
               </p>
-              <ProductColorNav
+              {/* <ProductColorNav
                 selectedVariantKey={selectedVariantKey}
                 setSelectedVariantKey={setSelectedVariantKey}
-              />
+              /> */}
             </div>
             <div className="row g-3 g-sm-5 align-items-end">
-              <div className="col-12 col-sm-auto">
+              {/* <div className="col-12 col-sm-auto">
                 <p className="fw-semi-bold mb-2 text-900">Size : </p>
                 <div className="d-flex align-items-center">
                   <select className="form-select w-auto">
@@ -117,7 +132,7 @@ const ProductDescription = () => {
                     Size chart
                   </a>
                 </div>
-              </div>
+              </div> */}
               <div className="col-12 col-sm">
                 <p className="fw-semi-bold mb-2 text-900">Quantity : </p>
                 <div className="d-flex justify-content-between align-items-end">
