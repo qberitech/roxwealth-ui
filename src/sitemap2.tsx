@@ -47,18 +47,18 @@ export const routes: RouteItems[] = [
     ]
   },
   {
-    label: 'Ecommerce',
+    label: 'Hospitalmerch',
     icon: UilCube,
     pages: [
       {
         name: 'Product List',
-        path: '/ecommerce/products',
+        path: '/hospitalmerch/products',
         active: true,
         icon: 'tag'
       },
       {
         name: 'Add Product',
-        path: '/ecommerce/add-product',
+        path: '/hospitalmerch/add-product',
         active: true,
         icon: 'trello'
       }

@@ -39,7 +39,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
       const { productName } = original;
       return (
         <Link
-          to="/ecommerce/product-details"
+          to="/hospitalmerch/product-details"
           className="fw-semi-bold line-clamp-3"
         >
           {productName}

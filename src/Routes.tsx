@@ -261,7 +261,7 @@ const routes: RouteObject[] = [
       //   element: <ProductDetails />
       // },
       {
-        path: 'ecommerce',
+        path: 'hospitalmerch',
         element: <EcommerceLayout />,
         children: [
           {

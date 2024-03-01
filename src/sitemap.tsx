@@ -106,7 +106,7 @@ export const routes: RouteItems[] = [
         name: 'Hospital Merch',
         active: true,
         icon: 'shopping-cart',
-        path: '/ecommerce/products'
+        path: '/hospitalmerch/products'
       },
       {
         name: 'Account Summary',
