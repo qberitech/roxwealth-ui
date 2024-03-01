@@ -79,12 +79,14 @@ const QberiInSA = () => {
                 </p>
               </li>
             </ul>
+            <h3 className="text-2xl font-semibold mb-2">
+              Start Your Journey to Financial Prosperity Today
+            </h3>
             <p className="text-lg text-gray-800 text-justify">
-              Start Your Journey to Financial Prosperity Today Take control of
-              your financial future with Qberi Financial Services. Contact us
-              today to schedule a consultation and begin your journey towards
-              financial prosperity. Let us be your partner on the path to a
-              brighter financial future.
+              Take control of your financial future with Qberi Financial
+              Services. Contact us today to schedule a consultation and begin
+              your journey towards financial prosperity. Let us be your partner
+              on the path to a brighter financial future.
             </p>
           </div>
         </div>

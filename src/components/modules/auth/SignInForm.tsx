@@ -21,9 +21,10 @@ interface AppData {
   session?: SessionData;
   userData?: {
     email: string;
-    name: string;
+    first_name: string;
+    last_name: string;
     mobile: string;
-    profilePicture: string;
+    profileUrl: string;
     role: string;
   };
 }
@@ -46,13 +47,19 @@ const updateUserData = async (email: string, sessionToken: string) => {
       Authorization: `Bearer ${sessionToken}`
     };
     const response = await axios.get(URL, { headers: headers });
-    if (response.status === 200) {
+    if (
+      response.status === 200 ||
+      response.status === 201 ||
+      response.status === 202
+    ) {
       const res = response.data;
+      console.log('User data:', res);
       const userData = {
         email: res.email,
-        name: res.name,
+        first_name: res.first_name,
+        last_name: res.last_name,
         mobile: res.mobile,
-        profilePicture: res.profilePicture,
+        profileUrl: res.profileUrl,
         role: admins.includes(res.email) ? 'admin' : 'user'
       };
       saveUserData(userData); // Save user data to localStorage
@@ -115,21 +122,39 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   // Handle login button click
   const handleLogin = async () => {
     const URL = 'https://engine.qberi.com/api/login';
-    const data = { email, password };
 
+    const data = {
+      email: email,
+      password: password
+    };
+
+    const headers = {
+      'Content-Type': 'application/json'
+    };
     try {
-      const response = await axios.post(URL, data);
-      const sessionToken = response.headers['auth-token']; // Get session token from response headers
-      if (sessionToken) {
+      const response = await axios.post(URL, data, { headers: headers });
+
+      if (
+        response.status === 200 ||
+        response.status === 201 ||
+        response.status === 204
+      ) {
+        const responseData = response.data;
+        const sessionToken = responseData.split('=')[1].split(';')[0];
+        if (!sessionToken) {
+          setError('Invalid email or password');
+          return;
+        }
         localStorage.setItem('sessionToken', sessionToken);
         updateSession(sessionToken); // Update session in localStorage
         updateUserData(email, sessionToken); // Update user data in localStorage
-        setSuccessMessage('Login successful, redirecting...');
+
+        setSuccessMessage('Logged in successfully');
         setTimeout(() => {
           history('/dashboard/roxwealth');
         }, 1000);
       } else {
-        setError('Invalid email or password');
+        return setError('Invalid email or password');
       }
     } catch (error) {
       console.error('Login error:', error);

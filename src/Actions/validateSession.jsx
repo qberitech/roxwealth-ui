@@ -1,5 +1,8 @@
 const validateSession = () => {
   const appData = JSON.parse(localStorage.getItem('appData'));
+  if (!appData) {
+    return false;
+  }
   console.log('appData', appData);
   const session = appData.session;
   if (!session) {

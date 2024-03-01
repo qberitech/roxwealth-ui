@@ -11,9 +11,9 @@ import product12 from 'assets/img/products/12.png';
 import product16 from 'assets/img/products/16.png';
 import product17 from 'assets/img/products/17.png';
 import product18 from 'assets/img/products/18.png';
-import product19 from 'assets/img/products/19.png';
+// import product19 from 'assets/img/products/19.png';
 import product20 from 'assets/img/products/20.png';
-import product21 from 'assets/img/products/21.png';
+// import product21 from 'assets/img/products/21.png';
 import product24 from 'assets/img/products/24.png';
 import product25 from 'assets/img/products/25.png';
 import product26 from 'assets/img/products/26.png';
@@ -124,7 +124,7 @@ export type Batteries = {
   pictureUrl: string;
   price: number;
   productName: string;
-}
+};
 
 export const topDealsProducts: Product[] = [
   {
@@ -574,8 +574,7 @@ export const allProducts: Product[] = [
   }
 ];
 
-const URL =
-  'https://engine.qberi.com/api/allBatteryDetails';
+const URL = 'https://engine.qberi.com/api/allBatteryDetails';
 const sessionToken = localStorage.getItem('sessionToken');
 const headers = {
   'Content-Type': 'application/json',
@@ -587,7 +586,7 @@ let data;
 axios
   .get(URL, { headers: headers })
   .then(function (response) {
-    data = response.data
+    data = response.data;
     console.log('Response:', data);
   })
   .catch(function (error) {
@@ -596,36 +595,36 @@ axios
 
 export const productsTableData: Batteries[] = [
   {
-    cellBrand: "ABC Batteries",
-    cellCapacity: "3000 mAh",
+    cellBrand: 'ABC Batteries',
+    cellCapacity: '3000 mAh',
     cellQuantity: 4,
-    cellType: "Lithium-ion",
-    color: "Black",
+    cellType: 'Lithium-ion',
+    color: 'Black',
     compatibleDevices: ['Device A', 'Device B'],
-    dimensions: "10x5x3 inches",
-    id: "ae7034e8-274e-4b2c-bf51-19b0863477a4",
-    medicalEquipmentName: "Portable Ventilator",
-    modelNumber: "RB-123",
+    dimensions: '10x5x3 inches',
+    id: 'ae7034e8-274e-4b2c-bf51-19b0863477a4',
+    medicalEquipmentName: 'Portable Ventilator',
+    modelNumber: 'RB-123',
     otherCompatibleModels: ['Model X', 'Model Y'],
     pictureUrl: 'https://example.com/image1.jpg',
     price: 50,
-    productName: "Rechargeable Battery",
+    productName: 'Rechargeable Battery'
   },
   {
-    cellBrand: "ABC Batteries",
-    cellCapacity: "3000 mAh",
+    cellBrand: 'ABC Batteries',
+    cellCapacity: '3000 mAh',
     cellQuantity: 4,
-    cellType: "Lithium-ion",
-    color: "Black",
+    cellType: 'Lithium-ion',
+    color: 'Black',
     compatibleDevices: ['Device A', 'Device B'],
-    dimensions: "10x5x3 inches",
-    id: "ae7034e8-274e-4b2c-bf51-19b0863477a4",
-    medicalEquipmentName: "Portable Ventilator",
-    modelNumber: "RB-123",
+    dimensions: '10x5x3 inches',
+    id: 'ae7034e8-274e-4b2c-bf51-19b0863477a4',
+    medicalEquipmentName: 'Portable Ventilator',
+    modelNumber: 'RB-123',
     otherCompatibleModels: ['Model X', 'Model Y'],
     pictureUrl: 'https://example.com/image1.jpg',
     price: 50,
-    productName: "Rechargeable Battery",
+    productName: 'Rechargeable Battery'
   }
   // {
   //   product:

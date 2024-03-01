@@ -16,11 +16,10 @@
     },
     "userData": {
       "email": "sample@qberi.com",
-      "name": "Demo Name",
-      "Mobile": "1234567890",
-      "profilePic": "http://www.qberi.com/images/profilePic.png",
-      "lastUpdated": "2014-01-01 00:00:00",
-      "isAdmin": false,
+      "first_name": "Sample",
+      "last_name": "User",
+      "mobile": "1234567890",
+      "picture_url": "http://www.qberi.com/sample.jpg",
       "role": "user"
     }
   }

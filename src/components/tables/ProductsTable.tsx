@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import AdvanceTable from 'components/base/AdvanceTable';
-import { currencyFormat } from 'helpers/utils';
+// import { currencyFormat } from 'helpers/utils';
 import { Link } from 'react-router-dom';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 import { Batteries } from 'hospitalmerch/data/products';
@@ -53,12 +53,11 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
   },
   {
     id: 'price',
-    accessorFn: ({ price }) =>
-      `${price}`,
+    accessorFn: ({ price }) => `${price}`,
     header: 'Price',
     cell: ({ row: { original } }) => {
       const { price } = original;
-      return price
+      return price;
     },
     meta: {
       headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },
