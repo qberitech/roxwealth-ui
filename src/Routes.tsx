@@ -273,8 +273,12 @@ const routes: RouteObject[] = [
             element: <ProductDetails />
           },
           {
-            path: 'add-product',
-            element: <AddProduct />
+            path: 'add-product-batteries',
+            element: <AddProduct type="battery" />
+          },
+          {
+            path: 'add-product-equipments',
+            element: <AddProduct type="equipment" />
           }
         ]
       },

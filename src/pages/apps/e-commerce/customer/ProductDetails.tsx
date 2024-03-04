@@ -7,7 +7,7 @@ import { productsTableData } from 'hospitalmerch/data/products';
 
 console.log(productsTableData);
 const ProductDetails = () => {
-  let productData = productsTableData;
+  const productData = productsTableData;
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">

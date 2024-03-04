@@ -1,39 +1,34 @@
-import React, { useState } from 'react';
-import { Card, Col, Nav, Pagination, Row, Stack, Tab } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import product23 from 'assets/img/products/23.png';
-import ProductSpecificationTables from './ProductSpecificationTables';
-import Rating from 'components/base/Rating';
-import Button from 'components/base/Button';
-import { productReviews } from 'data/e-commerce';
-import ProductReview from 'components/list-items/ProductReview';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReviewModal from 'components/modals/ReviewModal';
-import UsuallyBoughtTogetherCard from 'components/cards/UsuallyBoughtTogetherCard';
-import { suggestedProducts } from 'hospitalmerch/data/products';
-import useLightbox from 'hooks/useLightbox';
-import Lightbox from 'components/base/LightBox';
-import {
-  faChevronLeft,
-  faChevronRight
-} from '@fortawesome/free-solid-svg-icons';
+// import { useState } from 'react';
+// import { Card, Col, Nav, Pagination, Row, Stack, Tab } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+// import product23 from 'assets/img/products/23.png';
+// import ProductSpecificationTables from './ProductSpecificationTables';
+// import Rating from 'components/base/Rating';
+// import Button from 'components/base/Button';
+// import { productReviews } from 'data/e-commerce';
+// import ProductReview from 'components/list-items/ProductReview';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import ReviewModal from 'components/modals/ReviewModal';
+// import UsuallyBoughtTogetherCard from 'components/cards/UsuallyBoughtTogetherCard';
+// import { suggestedProducts } from 'hospitalmerch/data/products';
+// import useLightbox from 'hooks/useLightbox';
+// import Lightbox from 'components/base/LightBox';
+// import {
+//   faChevronLeft,
+//   faChevronRight
+// } from '@fortawesome/free-solid-svg-icons';
 
 const ProductDetailsTab = ({ data }: { data: any }) => {
-  const [openReviewModal, setOpenReviewModal] = useState(false);
-  const { lightboxProps, openLightbox } = useLightbox([product23]);
+  // const [openReviewModal, setOpenReviewModal] = useState(false);
+  // const { lightboxProps, openLightbox } = useLightbox([product23]);
+  console.log(data);
   return (
     <>
-      <Tab.Container defaultActiveKey="description">
+      {/* <Tab.Container defaultActiveKey="description">
         <Nav variant="underline" className="mb-4">
           <Nav.Item>
             <Nav.Link eventKey="description">Description</Nav.Link>
           </Nav.Item>
-          {/* <Nav.Item>
-            <Nav.Link eventKey="specification">Details</Nav.Link>
-          </Nav.Item> */}
-          {/* <Nav.Item>
-            <Nav.Link eventKey="reviews">Ratings & reviews</Nav.Link>
-          </Nav.Item> */}
         </Nav>
         <Row className="gx-3 gy-7">
           <Col xs={12} lg={7} xl={8}>
@@ -132,7 +127,7 @@ const ProductDetailsTab = ({ data }: { data: any }) => {
       <ReviewModal
         show={openReviewModal}
         handleClose={() => setOpenReviewModal(false)}
-      />
+      /> */}
     </>
   );
 };

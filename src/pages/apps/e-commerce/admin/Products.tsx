@@ -1,16 +1,16 @@
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
-import FilterButtonGroup, {
-  FilterMenu
-} from 'components/common/FilterButtonGroup';
+// import  {
+//   FilterMenu
+// } from 'components/common/FilterButtonGroup';
 import FilterTab, { FilterTabItem } from 'components/common/FilterTab';
-import PageBreadcrumb from 'components/common/PageBreadcrumb';
+// import PageBreadcrumb from 'components/common/PageBreadcrumb';
 import SearchBox from 'components/common/SearchBox';
 import ProductsTable, {
   productsTablecolumns
 } from 'components/tables/ProductsTable';
-import { defaultBreadcrumbItems } from 'data/commonData';
+// import { defaultBreadcrumbItems } from 'data/commonData';
 import { productsTableData } from 'hospitalmerch/data/products';
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
@@ -39,36 +39,36 @@ const tabItems: FilterTabItem[] = [
   }
 ];
 
-const filterMenus: FilterMenu[] = [
-  {
-    label: 'Category',
-    items: [
-      {
-        label: 'Plants'
-      },
-      {
-        label: 'Furniture'
-      },
-      {
-        label: 'Fashion'
-      }
-    ]
-  },
-  {
-    label: 'Vendor',
-    items: [
-      {
-        label: 'Blue Olive Plant sellers. Inc'
-      },
-      {
-        label: 'Beatrice Furnitures'
-      },
-      {
-        label: 'Kizzstore'
-      }
-    ]
-  }
-];
+// const filterMenus: FilterMenu[] = [
+//   {
+//     label: 'Category',
+//     items: [
+//       {
+//         label: 'Plants'
+//       },
+//       {
+//         label: 'Furniture'
+//       },
+//       {
+//         label: 'Fashion'
+//       }
+//     ]
+//   },
+//   {
+//     label: 'Vendor',
+//     items: [
+//       {
+//         label: 'Blue Olive Plant sellers. Inc'
+//       },
+//       {
+//         label: 'Beatrice Furnitures'
+//       },
+//       {
+//         label: 'Kizzstore'
+//       }
+//     ]
+//   }
+// ];
 
 const Products = () => {
   const table = useAdvanceTable({
@@ -84,7 +84,7 @@ const Products = () => {
   };
   return (
     <div>
-      <PageBreadcrumb items={defaultBreadcrumbItems} />
+      {/* <PageBreadcrumb items={defaultBreadcrumbItems} /> */}
       <div className="mb-9">
         <h2 className="mb-4">Products</h2>
         <FilterTab tabItems={tabItems} className="mb-2" />
@@ -95,9 +95,9 @@ const Products = () => {
                 placeholder="Search products"
                 onChange={handleSearchInputChange}
               />
-              <div className="scrollbar overflow-hidden-y">
+              {/* <div className="scrollbar overflow-hidden-y">
                 <FilterButtonGroup menus={filterMenus} />
-              </div>
+              </div> */}
               <div className="ms-xxl-auto">
                 {/* <Button variant="link" className="text-900 me-4 px-0">
                   <FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />

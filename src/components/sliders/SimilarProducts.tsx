@@ -1,13 +1,14 @@
 import { Product } from 'hospitalmerch/data/products';
-import ProductCard from 'components/common/ProductCard';
+// import ProductCard from 'components/common/ProductCard';
 import Swiper from 'components/base/Swiper';
-import { SwiperSlide } from 'swiper/react';
-import Button from 'components/base/Button';
+// import { SwiperSlide } from 'swiper/react';
+// import Button from 'components/base/Button';
 
 const SimilarProducts = ({ products }: { products: Product[] }) => {
+  console.log(products);
   return (
     <>
-      <div className="d-flex flex-between-center mb-3">
+      {/* <div className="d-flex flex-between-center mb-3">
         <div>
           <h3>Similar Products</h3>
           <p className="mb-0 text-700 fw-semi-bold">
@@ -17,7 +18,7 @@ const SimilarProducts = ({ products }: { products: Product[] }) => {
         <Button variant="phoenix-primary" size="sm">
           View all
         </Button>
-      </div>
+      </div> */}
 
       <Swiper
         slidesPerView={1}
@@ -50,11 +51,11 @@ const SimilarProducts = ({ products }: { products: Product[] }) => {
           }
         }}
       >
-        {products.map(product => (
+        {/* {products.map(product => (
           <SwiperSlide key={product.id}>
             <ProductCard product={product} />
           </SwiperSlide>
-        ))}
+        ))} */}
       </Swiper>
     </>
   );

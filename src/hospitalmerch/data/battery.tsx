@@ -26,6 +26,14 @@ const getBatteries = async () => {
 
   const response = await axios.get(URL, { headers });
 
+  if (
+    response.status !== 200 &&
+    response.status !== 201 &&
+    response.status !== 202
+  ) {
+    throw new Error('Failed to fetch batteries');
+  }
+
   const battery_list: any = [];
   response.data.forEach((battery: any) => {
     battery_list.push({

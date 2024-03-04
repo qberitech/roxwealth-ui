@@ -1,15 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
-import Rating from 'components/base/Rating';
-import ProductColorNav from 'components/navs/ProductColorNav';
+// import Rating from 'components/base/Rating';
+// import ProductColorNav from 'components/navs/ProductColorNav';
 import { productColorVariants } from 'data/e-commerce';
-import { currencyFormat } from 'helpers/utils';
+// import { currencyFormat } from 'helpers/utils';
 import ProductGallery from 'components/modules/e-commerce/ProductGallery';
 import { useMemo, useState } from 'react';
 import { Col, Row, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import QuantityButtons from 'components/common/QuantityButtons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+// import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import {
   faArchive,
   faShareAlt,
@@ -18,7 +18,7 @@ import {
 
 const ProductDescription = ({ data }: { data: any }) => {
   console.log(data);
-  const [selectedVariantKey, setSelectedVariantKey] = useState('blue');
+  const [selectedVariantKey] = useState('blue');
   const [quantity, setQuantity] = useState(1);
 
   const selectedVariant = useMemo(() => {
