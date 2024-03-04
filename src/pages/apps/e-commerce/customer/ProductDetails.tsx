@@ -4,10 +4,14 @@ import { topElectronicProducts } from 'hospitalmerch/data/products';
 import SimilarProducts from 'components/sliders/SimilarProducts';
 import Section from 'components/base/Section';
 import { productsTableData } from 'hospitalmerch/data/products';
+import { useEffect } from 'react';
 
 console.log(productsTableData);
-const ProductDetails = () => {
+const ProductDetails = ({id}:any) => {
   const productData = productsTableData;
+  useEffect(() => {
+    
+  })
   return (
     <div className="pt-5 mb-9">
       <Section small className="py-0">

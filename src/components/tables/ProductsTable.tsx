@@ -10,16 +10,17 @@ import RevealDropdown, {
   RevealDropdownTrigger
 } from 'components/base/RevealDropdown';
 import ActionDropdownItems from 'components/common/ActionDropdownItems';
-
+let identity;
 export const productsTablecolumns: ColumnDef<Batteries>[] = [
   {
-    id: 'pictureUrl',
-    accessorKey: 'Picture',
+    id: 'id',
+    accessorKey: 'PictureUrl',
+    header: 'Picture',
     cell: ({ row: { original } }) => {
       const { pictureUrl } = original;
       return (
         <Link
-          to="/ecommerce/product-details"
+          to={`/ecommerce/product-details`}
           className="rounded-2 border d-inline-block"
         >
           <img src={pictureUrl} alt="" width={53} />
@@ -94,10 +95,20 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
-    id: 'starred',
-    accessorKey: '',
-    cell: () => {
-      return <StarCheckbox />;
+    id: 'id',
+    accessorKey: 'id',
+    header: 'Preview',
+    cell: ({ row: { original } }) => {
+      const { id } = original;
+      identity = id;
+      return (
+        <Link
+          to={`/hospitalmerch/product-details/${id}`}
+          className="fw-semi-bold line-clamp-3"
+        >
+        preview
+        </Link>
+      );
     },
     meta: {
       headerProps: { style: { width: 125 }, className: 'ps-4' },
@@ -150,3 +161,4 @@ const ProductsTable = () => {
 };
 
 export default ProductsTable;
+export const id = identity
