@@ -95,9 +95,9 @@ const Products = () => {
                 placeholder="Search products"
                 onChange={handleSearchInputChange}
               />
-              <div className="scrollbar overflow-hidden-y">
+              {/* <div className="scrollbar overflow-hidden-y">
                 <FilterButtonGroup menus={filterMenus} />
-              </div>
+              </div> */}
               <div className="ms-xxl-auto">
                 {/* <Button variant="link" className="text-900 me-4 px-0">
                   <FontAwesomeIcon icon={faFileExport} className="fs-9 me-2" />

@@ -57,8 +57,14 @@ export const routes: RouteItems[] = [
         icon: 'tag'
       },
       {
-        name: 'Add Product',
-        path: '/ecommerce/add-product',
+        name: 'Add Batteries',
+        path: '/ecommerce/add-product-batteries',
+        active: true,
+        icon: 'trello'
+      },
+      {
+        name: 'Add Medical Equipments',
+        path: '/ecommerce/add-product-equipments',
         active: true,
         icon: 'trello'
       }
