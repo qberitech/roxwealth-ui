@@ -7,7 +7,7 @@ import { productColorVariants } from 'data/e-commerce';
 import ProductGallery from 'components/modules/e-commerce/ProductGallery';
 import { useMemo, useState } from 'react';
 import { Col, Row, Stack } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import QuantityButtons from 'components/common/QuantityButtons';
 // import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import {
@@ -17,7 +17,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const ProductDescription = ({ data }: { data: any }) => {
-  console.log(data);
   const [selectedVariantKey] = useState('blue');
   const [quantity, setQuantity] = useState(1);
 
@@ -30,7 +29,7 @@ const ProductDescription = ({ data }: { data: any }) => {
   return (
     <Row className="g-5 mb-5 mb-lg-8">
       <Col xs={12} lg={6}>
-        {selectedVariant && <ProductGallery images={selectedVariant.images} />}
+        {selectedVariant && <ProductGallery images={data.pictureUrl} />}
         <div className="d-flex">
           <Button
             variant="outline-warning"
@@ -53,17 +52,17 @@ const ProductDescription = ({ data }: { data: any }) => {
       <Col xs={12} lg={6}>
         <Stack className="justify-content-between h-100">
           <div className="mb-3">
-            <h3 className="mb-3 lh-sm">{data[0].productName}</h3>
-            <div className="d-flex flex-wrap align-items-start mb-3">
+            <h3 className="mb-3 lh-sm">{data.productName}</h3>
+            {/* <div className="d-flex flex-wrap align-items-start mb-3">
               <span className="badge bg-success fs-9 rounded-pill me-2 fw-semi-bold">
                 #1 Best seller
               </span>
               <Link to="#!" className="fw-semi-bold">
                 in Hospital Merch sell analytics 2021
               </Link>
-            </div>
+            </div> */}
             <div className="d-flex flex-wrap align-items-center">
-              <h1 className="me-3">${data[0].price}</h1>
+              <h1 className="me-3">{data.price}</h1>
               {/* <p className="text-500 text-decoration-line-through fs-6 mb-0 me-3">
                 {currencyFormat(1499.99)}
               </p> */}
@@ -72,26 +71,28 @@ const ProductDescription = ({ data }: { data: any }) => {
             <p className="text-success fw-semi-bold fs-7 mb-2"> In stock</p>
             <p className="mb-2 text-800">
               <strong className="text-1000">Cell Brand : </strong>
-              {data[0].cellBrand}
+              {data.cellBrand}
               <br />
               <strong className="text-1000">Model Number : </strong>
-              {data[0].modelNumber}
+              {data.modelNumber}
               <br />
               <strong className="text-1000">Cell Capacity : </strong>
-              {data[0].cellCapacity}
+              {data.cellCapacity}
               <br />
               <strong className="text-1000">Cell Quantity : </strong>
-              {data[0].cellQuantity}
+              {data.cellQuantity}
               <br />
               <strong className="text-1000">Cell Type : </strong>
-              {data[0].cellType}
+              {data.cellType}
               <br />
               <strong className="text-1000">Dimensions : </strong>
-              {data[0].dimensions}
+              {data.dimensions}
               <br />
               <strong className="text-1000">Medical Equipment Name : </strong>
-              {data[0].medicalEquipmentName}
+              {data.medicalEquipmentName}
               <br />
+              <strong className="text-1000">Color : </strong>
+              {data.colour}
               {/* <strong className="text-1000">
                 Do you want it on Saturday, July 29th?
               </strong>{' '}
@@ -110,10 +111,10 @@ const ProductDescription = ({ data }: { data: any }) => {
 
           <div>
             <div className="mb-3">
-              <p className="fw-semi-bold mb-2 text-900">
-                Color : {data[0].color}
+              {/* <p className="fw-semi-bold mb-2 text-900">
+                Color : {data.color}
                 {/* <span className="text-1100">{selectedVariant?.name}</span> */}
-              </p>
+              {/* </p> */}
               {/* <ProductColorNav
                 selectedVariantKey={selectedVariantKey}
                 setSelectedVariantKey={setSelectedVariantKey}

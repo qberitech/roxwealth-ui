@@ -574,24 +574,24 @@ export const allProducts: Product[] = [
   }
 ];
 
-const URL = 'https://engine.qberi.com/api/allBatteryDetails';
-const sessionToken = localStorage.getItem('sessionToken');
-const headers = {
-  'Content-Type': 'application/json',
-  Authorization: `Bearer ${sessionToken}`
-};
+// const URL = 'https://engine.qberi.com/api/allBatteryDetails';
+// const sessionToken = localStorage.getItem('sessionToken');
+// const headers = {
+//   'Content-Type': 'application/json',
+//   Authorization: `Bearer ${sessionToken}`
+// };
 
-let data;
+// let data;
 
-axios
-  .get(URL, { headers: headers })
-  .then(function (response) {
-    data = response.data;
-    console.log('Response:', data);
-  })
-  .catch(function (error) {
-    console.error('Error:', error);
-  });
+// axios
+//   .get(URL, { headers: headers })
+//   .then(function (response) {
+//     data = response.data;
+//     console.log('Response:', data);
+//   })
+//   .catch(function (error) {
+//     console.error('Error:', error);
+//   });
 
 // export const productTableData: Batteries[] = data;
 export const productsTableData: Batteries[] = [

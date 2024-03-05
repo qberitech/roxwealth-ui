@@ -5,7 +5,7 @@ import Swiper from 'components/base/Swiper';
 // import Button from 'components/base/Button';
 
 const SimilarProducts = ({ products }: { products: Product[] }) => {
-  console.log(products);
+  // console.log(products);
   return (
     <>
       {/* <div className="d-flex flex-between-center mb-3">

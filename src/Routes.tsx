@@ -271,7 +271,7 @@ const routes: RouteObject[] = [
           },
           {
             path: `product-details/`+':id',
-            element: <ProductDetails id={id} />
+            element: <ProductDetails />
           },
           {
             path: 'add-product-batteries',
