@@ -24,7 +24,7 @@ import honda from 'assets/img/brands/honda.png';
 import xiaomi from 'assets/img/brands/xiaomi.png';
 import huawei from 'assets/img/brands/huawei.png';
 import intel from 'assets/img/brands/intel.png';
-import axios from 'axios';
+// import axios from 'axios';
 
 export type Product = {
   id: number;
@@ -114,7 +114,7 @@ export type Batteries = {
   cellCapacity: string;
   cellQuantity: number;
   cellType: string;
-  color: string; 
+  color: string;
   compatibleDevices: string[];
   dimensions: string;
   id: string;

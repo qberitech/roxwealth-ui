@@ -1,18 +1,8 @@
 const validateSession = () => {
-  const appData = JSON.parse(localStorage.getItem('appData'));
-  if (!appData) {
-    return false;
+  const session = JSON.parse(localStorage.getItem('session'));
+  if (session) {
+    return true;
   }
-  console.log('appData', appData);
-  const session = appData.session;
-  if (!session) {
-    console.log('no session');
-    return false;
-  }
-  if (!session.isLoggedIn) {
-    console.log('not logged');
-    return false;
-  }
-  return true;
+  return false;
 };
 export default validateSession;

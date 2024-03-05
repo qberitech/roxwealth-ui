@@ -1,24 +1,46 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const admins = [
+  'nitish2@qberi.com',
+  'rohan2@qberi.com',
+  'pranab@qberi.com',
+  'jaco@qberi.com'
+];
 
 const Admin = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-    const appData = localStorage.getItem('appData');
-    const data = JSON.parse(appData);
-    if (!data) {
-      return;
+    const profile = JSON.parse(localStorage.getItem('profile'));
+    console.log(profile);
+    if (profile) {
+      setUser(profile);
+      if (profile.role !== 'admin' && !admins.includes(profile.email)) {
+        navigate('/dashboard/roxwealth');
+      }
     }
-    const userData = data.userData;
-    if (!userData) {
-      return;
+
+    const session = JSON.parse(localStorage.getItem('session'));
+    if (!session) {
+      navigate('/auth/sign-in');
     }
-    if (userData.role !== 'admin') {
-      navigate('/dashboard/roxwealth');
-    }
-    setUser(userData);
+
+    const sessionToken = session?.sessionToken;
+
+    const URL = 'https://engine.qberi.com/api/allUsers/info';
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${sessionToken}`
+    };
+
+    axios.get(URL, { headers: headers }).then(response => {
+      console.log(response.data);
+      setUsers(response.data);
+    });
   }, []);
   return (
     <div>
@@ -29,7 +51,7 @@ const Admin = () => {
       </p>
       <h2>User Data</h2>
       <p>
-        <strong>Username:</strong> {user?.name}
+        <strong>Username:</strong> {user?.firstName} {user?.lastName}
       </p>
       <p>
         <strong>Email:</strong> {user?.email}
@@ -40,6 +62,14 @@ const Admin = () => {
       <p>
         <strong>Mobile:</strong> {user?.mobile}
       </p>
+      <h2>All Users</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user._id}>
+            {user.firstName} {user.lastName} - {user.email}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

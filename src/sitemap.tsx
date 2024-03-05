@@ -36,16 +36,25 @@ export interface RouteItems {
   active?: boolean;
 }
 
-const appData = JSON.parse(localStorage.getItem('appData') || '{}');
+const session = JSON.parse(localStorage.getItem('session') || '{}');
+
+const admins = [
+  'nitish2@qberi.com',
+  'rohan2@qberi.com',
+  'pranab@qberi.com',
+  'jaco@qberi.com'
+];
 
 // Initialize isAdmin with false
 let isAdmin = false;
 
-// Check if user role is admin and update localStorage
-
-if (appData.userData) {
-  isAdmin = appData.userData.role === 'admin';
+if (session) {
+  // Check if user is admin
+  if (admins.includes(session.email)) {
+    isAdmin = true;
+  }
 }
+
 export const routes: RouteItems[] = [
   // {
   //   label: 'dashboard',

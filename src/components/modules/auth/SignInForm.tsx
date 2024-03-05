@@ -12,85 +12,32 @@ import validateSession from 'Actions/validateSession';
 interface SessionData {
   isLoggedIn: boolean;
   sessionToken: string;
+  email: string;
   created_at: string;
   updated_at: string;
 }
 
-// Define interface for application data
-interface AppData {
-  session?: SessionData;
-  userData?: {
-    email: string;
-    first_name: string;
-    last_name: string;
-    mobile: string;
-    profileUrl: string;
-    role: string;
-  };
-}
-
 // List of admin emails
-const admins = [
-  'nitish2@qberi.com',
-  'rohan2@qberi.com',
-  'pranab@qberi.com',
-  'jaco@qberi.com'
-];
-
-// Function to update user data in localStorage
-const updateUserData = async (email: string, sessionToken: string) => {
-  const URL = 'https://engine.qberi.com/api/getProfile/' + email;
-
-  try {
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionToken}`
-    };
-    const response = await axios.get(URL, { headers: headers });
-    if (
-      response.status === 200 ||
-      response.status === 201 ||
-      response.status === 202
-    ) {
-      const res = response.data;
-      console.log('User data:', res);
-      const userData = {
-        email: res.email,
-        first_name: res.first_name,
-        last_name: res.last_name,
-        mobile: res.mobile,
-        profileUrl: res.profileUrl,
-        role: admins.includes(res.email) ? 'admin' : 'user'
-      };
-      saveUserData(userData); // Save user data to localStorage
-    }
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-  }
-};
-
-// Function to save user data to localStorage
-const saveUserData = (userData: AppData['userData']) => {
-  const data = localStorage.getItem('appData');
-  const appData: AppData = data ? JSON.parse(data) : {};
-  appData.userData = userData;
-  localStorage.setItem('appData', JSON.stringify(appData));
-};
+// const admins = [
+//   'nitish2@qberi.com',
+//   'rohan2@qberi.com',
+//   'pranab@qberi.com',
+//   'jaco@qberi.com'
+// ];
 
 // Function to update session in localStorage
-const updateSession = (sessionToken: string) => {
+const updateSession = (sessionToken: string, email: string) => {
   const date = new Date();
   const session: SessionData = {
     sessionToken: sessionToken,
     isLoggedIn: true,
+    email: email,
     created_at: date.toISOString(),
     updated_at: date.toISOString()
   };
 
-  const data = localStorage.getItem('appData');
-  const appData: AppData = data ? JSON.parse(data) : {};
-  appData.session = session;
-  localStorage.setItem('appData', JSON.stringify(appData));
+  // Save session to localStorage
+  localStorage.setItem('session', JSON.stringify(session));
 };
 
 // SignInForm component
@@ -146,8 +93,8 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
           return;
         }
         localStorage.setItem('sessionToken', sessionToken);
-        updateSession(sessionToken); // Update session in localStorage
-        updateUserData(email, sessionToken); // Update user data in localStorage
+        updateSession(sessionToken, email); // Update session in localStorage
+        // updateUserData(email, sessionToken); // Update user data in localStorage
 
         setSuccessMessage('Logged in successfully');
         setTimeout(() => {

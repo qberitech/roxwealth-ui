@@ -3,14 +3,14 @@ import ProductDetailsTab from 'components/modules/e-commerce/ProductDetailsTab';
 import { topElectronicProducts } from 'hospitalmerch/data/products';
 import SimilarProducts from 'components/sliders/SimilarProducts';
 import Section from 'components/base/Section';
-import { productsTableData } from 'hospitalmerch/data/products';
+// import { productsTableData } from 'hospitalmerch/data/products';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Batteries } from 'hospitalmerch/data/products';
 import ProductNotFound from './ProductNotFound';
 
 const ProductDetails = () => {
-  const productData = productsTableData;
+  // const productData = productsTableData;
   const [myProduct, setMyProduct] = useState({} as Batteries);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -24,8 +24,8 @@ const ProductDetails = () => {
         const sessionToken = localStorage.getItem('sessionToken');
         const response = await axios.get(URL + id, {
           headers: {
-            Authorization: `Bearer ${sessionToken}`,
-          },
+            Authorization: `Bearer ${sessionToken}`
+          }
         });
         if (response.status === 200) {
           console.log('response', response.data);
@@ -41,7 +41,7 @@ const ProductDetails = () => {
   }, []);
 
   if (loading) {
-    return <ProductNotFound/>;
+    return <ProductNotFound />;
   }
 
   if (error) {

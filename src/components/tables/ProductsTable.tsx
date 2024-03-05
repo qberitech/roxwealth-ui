@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 import { Batteries } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
-import StarCheckbox from 'components/base/StarCheckbox';
+// import StarCheckbox from 'components/base/StarCheckbox';
 import RevealDropdown, {
   RevealDropdownTrigger
 } from 'components/base/RevealDropdown';
@@ -106,7 +106,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
           to={`/hospitalmerch/product-details/${id}`}
           className="fw-semi-bold line-clamp-3"
         >
-        preview
+          preview
         </Link>
       );
     },
@@ -161,4 +161,4 @@ const ProductsTable = () => {
 };
 
 export default ProductsTable;
-export const id = identity
+export const id = identity;

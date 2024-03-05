@@ -2,13 +2,18 @@ import { faKey } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 import Section from 'components/base/Section';
-import EcoimDefaultAddressCard from 'components/cards/EcoimDefaultAddressCard';
+// import EcoimDefaultAddressCard from 'components/cards/EcoimDefaultAddressCard';
 import EcomProfileCard from 'components/cards/EcomProfileCard';
 // import PageBreadcrumb from 'components/common/PageBreadcrumb';
 import ProfileDetailsTab from 'components/modules/e-commerce/profile/ProfileDetailsTab';
 // import { defaultBreadcrumbItems } from 'data/commonData';
 import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import axios from 'axios';
+
+const setProfile = (response: any) => {
+  localStorage.setItem('profile', JSON.stringify(response));
+};
 
 const Profile = () => {
   const [error, setError] = useState('');
@@ -21,31 +26,28 @@ const Profile = () => {
     profilePicture: 'Not Available'
   });
   useEffect(() => {
-    const appData = JSON.parse(localStorage.getItem('appData') || '{}');
-    let myData = {
-      email: 'Email Not Found',
-      id: 'Not Found',
-      mobile: 'XXXXXXXXXX',
-      name: 'Not Found',
-      profilePicture: 'Not Available'
+    const session = JSON.parse(localStorage.getItem('session') || '{}');
+    const sessionToken = session.sessionToken;
+    const email = session.email;
+
+    const URL = 'https://engine.qberi.com/api/getProfile/' + email;
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + sessionToken
     };
-    if (appData && appData.userData) {
-      myData.email = appData.userData.email;
-      myData.name = appData.userData.name;
-      myData.mobile = appData.userData.mobile;
-      myData.profilePicture = appData.userData.profilePicture;
-      setProfileDetails(myData);
-      console.log(myData);
-    } else {
-      setError('User Not Found');
-      myData = {
-        email: 'Email Not Found',
-        id: 'Not Found',
-        mobile: 'XXXXXXXXXX',
-        name: 'Not Found',
-        profilePicture: 'Not Available'
-      };
-    }
+
+    axios
+      .get(URL, { headers: headers })
+      .then(response => {
+        console.log('Profile data: ', response.data);
+        console.log(response.data);
+        setProfileDetails(response.data);
+        setProfile(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching profile data: ', error);
+        setError('Error fetching profile data');
+      });
   }, []);
 
   if (error) {
@@ -76,14 +78,14 @@ const Profile = () => {
           </Col>
         </Row>
         <Row className="g-3 mb-6">
-          <Col xs={12} lg={8}>
+          <Col xs={18} lg={12}>
             <EcomProfileCard details={profileDetail} />
           </Col>
-          <Col xs={12} lg={4}>
+          {/* <Col xs={12} lg={4}>
             <EcoimDefaultAddressCard details={profileDetail} />
-          </Col>
+          </Col> */}
         </Row>
-        <ProfileDetailsTab />
+        <ProfileDetailsTab details={profileDetail} />
       </Section>
     </div>
   );
