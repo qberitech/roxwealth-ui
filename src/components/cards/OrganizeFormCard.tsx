@@ -61,39 +61,61 @@ const OrganizeFormCard = ({
           </Col> */}
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Model</h5>
-                  <Form.Control placeholder="Model" />
+                  <Form.Control placeholder="String" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Color</h5>
-                  <Form.Control placeholder="Color" />
+                  <Form.Control placeholder="String" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Quantity</h5>
-                  <Form.Control placeholder="Cell Quantity" />
+                  <Form.Control placeholder="Integer" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Capacity</h5>
-                  <Form.Control placeholder="Cell Capacity" />
+                  <Form.Control placeholder="String" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Type</h5>
-                  <Form.Control placeholder="Cell Type" />
+                  <Form.Control placeholder="String" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Brand</h5>
-                  <Form.Control placeholder="Cell Brand" />
+                  <Form.Control placeholder="String" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Voltage</h5>
-                  <Form.Control placeholder="Voltage" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Capacity</h5>
-                  <Form.Control placeholder="Capacity" />
+                  <Form.Control placeholder="String" />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Compatible Devices</h5>
-                  <Form.Control placeholder="Compatible Devices" />
+                  <Form.Control placeholder="Comma Seperated Values" />
+                </Col>
+                <Col xs={12} sm={6} xl={12}>
+                  <h5 className="mb-2 text-1000">Other Compatible Models</h5>
+                  <Form.Control placeholder="Comma Seperated Values" />
+                </Col>
+                <Col xs={12} sm={6} xl={12}>
+                  <div className="d-flex gap-2 mb-2">
+                    <h5 className="mb-0 text-1000">Medical Equipment Name</h5>
+                  </div>
+                  <Form.Select aria-label="medicalEquipmentName">
+                    <option value="men-cloth">Option 1</option>
+                    <option value="women-cloth">Option 2</option>
+                    <option value="kid-cloth">Option 3</option>
+                  </Form.Select>
+                </Col>
+                <Col xs={12} sm={6} xl={12}>
+                  <h5 className="mb-2 text-1000">Weight</h5>
+                  <Form.Control placeholder="String" />
+                </Col>
+                <Col xs={12} sm={6} xl={12}>
+                  <h5 className="mb-2 text-1000">Dimensions</h5>
+                  <Form.Control placeholder="String" />
+                </Col>
+                <Col xs={12} sm={6} xl={12}>
+                  <h5 className="mb-2 text-1000">Price</h5>
+                  <Form.Control placeholder="String" />
                 </Col>
               </Row>
             }
@@ -103,7 +125,7 @@ const OrganizeFormCard = ({
         <Card className={className}>
           <Card.Body>
             <h4 className="mb-4">Add Specifications</h4>
-            {
+            {/* {
               <Row className="gx-3 gy-4">
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Equipment Name</h5>
@@ -142,7 +164,7 @@ const OrganizeFormCard = ({
                   <Form.Control placeholder="Compatible Devices" />
                 </Col>
               </Row>
-            }
+            } */}
           </Card.Body>
         </Card>
       ) : (
