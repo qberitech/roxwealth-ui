@@ -8,24 +8,23 @@ import OrganizeFormCard from 'components/cards/OrganizeFormCard';
 // import { defaultBreadcrumbItems } from 'data/commonData';
 import { Col, Form, Row } from 'react-bootstrap';
 import AWS from 'aws-sdk';
-import cred from './s3cred.json'
 
 // const bucketName = process.env.bucketName as string;
 // const region = process.env.region as string;
 // const accessKeyId = process.env.accessKeyId as string;
 // const secretAccessKey = process.env.secretAccessKey as string;
 
-const bucketName = cred.bucketName;
-const region = cred.region
-const accessKeyId = cred.accessKeyId
-const secretAccessKey = cred.secretAccessKey
+const bucketName = process.env.REACT_APP_AWS_BUCKET_NAME as string;
+const region = process.env.REACT_APP_AWS_REGION as string;
+const accessKeyId = process.env.REACT_APP_AWS_ACCESS_KEY as string;
+const secretAccessKey = process.env.REACT_APP_AWS_SECRET_KEY as string;
 
 const s3 = new AWS.S3({
   region,
   accessKeyId,
   secretAccessKey
 });
-const uploadFileToS3 = async (file: { name: any; }) => {
+const uploadFileToS3 = async (file: { name: any }) => {
   const params = {
     Bucket: bucketName,
     Key: file.name,
