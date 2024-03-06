@@ -39,9 +39,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     header: 'Equipment Name',
     cell: ({ row: { original } }) => {
       const { medicalEquipmentName } = original;
-      return (
-        <div>{medicalEquipmentName}</div>
-      );
+      return <div>{medicalEquipmentName}</div>;
     },
     meta: {
       headerProps: { style: { width: 350 }, className: 'ps-4' },
@@ -53,9 +51,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     header: 'Product name',
     cell: ({ row: { original } }) => {
       const { productName } = original;
-      return (
-        <div>{productName}</div>
-      );
+      return <div>{productName}</div>;
     },
     meta: {
       headerProps: { style: { width: 350 }, className: 'ps-4' },

@@ -1,7 +1,7 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Table } from 'react-bootstrap';
 
 const admins = [
   'nitish2@qberi.com',
@@ -11,9 +11,11 @@ const admins = [
 ];
 
 const Admin = () => {
-  const [user, setUser] = useState(null);
+  const [, setUser] = useState(null);
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [totalNetWorth, setTotalNetWorth] = useState(0);
+
   useEffect(() => {
     const profile = JSON.parse(localStorage.getItem('profile'));
     console.log(profile);
@@ -41,7 +43,15 @@ const Admin = () => {
       console.log(response.data);
       setUsers(response.data);
     });
+
+    const URL2 =
+      'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
+    axios.get(URL2, { headers: headers }).then(response => {
+      console.log(response.data);
+      setTotalNetWorth(response.data.amountInUsd);
+    });
   }, []);
+
   return (
     <div>
       <h1>Admin</h1>
@@ -49,27 +59,43 @@ const Admin = () => {
         This is the Admin page. You can only see this if you're logged in as an
         admin.
       </p>
-      <h2>User Data</h2>
-      <p>
-        <strong>Username:</strong> {user?.firstName} {user?.lastName}
-      </p>
-      <p>
-        <strong>Email:</strong> {user?.email}
-      </p>
-      <p>
-        <strong>Role:</strong> {user?.role}
-      </p>
-      <p>
-        <strong>Mobile:</strong> {user?.mobile}
-      </p>
       <h2>All Users</h2>
-      <ul>
-        {users.map(user => (
-          <li key={user._id}>
-            {user.firstName} {user.lastName} - {user.email}
-          </li>
-        ))}
-      </ul>
+      <Table striped bordered hover responsive>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>Role</th>
+            <th>Share Percentage</th>
+            <th>Net Share Value (in USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={user._id}>
+              <td>{index + 1}</td>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+              <td>{user.mobile}</td>
+              <td>{user.role === 'admin' ? 'Admin' : 'User'}</td>
+              <td>{user.sharePercentage || 0}</td>
+              <td>
+                {user.sharePercentage
+                  ? (user.sharePercentage * totalNetWorth) / 100
+                  : 0}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      <h2>Net Worth</h2>
+      <p>
+        <strong>Total Net Worth:</strong> {totalNetWorth}
+      </p>
     </div>
   );
 };

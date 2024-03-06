@@ -1,11 +1,16 @@
-import illustration34 from 'assets/img/spot-illustrations/34.png';
-import illustration34_2 from 'assets/img/spot-illustrations/34_2.png';
-import illustration35 from 'assets/img/spot-illustrations/35.png';
-import illustration35_2 from 'assets/img/spot-illustrations/35_2.png';
-import illustration36 from 'assets/img/spot-illustrations/36.png';
-import illustration36_2 from 'assets/img/spot-illustrations/36_2.png';
-import illustration23 from 'assets/img/spot-illustrations/23.png';
-import illustration23_2 from 'assets/img/spot-illustrations/23_2.png';
+// import illustration34 from 'assets/img/spot-illustrations/34.png';
+// import illustration34_2 from 'assets/img/spot-illustrations/34_2.png';
+// import illustration35 from 'assets/img/spot-illustrations/35.png';
+// import illustration35_2 from 'assets/img/spot-illustrations/35_2.png';
+// import illustration36 from 'assets/img/spot-illustrations/36.png';
+// import illustration36_2 from 'assets/img/spot-illustrations/36_2.png';
+// import illustration23 from 'assets/img/spot-illustrations/23.png';
+// import illustration23_2 from 'assets/img/spot-illustrations/23_2.png';
+import mediaSpoor from 'assets/img/gallery/4Mediaspoor Image .png';
+import qberiFinance from 'assets/img/gallery/2Qberi Financial Services.png';
+import qberiSoftware from 'assets/img/gallery/3Qberi Software Solutions Image .png';
+// import qberiHeader from 'assets/img/gallery/1Qberi Header Image.png';
+import cadioMed from 'assets/img/gallery/5CadioMed Image.png';
 import icon1 from 'assets/img/icons/lightning-speed.png';
 import darkIcon1 from 'assets/img/icons/lightning-speed-dark.png';
 import icon2 from 'assets/img/icons/best-statistics.png';
@@ -69,8 +74,8 @@ export const features: Feature[] = [
     title: 'Qberi Financial Services',
     description:
       'Your trusted partner for comprehensive financial solutions in the heart of South Africa. We specialize in crafting tailored investment strategies and long-term insurance products that empower you to build a secure and prosperous future. With a commitment to excellence and a deep understanding of the South African financial landscape, we stand ready to guide you on your journey towards financial success and peace of mind.',
-    lightImg: illustration34,
-    darkImg: illustration34_2,
+    lightImg: qberiFinance,
+    darkImg: qberiFinance,
     link: '/business/qberi-in-sa',
     linkText: 'Read more about Qberi Financial Services'
   },
@@ -81,8 +86,8 @@ export const features: Feature[] = [
       'Qberi Software Solutions India is your premier destination for cutting-edge technology services, working globally from our base in India. With expertise in data integration, dynamic KPI dashboard creation, and e-commerce website development, we empower businesses to thrive in the digital age. ',
     additional:
       'At Qberi Software Sollutions India , we transform data into insights, ideas into innovation, and visions into reality. Let us be your technology partner of choice, helping you navigate the digital landscape and achieve remarkable success.',
-    lightImg: illustration35,
-    darkImg: illustration35_2,
+    lightImg: qberiSoftware,
+    darkImg: qberiSoftware,
     link: '/business/units',
     linkText: 'Learn about Us'
   },
@@ -91,8 +96,8 @@ export const features: Feature[] = [
     title: 'Media Spoor',
     description:
       'Media Spoor,  based in the USA but with affiliate offices in South Africa and New Zealand provides our clients with precise Media Monitoring and Sentiment Analysis. Our dedicated team harnesses publicly available news sources, even behind paywalls, to deliver comprehensive brand sentiment insights. With our proprietary InsightStream Media Dashboard, we keep you informed, empowered, and ahead of the curve in the fast-paced world of corporate media analysis. Discover the power of real-time intelligence with Media Spoor.',
-    lightImg: illustration36,
-    darkImg: illustration36_2,
+    lightImg: mediaSpoor,
+    darkImg: mediaSpoor,
     link: '/business/units',
     linkText: 'Learn More '
   },
@@ -103,8 +108,8 @@ export const features: Feature[] = [
       'Established in 2004, Cardio Med has become a reputable name in the medical equipment industry. Originally focused on servicing and repairing medical equipment, our company has evolved to offer a comprehensive range of solutions, including the import and distribution of various medical products, accessories, and consumables. With a fully equipped workshop and a team of skilled professionals, Cardio Med ensures prompt and efficient service for all types of medical equipment. Our commitment to excellence extends beyond the initial sale, as we provide comprehensive after-sales support for all products supplied. ',
     additional:
       'Cardio Med upholds values of professionalism, quality, integrity, and customer focus in all our endeavors. By prioritizing the needs and satisfaction of our clients, they aim to deliver exceptional service and exceed expectations.',
-    lightImg: illustration23,
-    darkImg: illustration23_2,
+    lightImg: cadioMed,
+    darkImg: cadioMed,
     link: '/business/units',
     linkText: 'Learn More '
   }

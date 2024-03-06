@@ -1,5 +1,6 @@
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import AvatarUpload from 'components/common/AvatarUpload';
+// import AvatarUpload from 'components/common/AvatarUpload';
+import Avatar from 'components/base/Avatar';
 // import React from 'react';
 // import { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
@@ -17,7 +18,8 @@ const EcomProfileCard = ({ details }: any) => {
         <div className="border-bottom border-dashed border-300 pb-4">
           <Row className="align-items-center g-3 g-sm-5 text-center text-sm-start">
             <Col xs={12} sm="auto">
-              <AvatarUpload size="5xl" src={details.pictureUrl} />
+              {/* <AvatarUpload size="5xl" src={details.pictureUrl} /> */}
+              <Avatar src={details.pictureUrl} size="5xl" />
             </Col>
             <Col xs={12} sm="auto" className="flex-1">
               <h4 className="mb-0">
@@ -26,8 +28,20 @@ const EcomProfileCard = ({ details }: any) => {
                 {details.lastName}
               </h4>
               <br />
-              <p className="text-800">Email: {details.email}</p>
-              <p className="text-800">Mobile: {details.mobile}</p>
+              <p className="text-800">
+                <strong>Email:</strong> {details.email}
+              </p>
+              <p className="text-800">
+                <strong>Mobile:</strong> {details.mobile}
+              </p>
+              <p className="text-800">
+                <strong>Role:</strong>
+                {details.role === 'admin' ? 'Admin' : 'User'}
+              </p>
+              <p className="text-800">
+                <strong>Share Percentage: </strong>
+                {details.sharePercentage ? details.sharePercentage : '0'}
+              </p>
               {/* <p className="text-800">Joined 3 months ago</p> */}
               {/* <div>
                 <a href="#!" className="me-2">

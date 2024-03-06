@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import bg1 from 'assets/img/bg/bg-36.png';
-import bg2 from 'assets/img/bg/34-1.png';
-import bg3 from 'assets/img/bg/34-1.png';
+import bg2 from 'assets/img/bg/34-2.png';
+import bg3 from 'assets/img/bg/34-2.png';
 import bg4 from 'assets/img/bg/bg-39.png';
 
 const HeroHeader = () => {
@@ -52,7 +52,7 @@ const HeroHeader = () => {
               </Button>
             </Col>
             <Col lg="auto" className="d-none d-lg-block">
-              <div className="hero-image-container position-absolute h-100 end-0 d-flex align-items-center">
+              <div className="hero-image-container position-absolute h-120 end-0 d-flex align-items-center">
                 <div className="position-relative">
                   <div className="position-absolute end-0 hero-image-container-overlay" />
                   <img
