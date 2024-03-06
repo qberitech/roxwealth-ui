@@ -11,10 +11,11 @@ import ProductsTable, {
   productsTablecolumns
 } from 'components/tables/ProductsTable';
 // import { defaultBreadcrumbItems } from 'data/commonData';
-import { productsTableData } from 'hospitalmerch/data/products';
+// import { productsTableData } from 'hospitalmerch/data/products';
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const tabItems: FilterTabItem[] = [
   {
@@ -70,9 +71,34 @@ const tabItems: FilterTabItem[] = [
 //   }
 // ];
 
+const URL = 'https://engine.qberi.com/api/allBatteryDetails';
+const sessionToken = localStorage.getItem('sessionToken');
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${sessionToken}`
+};
+
 const Products = () => {
+  const [allProductData, setAllProductData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    axios
+      .get(URL, { headers: headers })
+      .then(response => {
+        setAllProductData(response.data);
+        console.log('Response:', response.data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
   const table = useAdvanceTable({
-    data: productsTableData,
+    data: allProductData,
     columns: productsTablecolumns,
     pageSize: 10,
     pagination: true,
@@ -106,7 +132,7 @@ const Products = () => {
                 <div className="d-flex justify-content-between">
                   <Button variant="primary" className="mx-2">
                     <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    Add product
+                    Add Product
                   </Button>
                   <Button variant="danger" className="mx-2">
                     <FontAwesomeIcon icon={faMinus} className="me-2" />

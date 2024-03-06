@@ -24,7 +24,6 @@ import honda from 'assets/img/brands/honda.png';
 import xiaomi from 'assets/img/brands/xiaomi.png';
 import huawei from 'assets/img/brands/huawei.png';
 import intel from 'assets/img/brands/intel.png';
-// import axios from 'axios';
 
 export type Product = {
   id: number;
@@ -115,7 +114,7 @@ export type Batteries = {
   cellQuantity: number;
   cellType: string;
   color: string;
-  compatibleDevices: string[];
+  compatibleDevice: string[];
   dimensions: string;
   id: string;
   medicalEquipmentName: string;
@@ -124,6 +123,8 @@ export type Batteries = {
   pictureUrl: string;
   price: number;
   productName: string;
+  voltage: string;
+  weight: string;
 };
 
 export const topDealsProducts: Product[] = [
@@ -581,60 +582,69 @@ export const allProducts: Product[] = [
 //   Authorization: `Bearer ${sessionToken}`
 // };
 
-// let data;
+// let allProductData: Batteries[] = [];
 
-// axios
-//   .get(URL, { headers: headers })
-//   .then(function (response) {
-//     data = response.data;
-//     console.log('Response:', data);
-//   })
-//   .catch(function (error) {
-//     console.error('Error:', error);
-//   });
+// function fetchData() {
+//   axios.get(URL, { headers: headers })
+//     .then(response => {
+//       allProductData = response.data;
+//       console.log('Response:', allProductData);
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+// }
 
-// export const productTableData: Batteries[] = data;
-export const productsTableData: Batteries[] = [
-  {
-    cellBrand: 'ABC Batteries',
-    cellCapacity: '3000 mAh',
-    cellQuantity: 4,
-    cellType: 'Lithium-ion',
-    color: 'Black',
-    compatibleDevices: ['Device A', 'Device B'],
-    dimensions: '10x5x3 inches',
-    id: 'ae7034e8-274e-4b2c-bf51-19b0863477a4',
-    medicalEquipmentName: 'Portable Ventilator',
-    modelNumber: 'RB-123',
-    otherCompatibleModels: ['Model X', 'Model Y'],
-    pictureUrl: 'https://example.com/image1.jpg',
-    price: 50,
-    productName: 'Rechargeable Battery'
-  },
-  {
-    cellBrand: 'ABC Batteries',
-    cellCapacity: '3000 mAh',
-    cellQuantity: 4,
-    cellType: 'Lithium-ion',
-    color: 'Black',
-    compatibleDevices: ['Device A', 'Device B'],
-    dimensions: '10x5x3 inches',
-    id: 'abc',
-    medicalEquipmentName: 'Portable Ventilator',
-    modelNumber: 'RB-123',
-    otherCompatibleModels: ['Model X', 'Model Y'],
-    pictureUrl: 'https://example.com/image1.jpg',
-    price: 50,
-    productName: 'Rechargeable Battery'
-  }
-  // {
-  //   product: 'ASUS TUF Gaming F15 Gaming Laptop',
-  //   productImage: product20,
-  //   price: 150,
-  //   category: 'Computer',
-  //   tags: ['Gaming', 'Battery', 'Performance', 'Wireless'],
-  //   starred: false,
-  //   vendor: 'Kizzstore',
-  //   publishedOn: 'Dec 01, 12:00 PM'
-  // }
-];
+// fetchData();
+// const toggleMessageWithDelay = () => {
+//   setTimeout(() => {
+//     console.log('data', allProductData);
+//   }, 2000);
+// };
+// toggleMessageWithDelay();
+// console.log('data', allProductData);
+// export const productsTableData: Batteries[] = allProductData;
+// export const productsTableData: Batteries[] = [
+//   {
+//     cellBrand: 'ABC Batteries',
+//     cellCapacity: '3000 mAh',
+//     cellQuantity: 4,
+//     cellType: 'Lithium-ion',
+//     color: 'Black',
+//     compatibleDevices: ['Device A', 'Device B'],
+//     dimensions: '10x5x3 inches',
+//     id: 'ae7034e8-274e-4b2c-bf51-19b0863477a4',
+//     medicalEquipmentName: 'Portable Ventilator',
+//     modelNumber: 'RB-123',
+//     otherCompatibleModels: ['Model X', 'Model Y'],
+//     pictureUrl: 'https://example.com/image1.jpg',
+//     price: 50,
+//     productName: 'Rechargeable Battery'
+//   },
+//   {
+//     cellBrand: 'ABC Batteries',
+//     cellCapacity: '3000 mAh',
+//     cellQuantity: 4,
+//     cellType: 'Lithium-ion',
+//     color: 'Black',
+//     compatibleDevices: ['Device A', 'Device B'],
+//     dimensions: '10x5x3 inches',
+//     id: 'abc',
+//     medicalEquipmentName: 'Portable Ventilator',
+//     modelNumber: 'RB-123',
+//     otherCompatibleModels: ['Model X', 'Model Y'],
+//     pictureUrl: 'https://example.com/image1.jpg',
+//     price: 50,
+//     productName: 'Rechargeable Battery'
+//   }
+//   // {
+//   //   product: 'ASUS TUF Gaming F15 Gaming Laptop',
+//   //   productImage: product20,
+//   //   price: 150,
+//   //   category: 'Computer',
+//   //   tags: ['Gaming', 'Battery', 'Performance', 'Wireless'],
+//   //   starred: false,
+//   //   vendor: 'Kizzstore',
+//   //   publishedOn: 'Dec 01, 12:00 PM'
+//   // }
+// ];

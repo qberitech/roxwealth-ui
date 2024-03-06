@@ -6,45 +6,41 @@ import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 import { Batteries } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
 // import StarCheckbox from 'components/base/StarCheckbox';
-import RevealDropdown, {
-  RevealDropdownTrigger
-} from 'components/base/RevealDropdown';
-import ActionDropdownItems from 'components/common/ActionDropdownItems';
+// import RevealDropdown, {
+//   RevealDropdownTrigger
+// } from 'components/base/RevealDropdown';
+// import ActionDropdownItems from 'components/common/ActionDropdownItems';
 let identity;
+
+// Only the interface is comming from the products.ts and the data is been fetched in Products.tsx
 export const productsTablecolumns: ColumnDef<Batteries>[] = [
+  // {
+  //   accessorKey: 'pictureUrl',
+  //   header: 'Picture',
+  //   cell: ({ row: { original } }) => {
+  //     const { pictureUrl } = original;
+  //     return (
+  //       <Link
+  //         to={`/ecommerce/product-details`}
+  //         className="rounded-2 border d-inline-block"
+  //       >
+  //         <img src={pictureUrl} alt="" width={53} />
+  //       </Link>
+  //     );
+  //   },
+  //   meta: {
+  //     headerProps: { style: { width: 70 } },
+  //     cellProps: { className: 'py-0' }
+  //   },
+  //   enableSorting: false
+  // },
   {
-    id: 'id',
-    accessorKey: 'PictureUrl',
-    header: 'Picture',
+    accessorKey: 'medicalEquipmentName',
+    header: 'Equipment Name',
     cell: ({ row: { original } }) => {
-      const { pictureUrl } = original;
+      const { medicalEquipmentName } = original;
       return (
-        <Link
-          to={`/ecommerce/product-details`}
-          className="rounded-2 border d-inline-block"
-        >
-          <img src={pictureUrl} alt="" width={53} />
-        </Link>
-      );
-    },
-    meta: {
-      headerProps: { style: { width: 70 } },
-      cellProps: { className: 'py-0' }
-    },
-    enableSorting: false
-  },
-  {
-    accessorKey: 'productName',
-    header: 'Product name',
-    cell: ({ row: { original } }) => {
-      const { productName } = original;
-      return (
-        <Link
-          to="/hospitalmerch/product-details"
-          className="fw-semi-bold line-clamp-3"
-        >
-          {productName}
-        </Link>
+        <div>{medicalEquipmentName}</div>
       );
     },
     meta: {
@@ -53,16 +49,17 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
-    id: 'price',
-    accessorFn: ({ price }) => `${price}`,
-    header: 'Price',
+    accessorKey: 'productName',
+    header: 'Product name',
     cell: ({ row: { original } }) => {
-      const { price } = original;
-      return price;
+      const { productName } = original;
+      return (
+        <div>{productName}</div>
+      );
     },
     meta: {
-      headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },
-      cellProps: { className: 'fw-bold ps-4 text-700 text-end' }
+      headerProps: { style: { width: 350 }, className: 'ps-4' },
+      cellProps: { className: 'ps-4' }
     }
   },
   {
@@ -74,14 +71,14 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
-    id: 'compatibleDevices',
-    accessorFn: ({ compatibleDevices }) => compatibleDevices.join(''),
+    id: 'compatibleDevice',
+    accessorFn: ({ compatibleDevice }) => compatibleDevice.join(''),
     header: 'Compatible Devices',
     cell: ({ row: { original } }) => {
-      const { compatibleDevices } = original;
+      const { compatibleDevice } = original;
       return (
         <div className="d-flex flex-wrap gap-2">
-          {compatibleDevices.map(tag => (
+          {compatibleDevice.map(tag => (
             <Link key={tag} to="#!" className="text-decoration-none">
               <Badge variant="tag">{tag}</Badge>
             </Link>
@@ -136,19 +133,32 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
-    id: 'action',
-    cell: () => (
-      <RevealDropdownTrigger>
-        <RevealDropdown>
-          <ActionDropdownItems />
-        </RevealDropdown>
-      </RevealDropdownTrigger>
-    ),
+    id: 'price',
+    accessorFn: ({ price }) => `${price}`,
+    header: 'Price',
+    cell: ({ row: { original } }) => {
+      const { price } = original;
+      return price;
+    },
     meta: {
-      headerProps: { style: { width: '7%' } },
-      cellProps: { className: 'text-end' }
+      headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },
+      cellProps: { className: 'fw-bold ps-4 text-700 text-end' }
     }
   }
+  // {
+  //   id: 'action',
+  //   cell: () => (
+  //     <RevealDropdownTrigger>
+  //       <RevealDropdown>
+  //         <ActionDropdownItems />
+  //       </RevealDropdown>
+  //     </RevealDropdownTrigger>
+  //   ),
+  //   meta: {
+  //     headerProps: { style: { width: '7%' } },
+  //     cellProps: { className: 'text-end' }
+  //   }
+  // }
 ];
 
 const ProductsTable = () => {
