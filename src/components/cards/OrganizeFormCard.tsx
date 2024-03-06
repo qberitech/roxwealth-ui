@@ -124,7 +124,7 @@ const OrganizeFormCard = ({
       ) : type === 'equipment' ? (
         <Card className={className}>
           <Card.Body>
-            <h4 className="mb-4">Add Specifications</h4>
+            <h4 className="mb-4">No Specifications Required</h4>
             {/* {
               <Row className="gx-3 gy-4">
                 <Col xs={12} sm={6} xl={12}>
