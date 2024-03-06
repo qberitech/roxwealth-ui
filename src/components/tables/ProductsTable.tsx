@@ -104,8 +104,8 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
       );
     },
     meta: {
-      headerProps: { style: { width: 125 }, className: 'ps-4' },
-      cellProps: { className: 'ps-4 text-center' }
+      headerProps: { style: { width: 125 }, className: 'ps-1' },
+      cellProps: { className: 'text-center' }
     }
   },
   // {
@@ -138,7 +138,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     },
     meta: {
       headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },
-      cellProps: { className: 'fw-bold ps-4 text-700 text-end' }
+      cellProps: { className: 'fw-bold text-700 text-end' }
     }
   }
   // {

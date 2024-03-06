@@ -7,8 +7,46 @@ import OrganizeFormCard from 'components/cards/OrganizeFormCard';
 // import InventoryTab from 'components/tabs/InventoryTab';
 // import { defaultBreadcrumbItems } from 'data/commonData';
 import { Col, Form, Row } from 'react-bootstrap';
+import AWS from 'aws-sdk';
+import cred from './s3cred.json'
+
+// const bucketName = process.env.bucketName as string;
+// const region = process.env.region as string;
+// const accessKeyId = process.env.accessKeyId as string;
+// const secretAccessKey = process.env.secretAccessKey as string;
+
+const bucketName = cred.bucketName;
+const region = cred.region
+const accessKeyId = cred.accessKeyId
+const secretAccessKey = cred.secretAccessKey
+
+const s3 = new AWS.S3({
+  region,
+  accessKeyId,
+  secretAccessKey
+});
+const uploadFileToS3 = async (file: { name: any; }) => {
+  const params = {
+    Bucket: bucketName,
+    Key: file.name,
+    Body: file
+  };
+  try {
+    const data = await s3.upload(params).promise();
+    console.log('File uploaded successfully:', data.Location);
+    // Do something with the uploaded file location if needed
+  } catch (error) {
+    console.error('Error uploading file:', error);
+  }
+};
 
 const AddProduct = (props: any) => {
+  const handleDrop = async (acceptedFiles: string | any[]) => {
+    if (acceptedFiles && acceptedFiles.length > 0) {
+      const file = acceptedFiles[0]; // Assuming only one file is dropped
+      uploadFileToS3(file);
+    }
+  };
   return (
     <div>
       {/* <PageBreadcrumb items={defaultBreadcrumbItems} /> */}
@@ -45,6 +83,7 @@ const AddProduct = (props: any) => {
             <div className="mb-5">
               <h4 className="mb-3">Display images</h4>
               <Dropzone
+                onDrop={handleDrop}
                 className="mb-3"
                 accept={{
                   'image/*': ['.png', '.gif', '.jpeg', '.jpg']
