@@ -1,5 +1,6 @@
 import { Card, Col, Form, Row } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const OrganizeFormCard = ({
   className,
@@ -8,6 +9,38 @@ const OrganizeFormCard = ({
   className?: string;
   type?: string;
 }) => {
+
+  const [allEquipments, setAllEquipments] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  interface Equipment {
+    id: string;
+    name: string;
+    enabled: boolean;
+  }
+  const fetchData = useCallback(async () => {
+    const URL = 'https://engine.qberi.com/api/allMedicalEquipments';
+    try {
+      const sessionToken = localStorage.getItem('sessionToken');
+      const response = await axios.get(URL, {
+        headers: {
+          Authorization: `Bearer ${sessionToken}`
+        }
+      });
+      if (response.status === 200) {
+        console.log('response', response.data);
+        setAllEquipments(response.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      setError('An error occurred while fetching data.');
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <div>
       {type === 'battery' ? (
@@ -100,9 +133,11 @@ const OrganizeFormCard = ({
                     <h5 className="mb-0 text-1000">Medical Equipment Name</h5>
                   </div>
                   <Form.Select aria-label="medicalEquipmentName">
-                    <option value="men-cloth">Option 1</option>
-                    <option value="women-cloth">Option 2</option>
-                    <option value="kid-cloth">Option 3</option>
+                    {allEquipments.map((equipment: Equipment) => (
+                      <option key={equipment.id} value={equipment.id}>
+                        {equipment.name}
+                      </option>
+                    ))}
                   </Form.Select>
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
@@ -125,46 +160,6 @@ const OrganizeFormCard = ({
         <Card className={className}>
           <Card.Body>
             <h4 className="mb-4">No Specifications Required</h4>
-            {/* {
-              <Row className="gx-3 gy-4">
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Equipment Name</h5>
-                  <Form.Control placeholder="Name" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Type</h5>
-                  <Form.Control placeholder="Type" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Other</h5>
-                  <Form.Control placeholder="Cell Quantity" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Other</h5>
-                  <Form.Control placeholder="Cell Capacity" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Other</h5>
-                  <Form.Control placeholder="Cell Type" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Other</h5>
-                  <Form.Control placeholder="Cell Brand" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Other</h5>
-                  <Form.Control placeholder="Voltage" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Other</h5>
-                  <Form.Control placeholder="Capacity" />
-                </Col>
-                <Col xs={12} sm={6} xl={12}>
-                  <h5 className="mb-2 text-1000">Compatible Devices</h5>
-                  <Form.Control placeholder="Compatible Devices" />
-                </Col>
-              </Row>
-            } */}
           </Card.Body>
         </Card>
       ) : (

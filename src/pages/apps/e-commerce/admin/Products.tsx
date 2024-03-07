@@ -14,7 +14,7 @@ import ProductsTable, {
 // import { productsTableData } from 'hospitalmerch/data/products';
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const tabItems: FilterTabItem[] = [
@@ -81,11 +81,7 @@ const headers = {
 const Products = () => {
   const [allProductData, setAllProductData] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     axios
       .get(URL, { headers: headers })
       .then(response => {
@@ -95,7 +91,11 @@ const Products = () => {
       .catch(error => {
         console.error('Error:', error);
       });
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const table = useAdvanceTable({
     data: allProductData,

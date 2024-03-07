@@ -9,11 +9,6 @@ import OrganizeFormCard from 'components/cards/OrganizeFormCard';
 import { Col, Form, Row } from 'react-bootstrap';
 import AWS from 'aws-sdk';
 
-// const bucketName = process.env.bucketName as string;
-// const region = process.env.region as string;
-// const accessKeyId = process.env.accessKeyId as string;
-// const secretAccessKey = process.env.secretAccessKey as string;
-
 const bucketName = process.env.REACT_APP_AWS_BUCKET_NAME as string;
 const region = process.env.REACT_APP_AWS_REGION as string;
 const accessKeyId = process.env.REACT_APP_AWS_ACCESS_KEY as string;
