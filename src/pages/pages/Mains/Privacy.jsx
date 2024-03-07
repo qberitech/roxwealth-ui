@@ -13,21 +13,19 @@ const PrivacyPolicy = () => {
           </div>
 
           <div className="flex flex-wrap">
-            <h2 className="text-3xl font-semibold">
-              Privacy Policy for Qberi
-            </h2>
+            <h2 className="text-3xl font-semibold">Privacy Policy for Qberi</h2>
             <p className="terms-effective-date">Effective Date: Jan 25, 2024</p>
 
             <div>
               <h4 className="terms-subheading">1. Introduction</h4>
               <p className="text-lg text-gray-800 text-justify">
                 Welcome to Qberi ("we," "our," or "us"). This Privacy Policy
-                explains how we collect, use, disclose, and protect your personal
-                information when you access or use our website and services,
-                including our subsidiaries, joint ventures, investments, and
-                operations interests (collectively referred to as "Services"). By
-                using our Services, you consent to the practices described in this
-                Privacy Policy.
+                explains how we collect, use, disclose, and protect your
+                personal information when you access or use our website and
+                services, including our subsidiaries, joint ventures,
+                investments, and operations interests (collectively referred to
+                as "Services"). By using our Services, you consent to the
+                practices described in this Privacy Policy.
               </p>
             </div>
 
@@ -42,12 +40,13 @@ const PrivacyPolicy = () => {
                   contact information, and other identifiers.
                 </li>
                 <li className="terms-list-item">
-                  b. <strong>Usage Information: </strong>Such as your IP address,
-                  browser type, device information, and browsing activity.
+                  b. <strong>Usage Information: </strong>Such as your IP
+                  address, browser type, device information, and browsing
+                  activity.
                 </li>
                 <li className="terms-list-item">
-                  c. <strong> Information: </strong>When you use our Services, we
-                  may collect and process information about your approximate
+                  c. <strong> Information: </strong>When you use our Services,
+                  we may collect and process information about your approximate
                   location.
                 </li>
                 <li className="terms-list-item">
@@ -56,14 +55,16 @@ const PrivacyPolicy = () => {
                   interactions with our Services.
                 </li>
                 <li className="terms-list-item">
-                  e. <strong>Other Information: </strong>Any other information you
-                  provide to us voluntarily.
+                  e. <strong>Other Information: </strong>Any other information
+                  you provide to us voluntarily.
                 </li>
               </ul>
             </div>
 
             <div className="terms-section">
-              <h4 className="terms-subheading">3. How We Use Your Information</h4>
+              <h4 className="terms-subheading">
+                3. How We Use Your Information
+              </h4>
               <p className="text-lg text-gray-800 text-justify">
                 We may use your information for various purposes, including:
               </p>
@@ -93,14 +94,16 @@ const PrivacyPolicy = () => {
               <h4 className="terms-subheading">
                 4. Disclosure of Your Information
               </h4>
-              <p className="text-lg text-gray-800 text-justify">We may share your information with:</p>
+              <p className="text-lg text-gray-800 text-justify">
+                We may share your information with:
+              </p>
               <ul className="terms-list">
                 <li className="terms-list-item">
                   a. Affiliated companies, subsidiaries, and joint ventures.
                 </li>
                 <li className="terms-list-item">
-                  b. Service providers and partners who assist us in providing and
-                  improving our Services.
+                  b. Service providers and partners who assist us in providing
+                  and improving our Services.
                 </li>
                 <li className="terms-list-item">
                   c. Legal authorities, as required by law or to protect our
@@ -121,7 +124,9 @@ const PrivacyPolicy = () => {
 
             <div className="terms-section">
               <h4 className="terms-subheading">6. Your Choices</h4>
-              <p className="text-lg text-gray-800 text-justify">You have the right to:</p>
+              <p className="text-lg text-gray-800 text-justify">
+                You have the right to:
+              </p>
               <ul className="terms-list">
                 <li className="terms-list-item">
                   a. Access, correct, or delete your personal information.
@@ -130,7 +135,8 @@ const PrivacyPolicy = () => {
                   b. Object to or restrict the processing of your data.
                 </li>
                 <li className="terms-list-item">
-                  c. Withdraw your consent for data processing, where applicable.
+                  c. Withdraw your consent for data processing, where
+                  applicable.
                 </li>
               </ul>
             </div>
@@ -140,10 +146,10 @@ const PrivacyPolicy = () => {
                 7. International Data Transfers
               </h4>
               <p className="text-lg text-gray-800 text-justify">
-                As a multinational organization, your personal information may be
-                transferred to and processed in countries outside of your home
-                country. We take steps to ensure that such transfers comply with
-                applicable data protection laws.
+                As a multinational organization, your personal information may
+                be transferred to and processed in countries outside of your
+                home country. We take steps to ensure that such transfers comply
+                with applicable data protection laws.
               </p>
             </div>
 
@@ -153,17 +159,17 @@ const PrivacyPolicy = () => {
               </h4>
               <p className="text-lg text-gray-800 text-justify">
                 We may update this Privacy Policy to reflect changes in our
-                practices or for other operational, legal, or regulatory reasons.
-                Any changes will be posted on our website with an updated
-                effective date.
+                practices or for other operational, legal, or regulatory
+                reasons. Any changes will be posted on our website with an
+                updated effective date.
               </p>
             </div>
 
             <div className="terms-section">
               <h4 className="terms-subheading">9. Contact Us</h4>
               <p className="text-lg text-gray-800 text-justify">
-                If you have questions or concerns about this Privacy Policy or our
-                data practices, please contact us at{' '}
+                If you have questions or concerns about this Privacy Policy or
+                our data practices, please contact us at{' '}
                 <a href="mailto:compliance@qberi.com">compliance@qberi.com</a>.
               </p>
             </div>

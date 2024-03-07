@@ -35,9 +35,15 @@ const NavItem = ({
 const DropdownComponent = () => {
   return (
     <Dropdown.Menu>
-      <Dropdown.Item as={Link} to="/privacy-policy">Privacy Policy</Dropdown.Item>
-      <Dropdown.Item as={Link} to="/terms-conditions">Terms of Service</Dropdown.Item>
-      <Dropdown.Item as={Link} to="/business/units">Business Units</Dropdown.Item>
+      <Dropdown.Item as={Link} to="/privacy-policy">
+        Privacy Policy
+      </Dropdown.Item>
+      <Dropdown.Item as={Link} to="/terms-conditions">
+        Terms of Service
+      </Dropdown.Item>
+      <Dropdown.Item as={Link} to="/business/units">
+        Business Units
+      </Dropdown.Item>
     </Dropdown.Menu>
   );
 };

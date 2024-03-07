@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 const admins = [
   'nitish2@qberi.com',
@@ -15,6 +16,10 @@ const Admin = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [totalNetWorth, setTotalNetWorth] = useState(0);
+
+  const deleteUsers = (id) => {
+    console.log(id);
+  };
 
   useEffect(() => {
     const profile = JSON.parse(localStorage.getItem('profile'));
@@ -87,6 +92,17 @@ const Admin = () => {
                 {user.sharePercentage
                   ? (user.sharePercentage * totalNetWorth) / 100
                   : 0}
+              </td>
+              {/* Delete Button */}
+              <td>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    deleteUsers(user._id);
+                  }}
+                >
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}

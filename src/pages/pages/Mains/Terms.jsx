@@ -21,24 +21,25 @@ const Terms = () => {
             <div className="terms-section">
               <h4 className="terms-subheading">1. Acceptance of Terms</h4>
               <p className="terms-content">
-                Welcome to Qberi. By accessing or using our website and services,
-                including any subsidiaries, joint ventures, investments, or
-                operations interests (collectively referred to as "Services"), you
-                agree to comply with and be bound by these Terms of Service
-                ("Terms"). If you do not agree to these Terms, please do not use
-                our Services.
+                Welcome to Qberi. By accessing or using our website and
+                services, including any subsidiaries, joint ventures,
+                investments, or operations interests (collectively referred to
+                as "Services"), you agree to comply with and be bound by these
+                Terms of Service ("Terms"). If you do not agree to these Terms,
+                please do not use our Services.
               </p>
             </div>
 
             <div className="terms-section">
               <h4 className="terms-subheading">2. Scope of Services</h4>
               <p className="terms-content">
-                Qberi operates as a multinational organization with offices in the
-                United States, India, South Africa, Germany, and the United
-                Kingdom. Our Services encompass various international activities,
-                including but not limited to investments, operations, and joint
-                ventures. These activities may be subject to specific agreements
-                and regulations governing each respective jurisdiction.
+                Qberi operates as a multinational organization with offices in
+                the United States, India, South Africa, Germany, and the United
+                Kingdom. Our Services encompass various international
+                activities, including but not limited to investments,
+                operations, and joint ventures. These activities may be subject
+                to specific agreements and regulations governing each respective
+                jurisdiction.
               </p>
             </div>
 
@@ -64,9 +65,10 @@ const Terms = () => {
               <p className="terms-content">
                 To access certain parts of our Services, you may be required to
                 create a user account. You are responsible for maintaining the
-                confidentiality of your account credentials and for all activities
-                that occur under your account. You agree to provide accurate and
-                complete information during the registration process.
+                confidentiality of your account credentials and for all
+                activities that occur under your account. You agree to provide
+                accurate and complete information during the registration
+                process.
               </p>
             </div>
 
@@ -80,8 +82,8 @@ const Terms = () => {
               </p>
               <ul className="terms-list text-2xl">
                 <li className="terms-list-item">
-                  a. Violating the rights of others or infringing on intellectual
-                  property rights.
+                  a. Violating the rights of others or infringing on
+                  intellectual property rights.
                 </li>
                 <li className="terms-list-item">
                   b. Transmitting any harmful, offensive, or unlawful content.
@@ -100,12 +102,15 @@ const Terms = () => {
 
             {/* 6.  */}
             <div className="terms-section">
-              <h4 className="terms-subheading">6. Disclaimers and Limitations</h4>
+              <h4 className="terms-subheading">
+                6. Disclaimers and Limitations
+              </h4>
               <p className="terms-content">
-                Our Services are provided "as-is," and we make no representations
-                or warranties of any kind, whether express or implied. We shall
-                not be liable for any direct, indirect, consequential, or
-                incidental damages arising from your use of our Services.
+                Our Services are provided "as-is," and we make no
+                representations or warranties of any kind, whether express or
+                implied. We shall not be liable for any direct, indirect,
+                consequential, or incidental damages arising from your use of
+                our Services.
               </p>
             </div>
 
@@ -116,10 +121,10 @@ const Terms = () => {
               </h4>
               <p className="terms-content">
                 These Terms are governed by and construed in accordance with the
-                laws of the State of Colorado, United States. Any disputes arising
-                under or in connection with these Terms shall be subject to the
-                exclusive jurisdiction of the federal and state courts located in
-                Colorado.
+                laws of the State of Colorado, United States. Any disputes
+                arising under or in connection with these Terms shall be subject
+                to the exclusive jurisdiction of the federal and state courts
+                located in Colorado.
               </p>
             </div>
 
@@ -127,18 +132,19 @@ const Terms = () => {
             <div className="terms-section">
               <h4 className="terms-subheading">8. Changes to Terms</h4>
               <p className="terms-content">
-                We reserve the right to modify or update these Terms at any time.
-                Any changes will be effective immediately upon posting the revised
-                Terms on our website. Your continued use of our Services after
-                such changes signifies your acceptance of the modified Terms.
+                We reserve the right to modify or update these Terms at any
+                time. Any changes will be effective immediately upon posting the
+                revised Terms on our website. Your continued use of our Services
+                after such changes signifies your acceptance of the modified
+                Terms.
               </p>
             </div>
 
             <div className="terms-section">
               <h4 className="terms-subheading">9. Contact Information</h4>
               <p className="terms-content">
-                If you have any questions or concerns regarding these Terms or our
-                Services, please contact us at{' '}
+                If you have any questions or concerns regarding these Terms or
+                our Services, please contact us at{' '}
                 <a href="mailto:compliance@qberi.com">compliance@qberi.com</a>.
               </p>
             </div>
