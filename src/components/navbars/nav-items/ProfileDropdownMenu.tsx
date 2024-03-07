@@ -42,10 +42,8 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
   ]);
   const [email, setEmail] = useState('Email Not Found');
   useEffect(() => {
-    const appData = JSON.parse(localStorage.getItem('appData') || '{}');
-    if (appData && appData.userData) {
-      setEmail(appData.userData.email);
-    }
+    const session = JSON.parse(localStorage.getItem('session') || '{}');
+    setEmail(session.email);
   });
   return (
     <Dropdown.Menu

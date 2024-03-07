@@ -35,12 +35,11 @@ const Profile = () => {
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + sessionToken
     };
-
+    console.log('email: ', email);
     axios
       .get(URL, { headers: headers })
       .then(response => {
         console.log('Profile data: ', response.data);
-        console.log(response.data);
         setProfileDetails(response.data);
         setProfile(response.data);
       })

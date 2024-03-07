@@ -41,7 +41,6 @@ const EcomStats = () => {
     axios
       .get(URL, { headers: headers })
       .then(response => {
-        console.log(response.data);
         setTotalAssets(response.data.amountInUsd);
         const amount = response.data.amountInUsd;
         const testStats = {

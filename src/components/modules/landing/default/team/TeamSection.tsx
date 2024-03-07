@@ -5,6 +5,8 @@ import { Col, Row } from 'react-bootstrap';
 import bgLeft17 from 'assets/img/bg/bg-left-17.png';
 import bgRight17 from 'assets/img/bg/bg-right-17.png';
 
+const paraGraph = `Our global dynamic team is a vibrant and intellectual assembly of talented individuals from around the world, each bringing unique skills, perspectives, and experiences to the table. Together, we collaborate seamlessly, leveraging our collective expertise to tackle challenges and innovate solutions. With a shared commitment to excellence and a spirit of camaraderie, we thrive in an environment that fosters creativity, agility, and continuous learning. Our team embodies resilience and adaptability, navigating the ever-evolving landscape of global markets and technologies with confidence and enthusiasm. We are united in our pursuit of excellence, driving forward as a cohesive force to achieve our collective goals and make a meaningful impact on a global scale.`;
+
 const TeamSection = () => {
   return (
     <section id="team">
@@ -36,10 +38,10 @@ const TeamSection = () => {
         <Row>
           <Col xs={12} className="mb-4 text-center text-sm-start">
             <h4 className="text-primary fw-bolder mb-3">Team</h4>
-            <h2>Our small team behind our success</h2>
+            <h2>Our Global Executive Team</h2>
           </Col>
-          <Col md={6} className="text-center text-sm-start">
-            <p>Our small but efficient team.</p>
+          <Col md={12} className="text-justify text-sm-start">
+            <p>{paraGraph}</p>
           </Col>
           {/* <Col md={6} className="text-center text-sm-start">
             <p>

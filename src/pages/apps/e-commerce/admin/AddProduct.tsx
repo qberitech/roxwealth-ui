@@ -8,6 +8,8 @@ import OrganizeFormCard from 'components/cards/OrganizeFormCard';
 // import { defaultBreadcrumbItems } from 'data/commonData';
 import { Col, Form, Row } from 'react-bootstrap';
 import AWS from 'aws-sdk';
+import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 const bucketName = process.env.REACT_APP_AWS_BUCKET_NAME as string;
 const region = process.env.REACT_APP_AWS_REGION as string;
@@ -35,16 +37,27 @@ const uploadFileToS3 = async (file: { name: any }) => {
 };
 
 const AddProduct = (props: any) => {
+  const [formData, setFormData] = useState({});
   const handleDrop = async (acceptedFiles: string | any[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
       const file = acceptedFiles[0]; // Assuming only one file is dropped
       uploadFileToS3(file);
     }
   };
+
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    console.log('Form data:', formData);
+  };
+
+  // const handleDiscard = () => {
+  //   setFormData({});
+  // }
+
   return (
     <div>
       {/* <PageBreadcrumb items={defaultBreadcrumbItems} /> */}
-      <form className="mb-9">
+      <form className="mb-9" onSubmit={handleFormSubmit}>
         <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
           <div>
             <h2 className="mb-2">Add a new {props.type}</h2>
@@ -53,9 +66,9 @@ const AddProduct = (props: any) => {
             </h5>
           </div>
           <div className="d-flex flex-wrap gap-2">
-            <Button variant="phoenix-secondary" type="button">
+            {/* <Button variant="phoenix-secondary" type="button" onClick={handleDiscard}>
               Discard
-            </Button>
+            </Button> */}
             <Button variant="primary" type="submit">
               Publish product
             </Button>
@@ -92,7 +105,12 @@ const AddProduct = (props: any) => {
           <Col xs={12} xl={4}>
             <Row className="g-2">
               <Col xs={12} xl={12}>
-                <OrganizeFormCard className="mb-3" type={props.type} />
+                <OrganizeFormCard
+                  className="mb-3"
+                  type={props.type}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
               </Col>
               {/* <Col xs={12} xl={12}>
                 <VariantFormCard />

@@ -7,7 +7,7 @@ import Section from 'components/base/Section';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Batteries } from 'hospitalmerch/data/products';
-import ProductNotFound from './ProductNotFound';
+// import ProductNotFound from './ProductNotFound';
 
 const ProductDetails = () => {
   // const productData = productsTableData;
@@ -41,7 +41,7 @@ const ProductDetails = () => {
   }, []);
 
   if (loading) {
-    return <ProductNotFound />;
+    return <div>Loading...</div>;
   }
 
   if (error) {

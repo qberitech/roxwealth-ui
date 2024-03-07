@@ -14,14 +14,27 @@ import team9 from 'assets/img/team/9.webp';
 import team25 from 'assets/img/team/25.webp';
 import team22 from 'assets/img/team/22.webp';
 import team28 from 'assets/img/team/28.webp';
-import team62 from 'assets/img/team/62.webp';
-import team63 from 'assets/img/team/63.webp';
-import team64 from 'assets/img/team/64.webp';
+// import team62 from 'assets/img/team/62.webp';
+// import team63 from 'assets/img/team/63.webp';
+// import team64 from 'assets/img/team/64.webp';
 import team65 from 'assets/img/team/65.webp';
 // import team66 from 'assets/img/team/66.webp';
 // import team67 from 'assets/img/team/67.webp';
 // import team68 from 'assets/img/team/68.webp';
 // import team69 from 'assets/img/team/69.webp';
+
+import jaco from 'assets/img/team/Jacob.png';
+import pranab from 'assets/img/team/Pranab.png';
+import nitish from 'assets/img/team/Nitesh.png';
+import rohan from 'assets/img/team/Rohan.png';
+import marika from 'assets/img/team/Marika.png';
+import leonie from 'assets/img/team/Leonie.png';
+import jacques from 'assets/img/team/Jacques.png';
+import johan from 'assets/img/team/Johan.png';
+import ilze from 'assets/img/team/Ilze.png';
+import tania from 'assets/img/team/Tania.png';
+import frans from 'assets/img/team/Frans.jpeg';
+import michael from 'assets/img/team/Michael.png';
 
 export interface Member {
   id: number;
@@ -203,7 +216,7 @@ export type TeamMember = {
 
 export const defaultTeamMembers: TeamMember[] = [
   {
-    image: team62,
+    image: jaco,
     name: 'Jaco Du Plessis',
     designation: 'CEO, Qberi',
     facebookHandle: '#!',
@@ -211,59 +224,92 @@ export const defaultTeamMembers: TeamMember[] = [
     linkedinHandle: '#!'
   },
   {
-    image: team63,
+    image: pranab,
     name: 'Pranab Sinha',
-    designation: 'Developer',
+    designation: 'Lead Software Engineer, Qberi India',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'
   },
   {
-    image: team64,
+    image: nitish,
     name: 'Nitish Pandey',
-    designation: 'Developer',
+    designation: 'Developer, Qberi India',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'
   },
   {
-    image: team65,
+    image: rohan,
     name: 'Rohan Chowdhury',
-    designation: 'Developer',
+    designation: 'Developer, Qberi India',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: marika,
+    name: 'Dr. Marika du Plessis',
+    designation: 'Qberi Advisory, South Africa',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: leonie,
+    name: 'Leonie van den Berg',
+    designation: 'CEO, Cardio-med, South Africa',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+
+  {
+    image: jacques,
+    name: 'Jacques van den Berg',
+    designation: 'COO, Cardio-med, South Africa',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: johan,
+    name: 'Johan Beck',
+    designation: 'Head of Qberi Financial Advisers, South Africa',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: ilze,
+    name: 'Ilze Niemann',
+    designation: 'Administrator, Qberi South Africa',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: tania,
+    name: 'Tania du Plessis ',
+    designation: 'CEO, MediaSpoor, United States',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: frans,
+    name: 'Frans Taljaard',
+    designation: 'CEO, TDS Construction Contracts and Claims, Germany',
+    facebookHandle: '#!',
+    twitterHandle: '#!',
+    linkedinHandle: '#!'
+  },
+  {
+    image: michael,
+    name: 'Michael Stumpfe ',
+    designation: 'Owner and Chief Designer, Bummel Bespoke Leather Shoes',
     facebookHandle: '#!',
     twitterHandle: '#!',
     linkedinHandle: '#!'
   }
-  // {
-  //   image: team66,
-  //   name: 'Alan Casey',
-  //   designation: 'Front End Developer',
-  //   facebookHandle: '#!',
-  //   twitterHandle: '#!',
-  //   linkedinHandle: '#!'
-  // },
-  // {
-  //   image: team67,
-  //   name: 'Narokin Hijita',
-  //   designation: 'CEO, Global Cheat',
-  //   facebookHandle: '#!',
-  //   twitterHandle: '#!',
-  //   linkedinHandle: '#!'
-  // },
-  // {
-  //   image: team68,
-  //   name: 'Jane Smith',
-  //   designation: 'CEO, Global Cheat',
-  //   facebookHandle: '#!',
-  //   twitterHandle: '#!',
-  //   linkedinHandle: '#!'
-  // },
-  // {
-  //   image: team69,
-  //   name: 'Alex Johnson',
-  //   designation: 'CEO, Global Cheat',
-  //   facebookHandle: '#!',
-  //   twitterHandle: '#!',
-  //   linkedinHandle: '#!'
-  // }
 ];

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
-import spotIllustration33 from 'assets/img/spot-illustrations/33-s.webp';
+import spotIllustration33 from 'assets/img/spot-illustrations/Question-Img.png';
 import spotIllustration31 from 'assets/img/spot-illustrations/31.png';
 import Button from 'components/base/Button';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ const Cta = () => {
               <img
                 src={spotIllustration33}
                 className="mw-100 mb-6"
-                width="422"
+                width="700"
                 alt=""
               />
               <h2 className="mb-8 text-1000 fw-normal">

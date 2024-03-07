@@ -4,20 +4,30 @@ import axios from 'axios';
 
 const OrganizeFormCard = ({
   className,
-  type
+  type,
+  formData,
+  setFormData
 }: {
   className?: string;
   type?: string;
+  formData?: any;
+  setFormData?: any;
 }) => {
-
   const [allEquipments, setAllEquipments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [, setLoading] = useState(true);
+  const [, setError] = useState('');
   interface Equipment {
     id: string;
     name: string;
     enabled: boolean;
   }
+
+  const changeHandler = (e: any) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
   const fetchData = useCallback(async () => {
     const URL = 'https://engine.qberi.com/api/allMedicalEquipments';
     try {
@@ -94,39 +104,93 @@ const OrganizeFormCard = ({
           </Col> */}
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Model</h5>
-                  <Form.Control placeholder="String" />
+                  {/* <Form.Control placeholder="String" /> */}
+                  <Form.Control
+                    name="model"
+                    value={formData.model}
+                    onChange={changeHandler}
+                    placeholder="String"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Color</h5>
-                  <Form.Control placeholder="String" />
+                  {/* <Form.Control placeholder="String" /> */}
+                  <Form.Control
+                    name="color"
+                    value={formData.color}
+                    onChange={changeHandler}
+                    placeholder="String"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Quantity</h5>
-                  <Form.Control placeholder="Integer" />
+                  {/* <Form.Control placeholder="Integer" /> */}
+                  <Form.Control
+                    name="cellQuantity"
+                    value={formData.cellQuantity}
+                    onChange={changeHandler}
+                    placeholder="Integer"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Capacity</h5>
-                  <Form.Control placeholder="String" />
+                  {/* <Form.Control placeholder="String" /> */}
+                  <Form.Control
+                    name="cellCapacity"
+                    value={formData.cellCapacity}
+                    onChange={changeHandler}
+                    placeholder="String"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Type</h5>
-                  <Form.Control placeholder="String" />
+                  {/* <Form.Control placeholder="String" /> */}
+                  <Form.Control
+                    name="cellType"
+                    value={formData.cellType}
+                    onChange={changeHandler}
+                    placeholder="String"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Cell Brand</h5>
-                  <Form.Control placeholder="String" />
+                  {/* <Form.Control placeholder="String" /> */}
+                  <Form.Control
+                    name="cellBrand"
+                    value={formData.cellBrand}
+                    onChange={changeHandler}
+                    placeholder="String"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Voltage</h5>
-                  <Form.Control placeholder="String" />
+                  {/* <Form.Control placeholder="String" /> */}
+                  <Form.Control
+                    name="voltage"
+                    value={formData.voltage}
+                    onChange={changeHandler}
+                    placeholder="String"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Compatible Devices</h5>
-                  <Form.Control placeholder="Comma Seperated Values" />
+                  {/* <Form.Control placeholder="Comma Seperated Values" /> */}
+                  <Form.Control
+                    name="compatibleDevices"
+                    value={formData.compatibleDevices}
+                    onChange={changeHandler}
+                    placeholder="Comma Seperated Values"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <h5 className="mb-2 text-1000">Other Compatible Models</h5>
-                  <Form.Control placeholder="Comma Seperated Values" />
+                  {/* <Form.Control placeholder="Comma Seperated Values" /> */}
+                  <Form.Control
+                    name="otherCompatibleModels"
+                    value={formData.otherCompatibleModels}
+                    onChange={changeHandler}
+                    placeholder="Comma Seperated Values"
+                  />
                 </Col>
                 <Col xs={12} sm={6} xl={12}>
                   <div className="d-flex gap-2 mb-2">

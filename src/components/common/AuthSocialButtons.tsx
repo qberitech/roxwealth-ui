@@ -4,21 +4,63 @@
 // import React from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
+// import { useNavigate } from 'react-router-dom';
+
+interface SessionData {
+  isLoggedIn: boolean;
+  sessionToken: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
+}
+
+const getEmailFromJWT = (token: string) => {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jwt = JSON.parse(window.atob(base64));
+  return jwt.email;
+};
+
+// Function to update session in localStorage
+const updateSession = (sessionToken: string, email: string) => {
+  const date = new Date();
+  const session: SessionData = {
+    sessionToken: sessionToken,
+    isLoggedIn: true,
+    email: email,
+    created_at: date.toISOString(),
+    updated_at: date.toISOString()
+  };
+
+  // Save session to localStorage
+  localStorage.setItem('session', JSON.stringify(session));
+};
+
 const AuthSocialButtons = ({ title }: { title: string }) => {
   const onGoogleSuccess = (response: any) => {
     const credential = response.credential;
-    console.log(credential);
     const URL = 'https://engine.qberi.com/api/googleLogin';
     const data = {
-      id: credential
+      idToken: credential
     };
     axios
       .post(URL, data)
       .then(response => {
-        console.log('Google login response: in', title, response);
+        const data = response.data;
+        const sessionToken = data.split('=')[1].split(';')[0];
+        if (!sessionToken) {
+          console.error('Invalid email or password in ', title);
+          return;
+        }
+        localStorage.setItem('sessionToken', sessionToken);
+        updateSession(sessionToken, getEmailFromJWT(credential));
+        window.location.href = '/dashboard/roxwealth';
+        // Redirect to dashboard
+        // const navigate = useNavigate();
+        // navigate('/dashboard/roxwealth');
       })
       .catch(error => {
-        console.error('Error fetching profile data: ', error);
+        console.error('Error fetching profile data: in ', error);
       });
   };
 
