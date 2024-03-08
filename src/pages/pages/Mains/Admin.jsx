@@ -11,6 +11,33 @@ const admins = [
   'jaco@qberi.com'
 ];
 
+const DeleteUser = id => {
+
+  const session = JSON.parse(localStorage.getItem('session') || '{}' );
+  const sessionToken = session?.sessionToken;
+
+  const URL = `https://engine.qberi.com/api/deleteUser/${id}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sessionToken}`
+  };
+
+  axios.delete(URL, { headers: headers }).then(response => {
+    console.log(response.data);
+  });
+};
+
+const onClickDelete = id => {
+  console.log('Delete', id);
+
+  // Make a prompt to confirm the delete
+  const confirmDelete = window.confirm('Are you sure you want to delete this user?');
+  if (confirmDelete) {
+    DeleteUser(id);
+    // window.location.reload();
+  }
+};
+
 const getUsers = () => {
   const session = JSON.parse(localStorage.getItem('session'));
   const sessionToken = session?.sessionToken;
@@ -34,10 +61,6 @@ const Admin = () => {
   const [totalNetWorth, setTotalNetWorth] = useState(0);
 
   const usersData = useMemo(() => getUsers(), []);
-
-  const deleteUsers = id => {
-    console.log(id);
-  };
 
   useEffect(() => {
     const profile = JSON.parse(localStorage.getItem('profile'));
@@ -98,7 +121,7 @@ const Admin = () => {
         </thead>
         <tbody>
           {users.map((user, index) => (
-            <tr key={user._id}>
+            <tr key={user.id}>
               <td>{index + 1}</td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
@@ -115,9 +138,7 @@ const Admin = () => {
               <td>
                 <Button
                   variant="danger"
-                  onClick={() => {
-                    deleteUsers(user._id);
-                  }}
+                  onClick={() => onClickDelete(user.id)}
                 >
                   Delete
                 </Button>

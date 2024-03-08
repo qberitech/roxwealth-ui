@@ -6,10 +6,10 @@ const UploadToS3 = async file => {
   const secretAccessKey = process.env.REACT_APP_AWS_SECRET_KEY;
   const bucketName = process.env.REACT_APP_AWS_BUCKET_NAME;
   const region = process.env.REACT_APP_AWS_REGION;
-  console.log('accessKey', accessKey);
-  console.log('secretAccessKey', secretAccessKey);
-  console.log('bucketName', bucketName);
-  console.log('region', region);
+  // console.log('accessKey', accessKey);
+  // console.log('secretAccessKey', secretAccessKey);
+  // console.log('bucketName', bucketName);
+  // console.log('region', region);
 
   aws.config.update({
     accessKeyId: accessKey,
@@ -17,6 +17,8 @@ const UploadToS3 = async file => {
     region: region
   });
   const s3 = new aws.S3();
+  // generate a unique name for the file
+  // const fileName = uuid() + '-' + file.name;
   const params = {
     Bucket: bucketName,
     Key: 'test/' + file.name,

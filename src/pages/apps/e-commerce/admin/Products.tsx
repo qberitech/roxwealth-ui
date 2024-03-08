@@ -16,6 +16,7 @@ import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const tabItems: FilterTabItem[] = [
   {
@@ -130,14 +131,17 @@ const Products = () => {
                   Export
                 </Button> */}
                 <div className="d-flex justify-content-between">
-                  <Button variant="primary" className="mx-2">
-                    <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    Add Product
-                  </Button>
-                  <Button variant="danger" className="mx-2">
+                  <Link to="/hospitalmerch/add-product-batteries">
+                    <Button variant="primary" className="mx-2">
+                      <FontAwesomeIcon icon={faPlus} className="me-2" />
+                      {/* Add Product */}
+                      Add Product
+                    </Button>
+                  </Link>
+                  {/* <Button variant="danger" className="mx-2">
                     <FontAwesomeIcon icon={faMinus} className="me-2" />
                     Remove Product
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>

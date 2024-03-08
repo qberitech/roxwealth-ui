@@ -16,7 +16,7 @@ import axios from 'axios';
 interface AddBatteryProps {
   productName: string;
   modelNumber: string;
-  color: string;
+  colour: string;
   cellQuantity: string;
   cellCapacity: string;
   cellType: string;
@@ -33,21 +33,21 @@ interface AddBatteryProps {
 
 const AddBattery = (props: any) => {
   const [formData, setFormData] = useState<AddBatteryProps>({
-    productName: 'testProduct',
+    productName: 'Name Not Defined',
     modelNumber: 'RB-123',
-    color: 'Black',
+    colour: 'Black',
     cellQuantity: '100',
     cellCapacity: '100',
-    cellType: 'Li',
+    cellType: 'Li-Ion',
     cellBrand: 'Samsung',
-    voltage: '1.4',
-    compatibleDevice: ['sam', 'app'],
-    otherCompatibleModels: ['98'],
-    pictureUrl: ['1', '2'],
-    medicalEquipmentName: 'name',
-    weight: '1.2',
-    dimensions: '12*12*12',
-    price: '100'
+    voltage: '1.4 V',
+    compatibleDevice: ['Samsung', 'Apple'],
+    otherCompatibleModels: ['LG', 'Nokia'],
+    pictureUrl: ['', ''],
+    medicalEquipmentName: 'Name Not Defined',
+    weight: '1.2 KG',
+    dimensions: '12*12*12 inches',
+    price: '$ 100'
   });
   const [droppedFiles, setDroppedFiles] = useState<string[]>([]);
 
@@ -184,21 +184,17 @@ const AddBattery = (props: any) => {
               placeholder="Product Name"
               name="productName"
               onChange={handleChanges}
+              className="mb-5"
+              required
             />
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <h4 className="mb-3">Product Description</h4>
-              {/* <TinymceEditor
-                options={{
-                  height: '15rem',
-                  placeholder: 'Write a description here...'
-                }}
-              /> */}
               <Form.Control
                 as="textarea"
                 placeholder="Product Description"
                 name="productDescription"
               />
-            </div>
+            </div> */}
             <div className="mb-5">
               <h4 className="mb-3">Display images</h4>
               <Dropzone
