@@ -60,7 +60,7 @@ const AddProduct = (props: any) => {
       <form className="mb-9" onSubmit={handleFormSubmit}>
         <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
           <div>
-            <h2 className="mb-2">Add a new {props.type}</h2>
+            <h2 className="mb-2">Add a new {props.type === 'battery' ? 'Battery' : 'Medical Equipment'}</h2>
             <h5 className="text-700 fw-semi-bold">
               Orders placed across your store
             </h5>
@@ -78,25 +78,29 @@ const AddProduct = (props: any) => {
           <Col xs={12} xl={8}>
             <h4 className="mb-3">Product Name</h4>
             <Form.Control placeholder="Write title here..." className="mb-5" />
-            <div className="mb-6">
-              <h4 className="mb-3">Product Description</h4>
-              <TinymceEditor
-                options={{
-                  height: '15rem',
-                  placeholder: 'Write a description here...'
-                }}
-              />
-            </div>
-            <div className="mb-5">
-              <h4 className="mb-3">Display images</h4>
-              <Dropzone
-                onDrop={handleDrop}
-                className="mb-3"
-                accept={{
-                  'image/*': ['.png', '.gif', '.jpeg', '.jpg']
-                }}
-              />
-            </div>
+            {props.type === 'battery' && (
+              <>
+                <div className="mb-6">
+                  <h4 className="mb-3">Product Description</h4>
+                  <TinymceEditor
+                    options={{
+                      height: '15rem',
+                      placeholder: 'Write a description here...'
+                    }}
+                  />
+                </div>
+                <div className="mb-5">
+                  <h4 className="mb-3">Display images</h4>
+                  <Dropzone
+                    onDrop={handleDrop}
+                    className="mb-3"
+                    accept={{
+                      'image/*': ['.png', '.gif', '.jpeg', '.jpg']
+                    }}
+                  />
+                </div>
+              </>
+            )}
             {/* <div>
               <h4 className="mb-3">Inventory</h4>
               <InventoryTab />
