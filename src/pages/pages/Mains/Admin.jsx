@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
@@ -11,13 +11,31 @@ const admins = [
   'jaco@qberi.com'
 ];
 
+const getUsers = () => {
+  const session = JSON.parse(localStorage.getItem('session'));
+  const sessionToken = session?.sessionToken;
+
+  const URL = 'https://engine.qberi.com/api/allUsers/info';
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sessionToken}`
+  };
+
+  axios.get(URL, { headers: headers }).then(response => {
+    console.log(response.data);
+    return response.data;
+  });
+};
+
 const Admin = () => {
   const [, setUser] = useState(null);
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [totalNetWorth, setTotalNetWorth] = useState(0);
 
-  const deleteUsers = (id) => {
+  const usersData = useMemo(() => getUsers(), []);
+
+  const deleteUsers = id => {
     console.log(id);
   };
 

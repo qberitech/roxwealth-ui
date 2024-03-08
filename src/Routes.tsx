@@ -185,6 +185,7 @@ import QberiInSA from 'pages/pages/Businesses/Qberi_in_SA';
 // import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
 import Admin from 'pages/pages/Mains/Admin';
 import AddProduct from 'pages/apps/e-commerce/admin/AddProduct';
+import AddBattery from 'pages/apps/e-commerce/admin/AddBattery';
 // import { id } from 'components/tables/ProductsTable';
 
 // const FontAwesomeExample = lazy(
@@ -275,7 +276,7 @@ const routes: RouteObject[] = [
           },
           {
             path: 'add-product-batteries',
-            element: <AddProduct type="battery" />
+            element: <AddBattery type="battery" />
           },
           {
             path: 'add-product-equipments',

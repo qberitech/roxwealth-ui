@@ -3,6 +3,40 @@ import Avatar, { Size, Status } from 'components/base/Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import UploadToS3 from 'Actions/UploadToS3';
+import axios from 'axios';
+
+const updateProfilePicture = async (file: File) => {
+  const location = await UploadToS3(file);
+  const URL = 'https://engine.qberi.com/api/editUser';
+
+  const session = JSON.parse(localStorage.getItem('session') || '{}');
+  const profile = JSON.parse(localStorage.getItem('profile') || '{}');
+  const sessionToken = session.sessionToken;
+  const userId = profile.id;
+
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sessionToken}`
+  };
+
+  const data = {
+    userId: userId,
+    pictureUrl: location
+  };
+
+  const response = await axios.post(URL, data, { headers });
+
+  if (response.status === 200) {
+    // alert('Profile picture updated successfully');
+    console.log('Profile picture updated successfully');
+    // window.location.reload();
+  } else {
+    throw new Error(`Error: ${response.statusText}`);
+  }
+
+  return location;
+};
 
 interface AvatarUploadProps {
   size: Size;
@@ -25,6 +59,8 @@ const AvatarUpload = ({
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
+      // setImage(e.target.files[0]);
+      updateProfilePicture(e.target.files[0]);
       setImage(e.target.files[0]);
       if (onChange) {
         onChange();

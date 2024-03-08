@@ -4,6 +4,7 @@ import axios from 'axios';
 import AvatarUpload from 'components/common/AvatarUpload';
 
 const EcomProfilePersonalInfo = ({ details }: any) => {
+  const mobile = details.mobile ?? '';
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -78,7 +79,7 @@ const EcomProfilePersonalInfo = ({ details }: any) => {
           <Form.Control
             type="text"
             placeholder="+1234567890"
-            value={details.mobile ?? ''}
+            defaultValue={mobile ?? ''}
           />
         </Col>
         <Col xs={12} lg={6}>

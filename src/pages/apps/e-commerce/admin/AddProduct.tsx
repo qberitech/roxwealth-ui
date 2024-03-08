@@ -60,7 +60,10 @@ const AddProduct = (props: any) => {
       <form className="mb-9" onSubmit={handleFormSubmit}>
         <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
           <div>
-            <h2 className="mb-2">Add a new {props.type === 'battery' ? 'Battery' : 'Medical Equipment'}</h2>
+            <h2 className="mb-2">
+              Add a new{' '}
+              {props.type === 'battery' ? 'Battery' : 'Medical Equipment'}
+            </h2>
             <h5 className="text-700 fw-semi-bold">
               Orders placed across your store
             </h5>
