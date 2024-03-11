@@ -138,7 +138,14 @@ const Admin = () => {
                   : 0}
               </td>
               <td>
+<<<<<<< HEAD
                 <Button variant="danger" onClick={() => onClickDelete(user.id)}>
+=======
+                <Button
+                  variant="danger"
+                  onClick={() => onClickDelete(user.id)}
+                >
+>>>>>>> 043a2fc666b4546e9be60dcd15d48d09ccd5b20e
                   Delete
                 </Button>
               </td>
