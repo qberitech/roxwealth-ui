@@ -5,12 +5,43 @@ import { Link } from 'react-router-dom';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 import { Batteries } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
+import Button from 'components/base/Button';
+import axios from 'axios';
 // import StarCheckbox from 'components/base/StarCheckbox';
 // import RevealDropdown, {
 //   RevealDropdownTrigger
 // } from 'components/base/RevealDropdown';
 // import ActionDropdownItems from 'components/common/ActionDropdownItems';
 let identity;
+
+const deleteBattery = async (id: string) => {
+  const URL = 'https://engine.qberi.com/api/deleteBattery/' + id;
+
+  const session = JSON.parse(localStorage.getItem('session') || '{}');
+  const sessionToken = session.sessionToken;
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${sessionToken}`
+  };
+
+  axios
+    .delete(URL, { headers: headers })
+    .then(response => {
+      console.log('Response:', response.data);
+      window.location.reload();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+};
+
+const onClickDelete = (id: string) => {
+  console.log('Delete', id);
+  // Give Prompt to confirm the delete
+  if (window.confirm('Are you sure you want to delete this battery?')) {
+    deleteBattery(id);
+  }
+};
 
 // Only the interface is comming from the products.ts and the data is been fetched in Products.tsx
 export const productsTablecolumns: ColumnDef<Batteries>[] = [
@@ -139,6 +170,32 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     meta: {
       headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },
       cellProps: { className: 'fw-bold text-700 text-end' }
+    }
+  },
+  {
+    id: 'Delete',
+    accessorKey: 'id',
+    header: '',
+    cell: ({ row: { original } }) => {
+      const { id } = original;
+      return (
+        // <Link
+        //   to={`/hospitalmerch/product-details/${id}`}
+        //   className="fw-semi-bold line-clamp-3"
+        // >
+        <Button
+          variant="danger"
+          className="mx-2"
+          onClick={() => onClickDelete(id)}
+        >
+          Delete
+        </Button>
+        // </Link>
+      );
+    },
+    meta: {
+      headerProps: { style: { width: 125 }, className: 'ps-1' },
+      cellProps: { className: 'text-center' }
     }
   }
   // {

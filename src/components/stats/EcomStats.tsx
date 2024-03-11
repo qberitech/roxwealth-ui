@@ -1,6 +1,7 @@
 import { Col, Row, Stack } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { useCallback } from 'react';
 import {
   faCircle,
   // faPause,
@@ -30,7 +31,7 @@ const EcomStats = () => {
   });
   const [error, setError] = useState('');
 
-  useEffect(() => {
+  const fetchData = useCallback(() => {
     const URL =
       'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
     const sessionToken = localStorage.getItem('sessionToken');
@@ -59,7 +60,15 @@ const EcomStats = () => {
       })
       .catch(error => {
         setError('Error fetching data from API ' + error);
+        // Redirect to login page if 401 error
+        if (error.response.status === 401) {
+          window.location.href = '/auth/sign-out';
+        }
       });
+  }, []);
+
+  useEffect(() => {
+    fetchData();
   }, []);
 
   if (error) {

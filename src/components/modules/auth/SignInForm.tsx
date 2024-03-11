@@ -15,6 +15,7 @@ interface SessionData {
   email: string;
   created_at: string;
   updated_at: string;
+  expire_on: string;
 }
 
 // List of admin emails
@@ -26,14 +27,19 @@ interface SessionData {
 // ];
 
 // Function to update session in localStorage
-const updateSession = (sessionToken: string, email: string) => {
+const updateSession = (
+  sessionToken: string,
+  email: string,
+  expire_on: string
+) => {
   const date = new Date();
   const session: SessionData = {
     sessionToken: sessionToken,
     isLoggedIn: true,
     email: email,
     created_at: date.toISOString(),
-    updated_at: date.toISOString()
+    updated_at: date.toISOString(),
+    expire_on: expire_on
   };
 
   // Save session to localStorage
@@ -88,12 +94,13 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
       ) {
         const responseData = response.data;
         const sessionToken = responseData.split('=')[1].split(';')[0];
+        const expire_on = responseData.split(';')[3].split('=')[1];
         if (!sessionToken) {
           setError('Invalid email or password');
           return;
         }
         localStorage.setItem('sessionToken', sessionToken);
-        updateSession(sessionToken, email); // Update session in localStorage
+        updateSession(sessionToken, email, expire_on); // Update session in localStorage
         // updateUserData(email, sessionToken); // Update user data in localStorage
 
         setSuccessMessage('Logged in successfully');

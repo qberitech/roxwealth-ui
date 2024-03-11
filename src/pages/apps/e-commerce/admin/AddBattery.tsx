@@ -16,7 +16,7 @@ import axios from 'axios';
 interface AddBatteryProps {
   productName: string;
   modelNumber: string;
-  color: string;
+  colour: string;
   cellQuantity: string;
   cellCapacity: string;
   cellType: string;
@@ -33,21 +33,21 @@ interface AddBatteryProps {
 
 const AddBattery = (props: any) => {
   const [formData, setFormData] = useState<AddBatteryProps>({
-    productName: 'testProduct',
+    productName: 'Name Not Defined',
     modelNumber: 'RB-123',
-    color: 'Black',
+    colour: 'Black',
     cellQuantity: '100',
     cellCapacity: '100',
-    cellType: 'Li',
+    cellType: 'Li-Ion',
     cellBrand: 'Samsung',
-    voltage: '1.4',
-    compatibleDevice: ['sam', 'app'],
-    otherCompatibleModels: ['98'],
-    pictureUrl: ['1', '2'],
-    medicalEquipmentName: 'name',
-    weight: '1.2',
-    dimensions: '12*12*12',
-    price: '100'
+    voltage: '1.4 V',
+    compatibleDevice: ['Samsung', 'Apple'],
+    otherCompatibleModels: ['LG', 'Nokia'],
+    pictureUrl: ['', ''],
+    medicalEquipmentName: 'Name Not Defined',
+    weight: '1.2 KG',
+    dimensions: '12*12*12 inches',
+    price: '$ 100'
   });
   const [droppedFiles, setDroppedFiles] = useState<string[]>([]);
 
@@ -70,7 +70,7 @@ const AddBattery = (props: any) => {
     // const cellType = e.target.cellType.value as string;
     // const cellBrand = e.target.cellBrand.value as string;
     // const voltage = e.target.voltage.value as string;
-    const compatibleDevices = e.target.compatibleDevices.value as string;
+    const compatibleDevices = e.target.compatibleDevice.value as string;
     const otherCompatibleModels = e.target.otherCompatibleModels
       .value as string;
     // const medicalEquipmentName = e.target.medicalEquipmentName.value as string;
@@ -116,7 +116,7 @@ const AddBattery = (props: any) => {
     //     "dimensions": dimensions,
     //     "price": price
     // }
-    formData.modelNumber = 'RB-123';
+    // formData.modelNumber = 'RB-123';
     formData.compatibleDevice = compatibleDevices.split(',');
     formData.otherCompatibleModels = otherCompatibleModels.split(',');
     formData.pictureUrl = images;
@@ -124,7 +124,7 @@ const AddBattery = (props: any) => {
     const body = formData;
 
     console.log('Form data:', body);
-    alert('Product added successfully' + JSON.stringify(body));
+    // alert('Product added successfully' + JSON.stringify(body));
 
     const session = JSON.parse(localStorage.getItem('session') || '{}');
     const sessionToken = session.sessionToken;
@@ -136,9 +136,16 @@ const AddBattery = (props: any) => {
     };
 
     try {
-      const response = axios.post(URL, body, { headers: headers });
-      console.log('Response:', response);
-      alert('Battery added successfully');
+      axios
+        .post(URL, body, { headers: headers })
+        .then(res => {
+          console.log('Response:', res);
+          alert('Product added successfully');
+        })
+        .catch(error => {
+          console.log('Error:', error);
+          alert('Error adding battery' + error);
+        });
     } catch (error) {
       console.log('Error:', error);
       alert('Error adding battery' + error);
@@ -154,6 +161,29 @@ const AddBattery = (props: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  // const clearForm = () => {
+  //   setFormData({
+  //     productName: 'Name Not Defined',
+  //     modelNumber: 'RB-123',
+  //     colour: 'Black',
+  //     cellQuantity: '100',
+  //     cellCapacity: '100',
+  //     cellType: 'Li-Ion',
+  //     cellBrand: 'Samsung',
+  //     voltage: '1.4 V',
+  //     compatibleDevice: ['Samsung', 'Apple'],
+  //     otherCompatibleModels: ['LG', 'Nokia'],
+  //     pictureUrl: ['', ''],
+  //     medicalEquipmentName: 'Name Not Defined',
+  //     weight: '1.2 KG',
+  //     dimensions: '12*12*12 inches',
+  //     price: '$ 100'
+  //   });
+
+  //   setDroppedFiles([]);
+
+  // };
 
   return (
     <div>
@@ -184,21 +214,17 @@ const AddBattery = (props: any) => {
               placeholder="Product Name"
               name="productName"
               onChange={handleChanges}
+              className="mb-5"
+              required
             />
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <h4 className="mb-3">Product Description</h4>
-              {/* <TinymceEditor
-                options={{
-                  height: '15rem',
-                  placeholder: 'Write a description here...'
-                }}
-              /> */}
               <Form.Control
                 as="textarea"
                 placeholder="Product Description"
                 name="productDescription"
               />
-            </div>
+            </div> */}
             <div className="mb-5">
               <h4 className="mb-3">Display images</h4>
               <Dropzone
@@ -227,7 +253,7 @@ const AddBattery = (props: any) => {
                           <Form.Label>Model</Form.Label>
                           <Form.Control
                             type="text"
-                            placeholder="Model"
+                            placeholder="Model Number ( unique )"
                             name="modelNumber"
                             onChange={handleChanges}
                             required
@@ -240,7 +266,7 @@ const AddBattery = (props: any) => {
                           <Form.Control
                             type="text"
                             placeholder="Color"
-                            name="color"
+                            name="colour"
                             onChange={handleChanges}
                             required
                           />
@@ -312,7 +338,7 @@ const AddBattery = (props: any) => {
                           <Form.Control
                             type="text"
                             placeholder="Compatible Devices"
-                            name="compatibleDevices"
+                            name="compatibleDevice"
                             onChange={handleChanges}
                             required
                           />

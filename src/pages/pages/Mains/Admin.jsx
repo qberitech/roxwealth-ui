@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { Table } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
+// import axios from 'axios';
+// import { Table } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
+import UsersList from 'components/Admins/UsersTable';
 
 const admins = [
   'nitish2@qberi.com',
@@ -11,68 +12,92 @@ const admins = [
   'jaco@qberi.com'
 ];
 
-const getUsers = () => {
-  const session = JSON.parse(localStorage.getItem('session'));
-  const sessionToken = session?.sessionToken;
+// const DeleteUser = id => {
+//   const session = JSON.parse(localStorage.getItem('session') || '{}');
+//   const sessionToken = session?.sessionToken;
 
-  const URL = 'https://engine.qberi.com/api/allUsers/info';
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${sessionToken}`
-  };
+//   const URL = `https://engine.qberi.com/api/deleteUser/${id}`;
+//   const headers = {
+//     'Content-Type': 'application/json',
+//     Authorization: `Bearer ${sessionToken}`
+//   };
 
-  axios.get(URL, { headers: headers }).then(response => {
-    console.log(response.data);
-    return response.data;
-  });
-};
+//   axios.delete(URL, { headers: headers }).then(response => {
+//     console.log(response.data);
+//   });
+// };
+
+// const onClickDelete = id => {
+//   console.log('Delete', id);
+
+//   // Make a prompt to confirm the delete
+//   const confirmDelete = window.confirm(
+//     'Are you sure you want to delete this user?'
+//   );
+//   if (confirmDelete) {
+//     DeleteUser(id);
+//     window.location.reload();
+//   }
+// };
+
+// const getUsers = () => {
+//   const session = JSON.parse(localStorage.getItem('session'));
+//   const sessionToken = session?.sessionToken;
+
+//   const URL = 'https://engine.qberi.com/api/allUsers/info';
+//   const headers = {
+//     'Content-Type': 'application/json',
+//     Authorization: `Bearer ${sessionToken}`
+//   };
+
+//   axios.get(URL, { headers: headers }).then(response => {
+//     console.log(response.data);
+//     return response.data;
+//   });
+// };
 
 const Admin = () => {
-  const [, setUser] = useState(null);
+  // const [, setUser] = useState(null);
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
-  const [totalNetWorth, setTotalNetWorth] = useState(0);
+  // const [users, setUsers] = useState([]);
+  // const [totalNetWorth, setTotalNetWorth] = useState(0);
 
-  const usersData = useMemo(() => getUsers(), []);
-
-  const deleteUsers = id => {
-    console.log(id);
-  };
+  // const usersData = useMemo(() => getUsers(), []);
 
   useEffect(() => {
     const profile = JSON.parse(localStorage.getItem('profile'));
     console.log(profile);
     if (profile) {
-      setUser(profile);
+      // setUser(profile);
       if (profile.role !== 'admin' && !admins.includes(profile.email)) {
         navigate('/dashboard/roxwealth');
       }
     }
 
-    const session = JSON.parse(localStorage.getItem('session'));
-    if (!session) {
-      navigate('/auth/sign-in');
-    }
+    // const session = JSON.parse(localStorage.getItem('session'));
+    // if (!session) {
+    //   navigate('/auth/sign-in');
+    // }
 
-    const sessionToken = session?.sessionToken;
+    // const sessionToken = session?.sessionToken;
 
-    const URL = 'https://engine.qberi.com/api/allUsers/info';
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${sessionToken}`
-    };
+    // const URL = 'https://engine.qberi.com/api/allUsers/info';
+    // const headers = {
+    //   'Content-Type': 'application/json',
+    //   Authorization: `Bearer ${sessionToken}`
+    // };
 
-    axios.get(URL, { headers: headers }).then(response => {
-      console.log(response.data);
-      setUsers(response.data);
-    });
+    // axios.get(URL, { headers: headers }).then(response => {
+    //   console.log(response.data);
+    //   setUsers(response.data);
+    // });
 
-    const URL2 =
-      'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
-    axios.get(URL2, { headers: headers }).then(response => {
-      console.log(response.data);
-      setTotalNetWorth(response.data.amountInUsd);
-    });
+    // const URL2 =
+    //   'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
+    // axios.get(URL2, { headers: headers }).then(response => {
+    //   console.log(response.data);
+    //   setTotalNetWorth(response.data.amountInUsd);
+    // });
   }, []);
 
   return (
@@ -82,7 +107,8 @@ const Admin = () => {
         This is the Admin page. You can only see this if you're logged in as an
         admin.
       </p>
-      <h2>All Users</h2>
+      <UsersList />
+      {/* <h2>All Users</h2>
       <Table striped bordered hover responsive>
         <thead>
           <tr>
@@ -98,7 +124,7 @@ const Admin = () => {
         </thead>
         <tbody>
           {users.map((user, index) => (
-            <tr key={user._id}>
+            <tr key={user.id}>
               <td>{index + 1}</td>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
@@ -111,14 +137,8 @@ const Admin = () => {
                   ? (user.sharePercentage * totalNetWorth) / 100
                   : 0}
               </td>
-              {/* Delete Button */}
               <td>
-                <Button
-                  variant="danger"
-                  onClick={() => {
-                    deleteUsers(user._id);
-                  }}
-                >
+                <Button variant="danger" onClick={() => onClickDelete(user.id)}>
                   Delete
                 </Button>
               </td>
@@ -129,7 +149,7 @@ const Admin = () => {
       <h2>Net Worth</h2>
       <p>
         <strong>Total Net Worth:</strong> {totalNetWorth}
-      </p>
+      </p> */}
     </div>
   );
 };
