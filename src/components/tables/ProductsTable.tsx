@@ -7,6 +7,8 @@ import { Batteries } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
 import Button from 'components/base/Button';
 import axios from 'axios';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import StarCheckbox from 'components/base/StarCheckbox';
 // import RevealDropdown, {
 //   RevealDropdownTrigger
@@ -130,7 +132,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
           to={`/hospitalmerch/product-details/${id}`}
           className="fw-semi-bold line-clamp-3"
         >
-          preview
+          <FontAwesomeIcon icon={faEye} /> {/* Font Awesome eye icon */}
         </Link>
       );
     },
@@ -165,7 +167,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     header: 'Price',
     cell: ({ row: { original } }) => {
       const { price } = original;
-      return price;
+      return '$' + price;
     },
     meta: {
       headerProps: { style: { width: 150 }, className: 'ps-4 text-end' },

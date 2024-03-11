@@ -1,7 +1,7 @@
 import Button from 'components/base/Button';
 import Dropzone from 'components/base/Dropzone';
 import { Card, Col, Form, Row } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import UploadToS3 from 'Actions/UploadToS3';
 import axios from 'axios';
 // import TinymceEditor from 'components/base/TinymceEditor';
@@ -184,7 +184,33 @@ const AddBattery = (props: any) => {
   //   setDroppedFiles([]);
 
   // };
-
+  const [allEquipments, setAllEquipments] = useState([]);
+  const [, setError] = useState('');
+  interface Equipment {
+    id: string;
+    name: string;
+    enabled: boolean;
+  }
+  const fetchEquipment = useCallback(async () => {
+    const URL = 'https://engine.qberi.com/api/allMedicalEquipments';
+    try {
+      const sessionToken = localStorage.getItem('sessionToken');
+      const response = await axios.get(URL, {
+        headers: {
+          Authorization: `Bearer ${sessionToken}`
+        }
+      });
+      if (response.status === 200) {
+        console.log('response', response.data);
+        setAllEquipments(response.data)
+      }
+    } catch (error) {
+      setError('An error occurred while fetching data.');
+    }
+  }, []);
+  useEffect(() => {
+    fetchEquipment();
+  }, [fetchEquipment]);
   return (
     <div>
       {/* <PageBreadcrumb items={defaultBreadcrumbItems} /> */}
@@ -250,7 +276,7 @@ const AddBattery = (props: any) => {
                     <Row className="g-3">
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Model</Form.Label>
+                          <h5 className="mb-2 text-1000">Model</h5>
                           <Form.Control
                             type="text"
                             placeholder="Model Number ( unique )"
@@ -262,10 +288,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Color</Form.Label>
+                          <h5 className="mb-2 text-1000">Color</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Color"
+                            placeholder="String"
                             name="colour"
                             onChange={handleChanges}
                             required
@@ -274,10 +300,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Cell Quantity</Form.Label>
+                          <h5 className="mb-2 text-1000">Cell Quantity</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Cell Quantity"
+                            placeholder="Integer"
                             name="cellQuantity"
                             onChange={handleChanges}
                             required
@@ -286,10 +312,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Cell Capacity</Form.Label>
+                          <h5 className="mb-2 text-1000">Cell Capacity</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Cell Capacity"
+                            placeholder="Integer"
                             name="cellCapacity"
                             onChange={handleChanges}
                             required
@@ -298,10 +324,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Cell Type</Form.Label>
+                          <h5 className="mb-2 text-1000">Cell Type</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Cell Type"
+                            placeholder="String"
                             name="cellType"
                             onChange={handleChanges}
                             required
@@ -310,10 +336,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Cell Brand</Form.Label>
+                          <h5 className="mb-2 text-1000">Cell Brand</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Cell Brand"
+                            placeholder="String"
                             name="cellBrand"
                             onChange={handleChanges}
                             required
@@ -322,10 +348,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Voltage</Form.Label>
+                          <h5 className="mb-2 text-1000">Voltage</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Voltage"
+                            placeholder="Integer (Unit - V)"
                             name="voltage"
                             onChange={handleChanges}
                             required
@@ -334,10 +360,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Compatible Devices</Form.Label>
+                          <h5 className="mb-2 text-1000">Compatible Devices</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Compatible Devices"
+                            placeholder="Comma Seperated"
                             name="compatibleDevice"
                             onChange={handleChanges}
                             required
@@ -346,10 +372,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Other Compatible Models</Form.Label>
+                          <h5 className="mb-2 text-1000">Other Compatible Devices</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Other Compatible Models"
+                            placeholder="Comma Seperated"
                             name="otherCompatibleModels"
                             onChange={handleChanges}
                             required
@@ -358,22 +384,35 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Medical Equipment Name</Form.Label>
-                          <Form.Control
+                            <h5 className="mb-2 text-1000">Medical Equipment Name</h5>
+                          {/* <Form.Control
                             type="text"
                             placeholder="Medical Equipment Name"
                             name="medicalEquipmentName"
                             onChange={handleChanges}
                             required
-                          />
+                          /> */}
+                          <Form.Select
+                            aria-label="medicalEquipmentName"
+                            name="medicalEquipmentName"
+                            onChange={handleChanges}
+                            required>
+                            {allEquipments.map((equipment: Equipment) => (
+                              equipment.enabled && (
+                                <option key={equipment.id} value={equipment.name}>
+                                  {equipment.name}
+                                </option>
+                              )
+                            ))}
+                          </Form.Select>
                         </Form.Group>
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Weight</Form.Label>
+                          <h5 className="mb-2 text-1000">Weight</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Weight"
+                            placeholder="Integer (Unit - g)"
                             name="weight"
                             onChange={handleChanges}
                             required
@@ -382,10 +421,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Dimensions</Form.Label>
+                          <h5 className="mb-2 text-1000">Dimensions</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Dimensions"
+                            placeholder="String"
                             name="dimensions"
                             onChange={handleChanges}
                             required
@@ -394,10 +433,10 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <Form.Label>Price</Form.Label>
+                        <h5 className="mb-2 text-1000">Price</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Price"
+                            placeholder="$ Integer"
                             name="price"
                             onChange={handleChanges}
                             required
