@@ -1,19 +1,19 @@
 import { Col, Row } from 'react-bootstrap';
-import EcomTotalOrdersCard from 'components/cards/EcomTotalOrdersCard';
-import EcomNewCustomersCard from 'components/cards/EcomNewCustomersCard';
-import EcomTopCouponsCard from 'components/cards/EcomTopCouponsCard';
-import EcomPayingVsNonPayingCard from 'components/cards/EcomPayingVsNonPayingCard';
-import EcomLatestReviewsTable from 'components/tables/EcomLatestReviewsTable';
-import EcomTopRegionsMap from 'components/leaflet-maps/EcomTopRegionsMap';
+// import EcomTotalOrdersCard from 'components/cards/EcomTotalOrdersCard';
+// import EcomNewCustomersCard from 'components/cards/EcomNewCustomersCard';
+// import EcomTopCouponsCard from 'components/cards/EcomTopCouponsCard';
+// import EcomPayingVsNonPayingCard from 'components/cards/EcomPayingVsNonPayingCard';
+// import EcomLatestReviewsTable from 'components/tables/EcomLatestReviewsTable';
+// import EcomTopRegionsMap from 'components/leaflet-maps/EcomTopRegionsMap';
 import EcomStats from 'components/stats/EcomStats';
-import { mapMarkerPoints } from 'data/mapMarkerPoints';
-import EcomProjectionVsActual from 'components/modules/e-commerce/dashboard/EcomProjectionVsActual';
-import EcomReturningCustomerRate from 'components/modules/e-commerce/dashboard/EcomReturningCustomerRate';
-// import EcomTotalSells from 'components/modules/e-commerce/dashboard/EcomTotalSells';
-import EcomTopRegions from 'components/modules/e-commerce/dashboard/EcomTopRegions';
-// import sampleJson from '../../assets/SampleData.json';
-// import PerformanceTPPS from 'components/Graphs/Performance-TPPS';
-// import PerformanceCPS from 'components/Graphs/Performance-CPS';
+// import { mapMarkerPoints } from 'data/mapMarkerPoints';
+// import EcomProjectionVsActual from 'components/modules/e-commerce/dashboard/EcomProjectionVsActual';
+// import EcomReturningCustomerRate from 'components/modules/e-commerce/dashboard/EcomReturningCustomerRate';
+// // import EcomTotalSells from 'components/modules/e-commerce/dashboard/EcomTotalSells';
+// import EcomTopRegions from 'components/modules/e-commerce/dashboard/EcomTopRegions';
+// // import sampleJson from '../../assets/SampleData.json';
+// // import PerformanceTPPS from 'components/Graphs/Performance-TPPS';
+// // import PerformanceCPS from 'components/Graphs/Performance-CPS';
 import PerformanceNAVS from 'components/Graphs/Performance-NAVS';
 import PerformanceNAVSLine from 'components/Graphs/Performance-NAVS-Line';
 // import { useState, useEffect } from 'react';
@@ -47,7 +47,7 @@ const Ecommerce2 = () => {
             <PerformanceNAVS />
             <PerformanceNAVSLine />
           </Col>
-          <Col xs={12} xxl={6}>
+          {/* <Col xs={12} xxl={6}>
             <Row className="g-3">
               <Col xs={12} md={6}>
                 <EcomTotalOrdersCard />
@@ -62,13 +62,13 @@ const Ecommerce2 = () => {
                 <EcomPayingVsNonPayingCard />
               </Col>
             </Row>
-          </Col>
+          </Col> */}
         </Row>
       </div>
-      <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-7 border-y border-300">
+      {/* <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-7 border-y border-300">
         <EcomLatestReviewsTable />
-      </div>
-      <Row className="gx-6">
+      </div> */}
+      {/* <Row className="gx-6">
         <Col xs={12} xl={6}>
           <EcomTopRegions />
         </Col>
@@ -79,8 +79,8 @@ const Ecommerce2 = () => {
             </div>
           </div>
         </Col>
-      </Row>
-      <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-6 pb-9 border-top border-300">
+      </Row> */}
+      {/* <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white pt-6 pb-9 border-top border-300">
         <Row className="g-6">
           <Col xs={12} xl={6}>
             <EcomProjectionVsActual />
@@ -89,7 +89,7 @@ const Ecommerce2 = () => {
             <EcomReturningCustomerRate />
           </Col>
         </Row>
-      </div>
+      </div> */}
     </>
   );
 };

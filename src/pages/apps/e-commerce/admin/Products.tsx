@@ -1,4 +1,4 @@
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'components/base/Button';
 // import  {
@@ -73,7 +73,8 @@ const tabItems: FilterTabItem[] = [
 // ];
 
 const URL = 'https://engine.qberi.com/api/allBatteryDetails';
-const sessionToken = localStorage.getItem('sessionToken');
+const session = JSON.parse(localStorage.getItem('session') || '{}');
+const sessionToken = session.sessionToken;
 const headers = {
   'Content-Type': 'application/json',
   Authorization: `Bearer ${sessionToken}`

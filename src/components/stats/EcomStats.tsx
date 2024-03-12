@@ -34,7 +34,8 @@ const EcomStats = () => {
   const fetchData = useCallback(() => {
     const URL =
       'https://engine.qberi.com/api/totalPortfolioValue/portfolioValue';
-    const sessionToken = localStorage.getItem('sessionToken');
+    const session = JSON.parse(localStorage.getItem('session') || '{}');
+    const sessionToken = session?.sessionToken;
     const headers = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${sessionToken}`

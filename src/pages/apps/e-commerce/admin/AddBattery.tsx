@@ -202,7 +202,7 @@ const AddBattery = (props: any) => {
       });
       if (response.status === 200) {
         console.log('response', response.data);
-        setAllEquipments(response.data)
+        setAllEquipments(response.data);
       }
     } catch (error) {
       setError('An error occurred while fetching data.');
@@ -372,7 +372,9 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                          <h5 className="mb-2 text-1000">Other Compatible Devices</h5>
+                          <h5 className="mb-2 text-1000">
+                            Other Compatible Devices
+                          </h5>
                           <Form.Control
                             type="text"
                             placeholder="Comma Seperated"
@@ -384,7 +386,9 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                            <h5 className="mb-2 text-1000">Medical Equipment Name</h5>
+                          <h5 className="mb-2 text-1000">
+                            Medical Equipment Name
+                          </h5>
                           {/* <Form.Control
                             type="text"
                             placeholder="Medical Equipment Name"
@@ -396,14 +400,19 @@ const AddBattery = (props: any) => {
                             aria-label="medicalEquipmentName"
                             name="medicalEquipmentName"
                             onChange={handleChanges}
-                            required>
-                            {allEquipments.map((equipment: Equipment) => (
-                              equipment.enabled && (
-                                <option key={equipment.id} value={equipment.name}>
-                                  {equipment.name}
-                                </option>
-                              )
-                            ))}
+                            required
+                          >
+                            {allEquipments.map(
+                              (equipment: Equipment) =>
+                                equipment.enabled && (
+                                  <option
+                                    key={equipment.id}
+                                    value={equipment.name}
+                                  >
+                                    {equipment.name}
+                                  </option>
+                                )
+                            )}
                           </Form.Select>
                         </Form.Group>
                       </Col>
@@ -433,7 +442,7 @@ const AddBattery = (props: any) => {
                       </Col>
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
-                        <h5 className="mb-2 text-1000">Price</h5>
+                          <h5 className="mb-2 text-1000">Price</h5>
                           <Form.Control
                             type="text"
                             placeholder="$ Integer"

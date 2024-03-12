@@ -116,21 +116,21 @@ export const routes: RouteItems[] = [
         active: true,
         icon: 'shopping-cart',
         path: '/hospitalmerch/products'
-      },
-      {
-        name: 'Account Summary',
-        active: true,
-        path: '/dashboard/crm',
-        pathName: 'app-account-summary',
-        icon: 'clipboard'
-      },
-      {
-        name: 'Account Management',
-        active: true,
-        path: '/dashboard/project-management',
-        pathName: 'app-account-details',
-        icon: 'clipboard'
       }
+      // {
+      //   name: 'Account Summary',
+      //   active: true,
+      //   path: '/dashboard/crm',
+      //   pathName: 'app-account-summary',
+      //   icon: 'clipboard'
+      // },
+      // {
+      //   name: 'Account Management',
+      //   active: true,
+      //   path: '/dashboard/project-management',
+      //   pathName: 'app-account-details',
+      //   icon: 'clipboard'
+      // }
     ]
   },
   {

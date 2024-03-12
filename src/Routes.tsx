@@ -77,7 +77,7 @@ import Products from 'pages/apps/e-commerce/admin/Products';
 // import OrderDetails from 'pages/apps/e-commerce/admin/OrderDetails';
 // import Refund from 'pages/apps/e-commerce/admin/Refund';
 // import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
-import ProjectManagement from 'pages/dashboard/ProjectManagement';
+// import ProjectManagement from 'pages/dashboard/ProjectManagement';
 // import CreateNew from 'pages/apps/project-management/CreateNew';
 // import ProjectListView from 'pages/apps/project-management/ProjectListView';
 // import ProjectDetails from 'pages/apps/project-management/ProjectDetails';
@@ -136,7 +136,7 @@ import SimpleForgotPassword from 'pages/pages/authentication/simple/ForgotPasswo
 // import Members from 'pages/Members';
 // import DualNav from 'pages/pages/layouts/DualNav';
 import App from 'App';
-import Crm from 'pages/dashboard/Crm';
+// import Crm from 'pages/dashboard/Crm';
 // import LeadDetails from 'pages/apps/crm/LeadDetails';
 // import Analytics from 'pages/apps/crm/Analytics';
 // import DealDetails from 'pages/apps/crm/DealDetails';
@@ -299,14 +299,14 @@ const routes: RouteObject[] = [
           {
             path: '/dashboard',
             children: [
-              {
-                path: 'project-management',
-                element: <ProjectManagement />
-              },
-              {
-                path: 'crm',
-                element: <Crm />
-              },
+              // {
+              //   path: 'project-management',
+              //   element: <ProjectManagement />
+              // },
+              // {
+              //   path: 'crm',
+              //   element: <Crm />
+              // },
               {
                 path: 'roxwealth',
                 element: <Ecommerce2 />
