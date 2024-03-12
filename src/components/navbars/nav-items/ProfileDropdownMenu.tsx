@@ -41,9 +41,12 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
     }
   ]);
   const [email, setEmail] = useState('Email Not Found');
+  const [profileUrl, setProfileUrl] = useState('');
   useEffect(() => {
     const session = JSON.parse(localStorage.getItem('session') || '{}');
+    const profile = JSON.parse(localStorage.getItem('profile') || '{}');
     setEmail(session.email);
+    setProfileUrl(profile.pictureUrl);
   });
   return (
     <Dropdown.Menu
@@ -56,7 +59,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
       <Card className="position-relative border-0">
         <Card.Body className="p-0">
           <div className="d-flex flex-column align-items-center justify-content-center gap-2 pt-4 pb-3">
-            <Avatar src={avatar} size="xl" />
+            <Avatar src={profileUrl || avatar} size="xl" />
             <h6 className="text-black">{email}</h6>
           </div>
           {/* <div className="mb-3 mx-3">

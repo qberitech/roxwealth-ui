@@ -8,12 +8,19 @@ import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
 import NotificationDropdownMenu from './NotificationDropdownMenu';
 import ThemeToggler from 'components/common/ThemeToggler';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DropdownSearchBox from 'components/common/DropdownSearchBox';
 import SearchResult from 'components/common/SearchResult';
 import classNames from 'classnames';
 
 const NavItems = () => {
+  const [pictureUrl, setPictureUrl] = useState('');
+
+  useEffect(() => {
+    const profile = JSON.parse(localStorage.getItem('profile') || '{}');
+    setPictureUrl(profile.pictureUrl);
+  }, []);
+
   const {
     config: { navbarPosition }
   } = useAppContext();
@@ -84,7 +91,7 @@ const NavItems = () => {
             className="dropdown-caret-none nav-link pe-0 py-0 lh-1 h-100 d-flex align-items-center"
             variant=""
           >
-            <Avatar src={avatar57} size="l" />
+            <Avatar src={pictureUrl || avatar57} size="l" />
           </Dropdown.Toggle>
           <ProfileDropdownMenu />
         </Dropdown>

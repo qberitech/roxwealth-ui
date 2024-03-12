@@ -63,10 +63,10 @@ export const routes: RouteItems[] = [
         icon: 'trello'
       },
       {
-        name: 'Add Medical Equipments',
+        name: 'Medical Equipments',
         path: '/hospitalmerch/add-product-equipments',
         active: true,
-        icon: 'trello'
+        icon: 'layout'
       }
     ]
   }

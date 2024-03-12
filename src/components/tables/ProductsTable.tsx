@@ -107,11 +107,12 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
       const { compatibleDevice } = original;
       return (
         <div className="d-flex flex-wrap gap-2">
-          {compatibleDevice.map(tag => (
-            <Link key={tag} to="#!" className="text-decoration-none">
-              <Badge variant="tag">{tag}</Badge>
-            </Link>
-          ))}
+          {compatibleDevice &&
+            compatibleDevice.map(tag => (
+              <Link key={tag} to="#!" className="text-decoration-none">
+                <Badge variant="tag">{tag}</Badge>
+              </Link>
+            ))}
         </div>
       );
     },
