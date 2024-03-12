@@ -27,7 +27,7 @@ const EcommerceLayout = () => {
   const { contentClass, footerClass } = useMainLayoutContext();
 
   return (
-    <Container fluid>
+    <div>
       {(navbarPosition === 'vertical' || navbarPosition === 'combo') && (
         <NavbarVericalEcommerce />
       )}
@@ -41,7 +41,7 @@ const EcommerceLayout = () => {
         <Outlet />
         <Footer className={classNames(footerClass, 'position-absolute')} />
       </div>
-    </Container>
+    </div>
   );
 };
 
