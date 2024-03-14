@@ -1,70 +1,154 @@
-import Button from 'components/base/Button';
+import React, { useState, useEffect } from 'react';
 import { Card, Col, Form, Row } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
 import axios from 'axios';
-import useAdvanceTable from 'hooks/useAdvanceTable';
-import { ColumnDef } from '@tanstack/react-table';
+import Button from 'components/base/Button';
 import AdvanceTable from 'components/base/AdvanceTable';
 import AdvanceTableFooter from 'components/base/AdvanceTableFooter';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
+import { ColumnDef } from '@tanstack/react-table';
+import useAdvanceTable from 'hooks/useAdvanceTable';
+import SearchBox from 'components/common/SearchBox';
 
-type Equipment = {
-  id: string;
-  name: string;
-  enabled: boolean;
-};
-
-const session = JSON.parse(localStorage.getItem('session') || '{}');
-const sessionToken = session.sessionToken;
-
-const headers = {
-  Authorization: `Bearer ${sessionToken}`
-};
-
-interface AddEquipmentProps {
+interface Equipment {
   id: string;
   name: string;
   enabled: boolean;
 }
 
-const addMedicalEquipment = (formData: AddEquipmentProps) => {
-  const URL = 'https://engine.qberi.com/api/registerMedicalEquipment';
+interface AddEquipmentProps {
+  type: string; // Assuming type is required
+}
 
-  try {
-    axios
-      .post(URL, formData, { headers: headers })
-      .then(res => {
-        console.log('Response:', res);
-        alert('Product added successfully');
-      })
-      .catch(error => {
-        console.log('Error:', error);
-        alert('Error adding battery' + error);
-      });
-  } catch (error) {
-    console.log('Error:', error);
-    alert('Error adding battery' + error);
-  }
+const AddEquipment: React.FC<AddEquipmentProps> = ({ type }) => {
+  const session = JSON.parse(localStorage.getItem('session') || '{}');
+  const sessionToken = session.sessionToken;
 
-  console.log('Product added successfully');
-};
+  const headers = {
+    Authorization: `Bearer ${sessionToken}`
+  };
 
-const editMedicalEquipment = (id: string, state: boolean, name: string) => {
-  console.log('ID: ', id);
-  console.log('State: ', state);
-  console.log('Name: ', name);
-  return;
-};
-
-const AddEquipment = (props: any) => {
   const [isAddOrEdit, setIsAddOrEdit] = useState('Add');
-  const [formData, setFormData] = useState<AddEquipmentProps>({
+  const [formData, setFormData] = useState<Equipment>({
     id: '',
     name: '',
     enabled: true
   });
 
-  const handleFormEdit = (equipment: AddEquipmentProps) => {
+  const [allEquipments, setAllEquipments] = useState<Equipment[]>([]);
+
+  useEffect(() => {
+    fetchEquipment();
+  }, []);
+
+  const fetchEquipment = async () => {
+    try {
+      const response = await axios.get(
+        'https://engine.qberi.com/api/allMedicalEquipments',
+        { headers }
+      );
+      if (response.status === 200) {
+        setAllEquipments(response.data);
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (isAddOrEdit === 'Add') {
+        addMedicalEquipment(formData);
+      } else {
+        editMedicalEquipment(formData.id, formData.enabled, formData.name);
+      }
+
+      handleDiscard();
+    } catch (error) {
+      console.log('Error:', error);
+      alert(
+        `Error ${
+          isAddOrEdit === 'Add' ? 'adding' : 'editing'
+        } equipment: ${error}`
+      );
+    }
+  };
+
+  const addMedicalEquipment = async (data: Equipment) => {
+    try {
+      const response = await axios.post(
+        'https://engine.qberi.com/api/registerMedicalEquipment',
+        data,
+        { headers }
+      );
+      console.log('Response:', response);
+      alert('Product added successfully');
+    } catch (error) {
+      console.log('Error:', error);
+      alert('Error adding equipment: ' + error);
+    }
+  };
+
+  const editMedicalEquipment = async (
+    id: string,
+    state: boolean,
+    name: string
+  ) => {
+    try {
+      const data = {
+        [id]: {
+          name: [name],
+          isEnabled: [state]
+        }
+      };
+      const response = await axios.post(
+        'https://engine.qberi.com/api/editMedicalEquipmentDetails',
+        data,
+        { headers }
+      );
+      console.log('Response:', response);
+      alert('Product updated successfully');
+    } catch (error) {
+      console.log('Error:', error);
+      alert('Error updating equipment: ' + error);
+    }
+  };
+
+  const handleFormDelete = async (equipment: Equipment) => {
+    if (window.confirm('Are you sure you want to delete this equipment?')) {
+      try {
+        const URL = `https://engine.qberi.com/api/deleteMedicalEquipment/${equipment.id}`;
+        const response = await axios.delete(URL, { headers });
+        console.log('Response:', response);
+        alert('Product deleted successfully');
+        fetchEquipment();
+      } catch (error) {
+        console.log('Error:', error);
+        alert('Error deleting equipment: ' + error);
+      }
+    }
+  };
+
+  const handleDiscard = () => {
+    setFormData({
+      id: '',
+      name: '',
+      enabled: true
+    });
+    setIsAddOrEdit('Add');
+  };
+
+  const handleChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSwitchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setFormData(prevState => ({ ...prevState, [name]: checked }));
+  };
+
+  const handleFormEdit = (equipment: Equipment) => {
     setFormData(equipment);
     setIsAddOrEdit('Edit');
     console.log('Edit Equipment: ', equipment);
@@ -101,73 +185,53 @@ const AddEquipment = (props: any) => {
           </Button>
         );
       }
+    },
+    {
+      header: 'Delete',
+      cell: ({ row: { original } }) => {
+        return (
+          <Button
+            variant="phoenix-danger"
+            className="btn-sm"
+            onClick={() => handleFormDelete(original)}
+          >
+            Delete
+          </Button>
+        );
+      }
     }
   ];
 
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault();
-    if (!formData.enabled) {
-      formData.enabled = false;
-    } else {
-      formData.enabled = true;
-    }
-    if (isAddOrEdit === 'Add') {
-      addMedicalEquipment(formData);
-    } else {
-      editMedicalEquipment(formData.id, formData.enabled, formData.name);
-    }
-  };
-
-  const handleDiscard = () => {
-    setFormData({
-      id: '',
-      name: '',
-      enabled: true
-    });
-    setIsAddOrEdit('Add');
-  };
-  const handleChanges = (e: any) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const [allEquipments, setAllEquipments] = useState([]);
-
-  const fetchEquipment = async () => {
-    const URL = 'https://engine.qberi.com/api/allMedicalEquipments';
-    try {
-      const response = await axios.get(URL, {
-        headers: headers
-      });
-      if (response.status === 200) {
-        setAllEquipments(response.data);
-      }
-    } catch (error) {
-      console.log('Error:', error);
-    }
-  };
-  useEffect(() => {
-    fetchEquipment();
-  }, [fetchEquipment]);
-  const equipmentTable = useAdvanceTable({
+  const table = useAdvanceTable({
     data: allEquipments,
     columns: medicalTableColumns,
-    selection: true,
-    sortable: true,
+    pageSize: 6,
     pagination: true,
-    pageSize: 10
+    sortable: true,
+    selection: true
   });
+
+  const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    table.setGlobalFilter(e.target.value || undefined);
+  };
+
   return (
     <div>
       <form className="mb-9" onSubmit={handleFormSubmit}>
         <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
           <div>
-            <h2 className="mb-2">List of {props.type}s</h2>
+            <h2 className="mb-2">List of {type}s</h2>
           </div>
         </div>
         <Row className="g-5 p-2">
+          <div className="mb-4">
+            <SearchBox
+              placeholder="Search equipment"
+              onChange={handleSearchInputChange}
+            />
+          </div>
           <Col xs={12} xl={7} className="m-2">
-            <AdvanceTableProvider {...equipmentTable}>
+            <AdvanceTableProvider {...table}>
               <div className="mx-n4 px-4 mx-lg-n6 px-lg-6 bg-white border-top border-bottom border-200 position-relative top-1">
                 <AdvanceTable
                   tableProps={{ className: 'phoenix-table fs-9' }}
@@ -199,16 +263,14 @@ const AddEquipment = (props: any) => {
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
                           <h5 className="mb-2 text-1000">Enabled</h5>
-                          {/* Toggle button for enable and disable */}
                           <Form.Check
                             type="switch"
                             id="custom-switch"
                             name="enabled"
                             label={formData.enabled ? 'Enabled' : 'Disabled'}
+                            // its value is true or false
                             defaultChecked={formData.enabled}
-                            // values can be true or false
-                            onChange={handleChanges}
-                            size={10}
+                            onChange={handleSwitchChange}
                           />
                         </Form.Group>
                       </Col>
