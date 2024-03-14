@@ -21,88 +21,111 @@ const headers = {
   Authorization: `Bearer ${sessionToken}`
 };
 
-const editEquipment = (id: string, currentState: boolean) => {
-  console.log('Current State: ', currentState);
-
-  const question = currentState ? 'Disable' : 'Enable';
-
-  if (window.confirm(`Are you sure you want to ${question} this equipment?`)) {
-    console.log('Edit Equipment: ', id);
-  }
-};
-
-const medicalTableColumns: ColumnDef<Equipment>[] = [
-  {
-    header: 'Equipment Name',
-    accessorKey: 'name',
-    cell: ({ row: { original } }) => {
-      return <>{original.name || 'N/A'}</>;
-    },
-    meta: {
-      headerProps: { style: { width: 300 } }
-    }
-  },
-  {
-    header: 'Enabled',
-    accessorKey: 'enabled',
-    cell: ({ row: { original } }) => {
-      return <>{original.enabled ? 'Yes' : 'No'}</>;
-    }
-  },
-  {
-    header: 'Action',
-    cell: ({ row: { original } }) => {
-      return (
-        <Button
-          variant="phoenix-secondary"
-          className="btn-sm"
-          onClick={() => editEquipment(original.id, original.enabled)}
-        >
-          Edit
-        </Button>
-      );
-    }
-  }
-];
-
 interface AddEquipmentProps {
+  id: string;
   name: string;
   enabled: boolean;
 }
 
+const addMedicalEquipment = (formData: AddEquipmentProps) => {
+  const URL = 'https://engine.qberi.com/api/registerMedicalEquipment';
+
+  try {
+    axios
+      .post(URL, formData, { headers: headers })
+      .then(res => {
+        console.log('Response:', res);
+        alert('Product added successfully');
+      })
+      .catch(error => {
+        console.log('Error:', error);
+        alert('Error adding battery' + error);
+      });
+  } catch (error) {
+    console.log('Error:', error);
+    alert('Error adding battery' + error);
+  }
+
+  console.log('Product added successfully');
+};
+
+const editMedicalEquipment = (id: string, state: boolean, name: string) => {
+  console.log('ID: ', id);
+  console.log('State: ', state);
+  console.log('Name: ', name);
+  return;
+};
+
 const AddEquipment = (props: any) => {
+  const [isAddOrEdit, setIsAddOrEdit] = useState('Add');
   const [formData, setFormData] = useState<AddEquipmentProps>({
+    id: '',
     name: '',
     enabled: true
   });
 
-  const handleFormSubmit = (e: any) => {
-    e.preventDefault();
-
-    const URL = 'https://engine.qberi.com/api/registerMedicalEquipment';
-
-    try {
-      axios
-        .post(URL, formData, { headers: headers })
-        .then(res => {
-          console.log('Response:', res);
-          alert('Product added successfully');
-        })
-        .catch(error => {
-          console.log('Error:', error);
-          alert('Error adding battery' + error);
-        });
-    } catch (error) {
-      console.log('Error:', error);
-      alert('Error adding battery' + error);
-    }
-
-    console.log('Product added successfully');
+  const handleFormEdit = (equipment: AddEquipmentProps) => {
+    setFormData(equipment);
+    setIsAddOrEdit('Edit');
+    console.log('Edit Equipment: ', equipment);
   };
 
-  // const handleDiscard = () => {
-  //   setFormData({});
-  // }
+  const medicalTableColumns: ColumnDef<Equipment>[] = [
+    {
+      header: 'Equipment Name',
+      accessorKey: 'name',
+      cell: ({ row: { original } }) => {
+        return <>{original.name || 'N/A'}</>;
+      },
+      meta: {
+        headerProps: { style: { width: 300 } }
+      }
+    },
+    {
+      header: 'Enabled',
+      accessorKey: 'enabled',
+      cell: ({ row: { original } }) => {
+        return <>{original.enabled ? 'Yes' : 'No'}</>;
+      }
+    },
+    {
+      header: 'Action',
+      cell: ({ row: { original } }) => {
+        return (
+          <Button
+            variant="phoenix-secondary"
+            className="btn-sm"
+            onClick={() => handleFormEdit(original)}
+          >
+            Edit
+          </Button>
+        );
+      }
+    }
+  ];
+
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+    if (!formData.enabled) {
+      formData.enabled = false;
+    } else {
+      formData.enabled = true;
+    }
+    if (isAddOrEdit === 'Add') {
+      addMedicalEquipment(formData);
+    } else {
+      editMedicalEquipment(formData.id, formData.enabled, formData.name);
+    }
+  };
+
+  const handleDiscard = () => {
+    setFormData({
+      id: '',
+      name: '',
+      enabled: true
+    });
+    setIsAddOrEdit('Add');
+  };
   const handleChanges = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -158,7 +181,7 @@ const AddEquipment = (props: any) => {
               <Col xs={12} xl={12}>
                 <Card className="mb-3">
                   <Card.Body>
-                    <h4 className="mb-4">Add Medical Equipment</h4>
+                    <h4 className="mb-4">{isAddOrEdit} Medical Equipment</h4>
                     <Row className="g-3">
                       <Col xs={12} xl={12}>
                         <Form.Group className="mb-3">
@@ -168,6 +191,7 @@ const AddEquipment = (props: any) => {
                             placeholder="String"
                             name="name"
                             onChange={handleChanges}
+                            value={formData.name || ''}
                             required
                           />
                         </Form.Group>
@@ -181,10 +205,9 @@ const AddEquipment = (props: any) => {
                             id="custom-switch"
                             name="enabled"
                             label={formData.enabled ? 'Enabled' : 'Disabled'}
-                            // set the value to the state
-                            defaultChecked={true}
+                            defaultChecked={formData.enabled}
+                            // values can be true or false
                             onChange={handleChanges}
-                            // bigger size
                             size={10}
                           />
                         </Form.Group>
@@ -194,7 +217,10 @@ const AddEquipment = (props: any) => {
                 </Card>
                 <div className="d-flex flex-wrap gap-2">
                   <Button variant="primary" type="submit">
-                    Add Equipment
+                    {isAddOrEdit} Equipment
+                  </Button>
+                  <Button variant="secondary" onClick={handleDiscard}>
+                    Discard
                   </Button>
                 </div>
               </Col>
