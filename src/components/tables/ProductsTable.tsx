@@ -30,7 +30,7 @@ const deleteBattery = async (id: string) => {
     .delete(URL, { headers: headers })
     .then(response => {
       console.log('Response:', response.data);
-      window.location.reload();
+      // window.location.reload();
     })
     .catch(error => {
       console.error('Error:', error);

@@ -5,7 +5,7 @@ import Footer from 'components/footers/Footer';
 import { Outlet } from 'react-router-dom';
 import useSettingsMountEffect from 'hooks/useSettingsMountEffect';
 // import ChatWidget from 'components/common/chat-widget/ChatWidget';
-import { Container } from 'react-bootstrap';
+// import { Container } from 'react-bootstrap';
 import { useAppContext } from 'providers/AppProvider';
 // import NavbarVertical from 'components/navbars/navbar-vertical/NavbarVertical';
 import NavbarTopDefault from 'components/navbars/navbar-top/NavbarTopDefault';

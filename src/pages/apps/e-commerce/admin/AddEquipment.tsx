@@ -31,35 +31,6 @@ const editEquipment = (id: string, currentState: boolean) => {
   }
 };
 
-const deleteEquipment = async (id: string) => {
-
-  const URL = 'https://engine.qberi.com/api/editMedicalEquipmentDetails/' + id;
-  const session = JSON.parse(localStorage.getItem('session') || '{}');
-  const sessionToken = session.sessionToken;
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${sessionToken}`
-  };
-
-  axios
-    .delete(URL, { headers: headers })
-    .then(response => {
-      console.log('Response:', response.data);
-      window.location.reload();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-
-const onClickDelete = (id: string) => {
-  console.log('Delete', id);
-  // Give Prompt to confirm the delete
-  if (window.confirm('Are you sure you want to delete this Equipment?')) {
-    deleteEquipment(id);
-  }
-};
-
 const medicalTableColumns: ColumnDef<Equipment>[] = [
   {
     header: 'Equipment Name',
@@ -68,7 +39,7 @@ const medicalTableColumns: ColumnDef<Equipment>[] = [
       return <>{original.name || 'N/A'}</>;
     },
     meta: {
-      headerProps: { style: { width: 200 } }
+      headerProps: { style: { width: 300 } }
     }
   },
   {
@@ -88,21 +59,6 @@ const medicalTableColumns: ColumnDef<Equipment>[] = [
           onClick={() => editEquipment(original.id, original.enabled)}
         >
           Edit
-        </Button>
-      );
-    }
-  },
-  {
-    header: 'Delete',
-    accessorKey: 'id',
-    cell: ({ row: { original } }) => {
-      return (
-        <Button
-          variant="phoenix-secondary"
-          className="btn-sm"
-          onClick={() => onClickDelete(original.id)}
-        >
-          Delete
         </Button>
       );
     }
