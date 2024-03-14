@@ -9,6 +9,7 @@ import Button from 'components/base/Button';
 import axios from 'axios';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 // import StarCheckbox from 'components/base/StarCheckbox';
 // import RevealDropdown, {
 //   RevealDropdownTrigger
@@ -187,11 +188,11 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
         //   className="fw-semi-bold line-clamp-3"
         // >
         <Button
-          variant="danger"
+          variant="soft-warning"
           className="mx-2"
           onClick={() => onClickDelete(id)}
         >
-          Delete
+          <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
         </Button>
         // </Link>
       );
