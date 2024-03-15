@@ -7,7 +7,7 @@ import { Batteries } from 'hospitalmerch/data/products';
 import Badge from 'components/base/Badge';
 import Button from 'components/base/Button';
 import axios from 'axios';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 // import StarCheckbox from 'components/base/StarCheckbox';
@@ -68,6 +68,18 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
   //   },
   //   enableSorting: false
   // },
+  {
+    accessorKey: 'modelNumber',
+    header: 'Model Number',
+    cell: ({ row: { original } }) => {
+      const { modelNumber } = original;
+      return <div>{modelNumber}</div>;
+    },
+    meta: {
+      headerProps: { style: { width: 350 }, className: 'ps-4' },
+      cellProps: { className: 'ps-4' }
+    }
+  },
   {
     accessorKey: 'medicalEquipmentName',
     header: 'Equipment Name',
@@ -177,16 +189,32 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
-    id: 'Delete',
+    id: 'Edit',
     accessorKey: 'id',
-    header: '',
+    header: 'Edit',
     cell: ({ row: { original } }) => {
       const { id } = original;
       return (
-        // <Link
-        //   to={`/hospitalmerch/product-details/${id}`}
-        //   className="fw-semi-bold line-clamp-3"
-        // >
+          <Link
+            to={`/hospitalmerch/product-details/${id}`}
+            className="fw-semi-bold line-clamp-3"
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </Link>
+      );
+    },
+    meta: {
+      headerProps: { style: { width: 150 }, className: 'ps-4 text-center' },
+      cellProps: { className: 'fw-bold text-700 text-center' }
+    }
+  },
+  {
+    id: 'Delete',
+    accessorKey: 'id',
+    header: 'Delete',
+    cell: ({ row: { original } }) => {
+      const { id } = original;
+      return (
         <Button
           variant="soft-warning"
           className="mx-2"
@@ -194,12 +222,11 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
         >
           <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
         </Button>
-        // </Link>
       );
     },
     meta: {
-      headerProps: { style: { width: 125 }, className: 'ps-1' },
-      cellProps: { className: 'text-center' }
+      headerProps: { style: { width: 150 }, className: 'ps-4 text-center' },
+      cellProps: { className: 'fw-bold text-700 text-center' }
     }
   }
   // {
