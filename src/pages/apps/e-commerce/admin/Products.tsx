@@ -12,19 +12,12 @@ import ProductsTable, {
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
 
-
 const URL = 'https://engine.qberi.com/api/allBatteryDetails';
+const URL2 = 'https://engine.qberi.com/api/allEnabledBatteryDetails';
 
 const Products = () => {
   const [allProductData, setAllProductData] = useState([]);
-
-  const tabItems: FilterTabItem[] = [
-    {
-      label: 'All',
-      value: 'all',
-      count: allProductData.length
-    }
-  ];
+  const [allEnabledData, setAllEnabledData] = useState([]);
 
   const fetchData = useCallback(async () => {
     try {
@@ -35,8 +28,14 @@ const Products = () => {
         Authorization: `Bearer ${sessionToken}`
       };
       const response = await axios.get(URL, { headers });
+      const responseEnableProducts = await axios.get(URL2, { headers });
       setAllProductData(response.data);
+      setAllEnabledData(responseEnableProducts.data);
       console.log('Response:', response.data);
+      console.log(
+        'Response Enabled Product Data :',
+        responseEnableProducts.data
+      );
     } catch (error) {
       console.error('Error:', error);
     }
@@ -46,8 +45,27 @@ const Products = () => {
     fetchData();
   }, [fetchData]);
 
+  const [activeTab, setActiveTab] = useState('all');
+
+  const tabItems: FilterTabItem[] = [
+    {
+      label: 'All',
+      value: 'all',
+      onClick: () => setActiveTab('all'),
+      count: allProductData.length
+    },
+    {
+      label: 'Published',
+      value: 'published',
+      onClick: () => setActiveTab('published'),
+      count: allEnabledData.length
+    }
+  ];
+
+  const TableData = activeTab === 'published' ? allEnabledData : allProductData;
+
   const table = useAdvanceTable({
-    data: allProductData,
+    data: TableData,
     columns: productsTablecolumns,
     pageSize: 10,
     pagination: true,

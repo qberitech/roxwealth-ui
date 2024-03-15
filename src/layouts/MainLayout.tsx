@@ -28,6 +28,7 @@ const MainLayout = () => {
 
   useEffect(() => {
     // Check if the user is logged in
+    document.title = 'Qberi';
     if (!validateSession()) {
       navigate('/auth/sign-in');
       return;

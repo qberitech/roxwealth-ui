@@ -1,7 +1,7 @@
 import Avatar from 'components/base/Avatar';
 import { useEffect, useState } from 'react';
 import { Card, Dropdown, Nav } from 'react-bootstrap';
-import avatar from 'assets/img/team/72x72/57.webp';
+// import avatar from 'assets/img/team/72x72/57.webp';
 import FeatherIcon from 'feather-icons-react';
 import { Link } from 'react-router-dom';
 import Scrollbar from 'components/base/Scrollbar';

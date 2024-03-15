@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import validateSession from 'Actions/validateSession';
+import UpdateProfile from 'components/Admins/UpdateProfile';
 
 // Define interface for session data
 interface SessionData {
@@ -104,6 +105,7 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         // updateUserData(email, sessionToken); // Update user data in localStorage
 
         setSuccessMessage('Logged in successfully');
+        UpdateProfile();
         setTimeout(() => {
           history('/dashboard/roxwealth');
         }, 1000);

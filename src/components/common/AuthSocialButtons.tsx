@@ -4,6 +4,8 @@
 // import React from 'react';
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
+import UpdateProfile from 'components/Admins/UpdateProfile';
 // import { useNavigate } from 'react-router-dom';
 
 interface SessionData {
@@ -37,6 +39,7 @@ const updateSession = (sessionToken: string, email: string) => {
 };
 
 const AuthSocialButtons = ({ title }: { title: string }) => {
+  const navigate = useNavigate();
   const onGoogleSuccess = (response: any) => {
     const credential = response.credential;
     const URL = 'https://engine.qberi.com/api/googleLogin';
@@ -54,7 +57,9 @@ const AuthSocialButtons = ({ title }: { title: string }) => {
         }
         localStorage.setItem('sessionToken', sessionToken);
         updateSession(sessionToken, getEmailFromJWT(credential));
-        window.location.href = '/dashboard/roxwealth';
+        UpdateProfile();
+        // window.location.href = '/dashboard/roxwealth';
+        navigate('/dashboard/roxwealth');
         // Redirect to dashboard
         // const navigate = useNavigate();
         // navigate('/dashboard/roxwealth');
