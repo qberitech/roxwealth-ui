@@ -217,27 +217,27 @@ const AddBattery = (props: any) => {
       <form className="mb-9" onSubmit={handleFormSubmit}>
         <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
           <div>
-            <h2 className="mb-2">Add a new {props.type}</h2>
-            <h5 className="text-700 fw-semi-bold">
+            <h2 className="mb-2">Add new {props.type}</h2>
+            {/* <h5 className="text-700 fw-semi-bold">
               Orders placed across your store
-            </h5>
+            </h5> */}
           </div>
           <div className="d-flex flex-wrap gap-2">
             {/* <Button variant="phoenix-secondary" type="button" onClick={handleDiscard}>
               Discard
             </Button> */}
             <Button variant="primary" type="submit">
-              Publish product
+              Publish battery
             </Button>
           </div>
         </div>
         <Row className="g-5">
           <Col xs={12} xl={8}>
-            <h4 className="mb-3">Product Name</h4>
+            <h4 className="mb-3">Battery Model</h4>
             {/* <Form.Control placeholder="Write title here..." className="mb-5" /> */}
             <Form.Control
               type="text"
-              placeholder="Product Name"
+              placeholder="Battery Model"
               name="productName"
               onChange={handleChanges}
               className="mb-5"

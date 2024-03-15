@@ -51,7 +51,7 @@ export const routes: RouteItems[] = [
     icon: UilCube,
     pages: [
       {
-        name: 'Product List',
+        name: 'Medical Equipment Battery',
         path: '/hospitalmerch/products',
         active: true,
         icon: 'tag'

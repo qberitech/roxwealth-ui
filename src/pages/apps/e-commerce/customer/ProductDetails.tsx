@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Batteries } from 'hospitalmerch/data/products';
 // import ProductNotFound from './ProductNotFound';
+import EditProductDetails from '../admin/EditProductDetails';
 
 const ProductDetails = () => {
   // const productData = productsTableData;
@@ -62,6 +63,7 @@ const ProductDetails = () => {
 
       <Section className="py-0">
         <SimilarProducts products={topElectronicProducts} />
+        <EditProductDetails details={myProduct} />
       </Section>
     </div>
   );

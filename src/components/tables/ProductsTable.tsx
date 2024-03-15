@@ -94,7 +94,7 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
   },
   {
     accessorKey: 'productName',
-    header: 'Product name',
+    header: 'Battery Model',
     cell: ({ row: { original } }) => {
       const { productName } = original;
       return <div>{productName}</div>;
@@ -135,39 +135,6 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
-    id: 'id',
-    accessorKey: 'id',
-    header: 'Preview',
-    cell: ({ row: { original } }) => {
-      const { id } = original;
-      identity = id;
-      return (
-        <Link
-          to={`/hospitalmerch/product-details/${id}`}
-          className="fw-semi-bold line-clamp-3"
-        >
-          <FontAwesomeIcon icon={faEye} /> {/* Font Awesome eye icon */}
-        </Link>
-      );
-    },
-    meta: {
-      headerProps: { style: { width: 125 }, className: 'ps-1' },
-      cellProps: { className: 'text-center' }
-    }
-  },
-  // {
-  //   accessorKey: 'dimensions',
-  //   header: 'dimensions',
-  //   cell: ({ row: { original } }) => {
-  //     const { dimensions } = original;
-  //     return {dimensions};
-  //   },
-  //   meta: {
-  //     headerProps: { style: { width: 200 }, className: 'ps-4' },
-  //     cellProps: { className: 'ps-4 fw-semi-bold text-start' }
-  //   }
-  // },
-  {
     accessorKey: 'cellCapacity',
     header: 'Cell Capacity ',
     meta: {
@@ -189,18 +156,39 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
     }
   },
   {
+    id: 'id',
+    accessorKey: 'id',
+    header: 'Preview',
+    cell: ({ row: { original } }) => {
+      const { id } = original;
+      identity = id;
+      return (
+        <Link
+          to={`/hospitalmerch/product-details/${id}`}
+          className="fw-semi-bold line-clamp-3"
+        >
+          <FontAwesomeIcon icon={faEye} /> {/* Font Awesome eye icon */}
+        </Link>
+      );
+    },
+    meta: {
+      headerProps: { style: { width: 125 }, className: 'ps-1' },
+      cellProps: { className: 'text-center' }
+    }
+  },
+  {
     id: 'Edit',
     accessorKey: 'id',
     header: 'Edit',
     cell: ({ row: { original } }) => {
       const { id } = original;
       return (
-          <Link
-            to={`/hospitalmerch/product-details/${id}`}
-            className="fw-semi-bold line-clamp-3"
-          >
-            <FontAwesomeIcon icon={faEdit} />
-          </Link>
+        <Link
+          to={`/hospitalmerch/product-details/${id}`}
+          className="fw-semi-bold line-clamp-3"
+        >
+          <FontAwesomeIcon icon={faEdit} />
+        </Link>
       );
     },
     meta: {

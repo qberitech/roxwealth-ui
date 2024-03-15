@@ -59,7 +59,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
       <Card className="position-relative border-0">
         <Card.Body className="p-0">
           <div className="d-flex flex-column align-items-center justify-content-center gap-2 pt-4 pb-3">
-            <Avatar src={profileUrl || avatar} size="xl" />
+            <Avatar src={profileUrl} size="xl" />
             <h6 className="text-black">{email}</h6>
           </div>
           {/* <div className="mb-3 mx-3">

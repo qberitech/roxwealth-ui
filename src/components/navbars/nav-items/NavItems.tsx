@@ -91,7 +91,7 @@ const NavItems = () => {
             className="dropdown-caret-none nav-link pe-0 py-0 lh-1 h-100 d-flex align-items-center"
             variant=""
           >
-            <Avatar src={pictureUrl || avatar57} size="l" />
+            <Avatar src={pictureUrl} size="l" />
           </Dropdown.Toggle>
           <ProfileDropdownMenu />
         </Dropdown>

@@ -12,33 +12,19 @@ import ProductsTable, {
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
 
-const tabItems: FilterTabItem[] = [
-  {
-    label: 'All',
-    value: 'all',
-    count: 68817
-  },
-  {
-    label: 'Published',
-    value: 'published',
-    count: 70348
-  },
-  {
-    label: 'Drafts',
-    value: 'drafts',
-    count: 17
-  },
-  {
-    label: 'On discount',
-    value: 'on_discount',
-    count: 810
-  }
-];
 
 const URL = 'https://engine.qberi.com/api/allBatteryDetails';
 
 const Products = () => {
   const [allProductData, setAllProductData] = useState([]);
+
+  const tabItems: FilterTabItem[] = [
+    {
+      label: 'All',
+      value: 'all',
+      count: allProductData.length
+    }
+  ];
 
   const fetchData = useCallback(async () => {
     try {
@@ -89,7 +75,7 @@ const Products = () => {
                 <Link to="/hospitalmerch/add-product-batteries">
                   <Button variant="primary" className="mx-2">
                     <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    Add Product
+                    Add Battery
                   </Button>
                 </Link>
               </div>
