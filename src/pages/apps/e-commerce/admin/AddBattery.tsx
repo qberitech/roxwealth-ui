@@ -217,17 +217,14 @@ const AddBattery = (props: any) => {
       <form className="mb-9" onSubmit={handleFormSubmit}>
         <div className="d-flex flex-wrap gap-3 flex-between-end mb-5">
           <div>
-            <h2 className="mb-2">Add a new {props.type}</h2>
-            <h5 className="text-700 fw-semi-bold">
-              Orders placed across your store
-            </h5>
+            <h2 className="mb-2">Add new {props.type}</h2>
           </div>
           <div className="d-flex flex-wrap gap-2">
             {/* <Button variant="phoenix-secondary" type="button" onClick={handleDiscard}>
               Discard
             </Button> */}
             <Button variant="primary" type="submit">
-              Publish product
+              Publish {props.type}
             </Button>
           </div>
         </div>
@@ -291,7 +288,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Color</h5>
                           <Form.Control
                             type="text"
-                            placeholder="String"
+                            placeholder="Alphabet"
                             name="colour"
                             onChange={handleChanges}
                             required
@@ -303,7 +300,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Cell Quantity</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Integer"
+                            placeholder="Number"
                             name="cellQuantity"
                             onChange={handleChanges}
                             required
@@ -315,7 +312,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Cell Capacity</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Integer"
+                            placeholder="Number"
                             name="cellCapacity"
                             onChange={handleChanges}
                             required
@@ -327,7 +324,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Cell Type</h5>
                           <Form.Control
                             type="text"
-                            placeholder="String"
+                            placeholder="Alphabet"
                             name="cellType"
                             onChange={handleChanges}
                             required
@@ -339,7 +336,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Cell Brand</h5>
                           <Form.Control
                             type="text"
-                            placeholder="String"
+                            placeholder="Alphabet"
                             name="cellBrand"
                             onChange={handleChanges}
                             required
@@ -351,7 +348,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Voltage</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Integer (Unit - V)"
+                            placeholder="Number+(Unit - V)  [Eg - 1.5 V]"
                             name="voltage"
                             onChange={handleChanges}
                             required
@@ -421,7 +418,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Weight</h5>
                           <Form.Control
                             type="text"
-                            placeholder="Integer (Unit - g)"
+                            placeholder="Number+(Unit - g) [Eg - 21mg]"
                             name="weight"
                             onChange={handleChanges}
                             required
@@ -433,7 +430,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Dimensions</h5>
                           <Form.Control
                             type="text"
-                            placeholder="String"
+                            placeholder="[Eg - 22m x 11m x 33m]"
                             name="dimensions"
                             onChange={handleChanges}
                             required
@@ -445,7 +442,7 @@ const AddBattery = (props: any) => {
                           <h5 className="mb-2 text-1000">Price</h5>
                           <Form.Control
                             type="text"
-                            placeholder="$ Integer"
+                            placeholder="Number"
                             name="price"
                             onChange={handleChanges}
                             required

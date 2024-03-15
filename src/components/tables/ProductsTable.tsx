@@ -92,18 +92,18 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
       cellProps: { className: 'ps-4' }
     }
   },
-  {
-    accessorKey: 'productName',
-    header: 'Product name',
-    cell: ({ row: { original } }) => {
-      const { productName } = original;
-      return <div>{productName}</div>;
-    },
-    meta: {
-      headerProps: { style: { width: 350 }, className: 'ps-4' },
-      cellProps: { className: 'ps-4' }
-    }
-  },
+  // {
+  //   accessorKey: 'productName',
+  //   header: 'Product name',
+  //   cell: ({ row: { original } }) => {
+  //     const { productName } = original;
+  //     return <div>{productName}</div>;
+  //   },
+  //   meta: {
+  //     headerProps: { style: { width: 350 }, className: 'ps-4' },
+  //     cellProps: { className: 'ps-4' }
+  //   }
+  // },
   {
     accessorKey: 'cellType',
     header: 'Cell Type',

@@ -12,33 +12,13 @@ import ProductsTable, {
 import useAdvanceTable from 'hooks/useAdvanceTable';
 import AdvanceTableProvider from 'providers/AdvanceTableProvider';
 
-const tabItems: FilterTabItem[] = [
-  {
-    label: 'All',
-    value: 'all',
-    count: 68817
-  },
-  {
-    label: 'Published',
-    value: 'published',
-    count: 70348
-  },
-  {
-    label: 'Drafts',
-    value: 'drafts',
-    count: 17
-  },
-  {
-    label: 'On discount',
-    value: 'on_discount',
-    count: 810
-  }
-];
 
 const URL = 'https://engine.qberi.com/api/allBatteryDetails';
+const URL2 = 'https://engine.qberi.com/api/allEnabledBatteryDetails'
 
 const Products = () => {
   const [allProductData, setAllProductData] = useState([]);
+  const [allEnabledData, setAllEnabledData] = useState([]);
 
   const fetchData = useCallback(async () => {
     try {
@@ -49,8 +29,11 @@ const Products = () => {
         Authorization: `Bearer ${sessionToken}`
       };
       const response = await axios.get(URL, { headers });
+      const responseEnableProducts = await axios.get(URL2, { headers });
       setAllProductData(response.data);
+      setAllEnabledData(responseEnableProducts.data);
       console.log('Response:', response.data);
+      console.log('Response Enabled Product Data :', responseEnableProducts.data);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -60,8 +43,27 @@ const Products = () => {
     fetchData();
   }, [fetchData]);
 
+  const [activeTab, setActiveTab] = useState('all');
+
+  const tabItems: FilterTabItem[] = [
+    {
+      label: 'All',
+      value: 'all',
+      onClick: () => setActiveTab('all'),
+      count: allProductData.length
+    },
+    {
+      label: 'Published',
+      value: 'published',
+      onClick: () => setActiveTab('published'),
+      count: allEnabledData.length
+    }
+  ];
+
+  const TableData = activeTab === 'published' ? allEnabledData : allProductData;
+
   const table = useAdvanceTable({
-    data: allProductData,
+    data: TableData,
     columns: productsTablecolumns,
     pageSize: 10,
     pagination: true,
@@ -89,7 +91,7 @@ const Products = () => {
                 <Link to="/hospitalmerch/add-product-batteries">
                   <Button variant="primary" className="mx-2">
                     <FontAwesomeIcon icon={faPlus} className="me-2" />
-                    Add Product
+                    Add Battery
                   </Button>
                 </Link>
               </div>
