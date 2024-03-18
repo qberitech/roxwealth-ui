@@ -125,6 +125,8 @@ export type Batteries = {
   productName: string;
   voltage: string;
   weight: string;
+  isEnabled: boolean;
+  isDeleted: boolean;
 };
 
 export const topDealsProducts: Product[] = [

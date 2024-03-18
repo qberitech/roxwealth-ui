@@ -17,7 +17,7 @@ const ProfileDropdownMenu = ({ className }: { className?: string }) => {
     {
       label: 'Dashboard',
       icon: 'pie-chart',
-      link: '/dashboard'
+      link: '/dashboard/roxwealth'
     },
     {
       label: 'Posts & Activity',

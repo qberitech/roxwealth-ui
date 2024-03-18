@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isAccordionItemSelected } from 'react-bootstrap/esm/AccordionContext';
 export type Batteries = {
   cellBrand: string;
   cellCapacity: string;
@@ -14,6 +15,8 @@ export type Batteries = {
   pictureUrl: string;
   price: number;
   productName: string;
+  isEnabled: boolean;
+  isDeleted: boolean;
 };
 
 const getBatteries = async () => {
@@ -50,7 +53,9 @@ const getBatteries = async () => {
       otherCompatibleModels: battery.otherCompatibleModels,
       pictureUrl: battery.pictureUrl,
       price: battery.price,
-      productName: battery.productName
+      productName: battery.productName,
+      isEnabled: battery.isEnabled,
+      isDeleted: battery.isDeleted
     });
   });
 

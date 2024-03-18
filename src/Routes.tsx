@@ -187,6 +187,7 @@ import Admin from 'pages/pages/Mains/Admin';
 // import AddProduct from 'pages/apps/e-commerce/admin/AddProduct';
 import AddBattery from 'pages/apps/e-commerce/admin/AddBattery';
 import AddEquipment from 'pages/apps/e-commerce/admin/AddEquipment';
+import Roxwealth from 'pages/pages/landing/Roxwealth';
 // import { id } from 'components/tables/ProductsTable';
 
 // const FontAwesomeExample = lazy(
@@ -224,6 +225,10 @@ const routes: RouteObject[] = [
       {
         path: '/business-units',
         element: <BusinessUnits />
+      },
+      {
+        path: '/roxwealth',
+        element: <Roxwealth />
       },
       {
         path: '/business',

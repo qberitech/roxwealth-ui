@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Col, Form, Row } from 'react-bootstrap';
+import { Badge, Card, Col, Form, Row } from 'react-bootstrap';
 import axios from 'axios';
 import Button from 'components/base/Button';
 import AdvanceTable from 'components/base/AdvanceTable';
@@ -169,7 +169,12 @@ const AddEquipment: React.FC<AddEquipmentProps> = ({ type }) => {
       header: 'Enabled',
       accessorKey: 'enabled',
       cell: ({ row: { original } }) => {
-        return <>{original.enabled ? 'Yes' : 'No'}</>;
+        // return <>{original.enabled ? 'Yes' : 'No'}</>;
+        return (
+          <Badge bg={original.enabled ? 'success' : 'danger'}>
+            {original.enabled ? 'Yes' : 'No'}
+          </Badge>
+        );
       }
     },
     {
