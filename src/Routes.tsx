@@ -189,6 +189,7 @@ import AddBattery from 'pages/apps/e-commerce/admin/AddBattery';
 import AddEquipment from 'pages/apps/e-commerce/admin/AddEquipment';
 import Roxwealth from 'pages/pages/landing/Roxwealth';
 import Homepage from 'pages/apps/e-commerce/customer/Homepage';
+import Creators from 'pages/pages/landing/Creators';
 // import { id } from 'components/tables/ProductsTable';
 
 // const FontAwesomeExample = lazy(
@@ -243,6 +244,10 @@ const routes: RouteObject[] = [
             element: <BusinessUnits />
           }
         ]
+      },
+      {
+        path: '/creators',
+        element: <Creators />
       },
       {
         path: 'auth',
