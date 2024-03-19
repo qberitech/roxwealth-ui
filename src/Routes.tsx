@@ -189,6 +189,8 @@ import AddBattery from 'pages/apps/e-commerce/admin/AddBattery';
 import AddEquipment from 'pages/apps/e-commerce/admin/AddEquipment';
 import Roxwealth from 'pages/pages/landing/Roxwealth';
 import Homepage from 'pages/apps/e-commerce/customer/Homepage';
+// import Error500 from 'pages/error/Error500';
+import Thank from 'pages/pages/Mains/Thank';
 // import { id } from 'components/tables/ProductsTable';
 
 // const FontAwesomeExample = lazy(
@@ -241,6 +243,15 @@ const routes: RouteObject[] = [
           {
             path: 'units',
             element: <BusinessUnits />
+          }
+        ]
+      },
+      {
+        path: 'hold',
+        children: [
+          {
+            path: 'thankyou',
+            element: <Thank />
           }
         ]
       },
