@@ -16,6 +16,8 @@ import RevealDropdown, {
 } from 'components/base/RevealDropdown';
 // import ActionDropdownItems from 'components/common/ActionDropdownItems';
 import ProductDropDownItems from 'components/common/ProductDropDownItems';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faMinus } from '@fortawesome/free-solid-svg-icons';
 // import { Button } from 'react-bootstrap';
 let identity;
 
@@ -143,12 +145,12 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
       return (
         <div>
           {original.isEnabled ? (
-            <Badge variant="tag" className="bg-success">
-              Enabled
+            <Badge variant="default" className="bg-success">
+              <FontAwesomeIcon color="black" icon={faCheck} />{'  '}Enabled
             </Badge>
           ) : (
-            <Badge variant="tag" className="bg-danger">
-              Disabled
+            <Badge variant="default" className="bg-danger">
+              <FontAwesomeIcon color="black" icon={faMinus} />{'  '}Disabled
             </Badge>
           )}
         </div>
