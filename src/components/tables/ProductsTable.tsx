@@ -146,11 +146,13 @@ export const productsTablecolumns: ColumnDef<Batteries>[] = [
         <div>
           {original.isEnabled ? (
             <Badge variant="default" className="bg-success">
-              <FontAwesomeIcon color="black" icon={faCheck} />{'  '}Enabled
+              <FontAwesomeIcon color="black" icon={faCheck} />
+              {'  '}Enabled
             </Badge>
           ) : (
             <Badge variant="default" className="bg-danger">
-              <FontAwesomeIcon color="black" icon={faMinus} />{'  '}Disabled
+              <FontAwesomeIcon color="black" icon={faMinus} />
+              {'  '}Disabled
             </Badge>
           )}
         </div>

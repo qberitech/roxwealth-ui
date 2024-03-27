@@ -45,7 +45,9 @@ const Thank = () => {
                   className="img-fluid mb-6 w-50 w-lg-75 d-light-none"
                   alt=""
                 /> */}
-                <h2 className="text-800 fw-bolder mb-3">Thank you for register with us!</h2>
+                <h2 className="text-800 fw-bolder mb-3">
+                  Thank you for register with us!
+                </h2>
                 <p className="text-900 mb-5">
                   you will receive an email once your profile is verified
                 </p>

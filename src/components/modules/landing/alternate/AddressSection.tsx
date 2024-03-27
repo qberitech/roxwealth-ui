@@ -9,25 +9,7 @@ const AddressSection = () => {
         <div className="text-center mb-7">
           <h5 className="text-info mb-3 ">Contact</h5>
         </div>
-        {/* <div className="mb-15">
-          <Mapbox
-            className="rounded-4"
-            style={{ height: 380 }}
-            options={{
-              center: [-74.0020158, 40.7228022],
-              zoom: 14,
-              scrollZoom: false
-            }}
-          />
-        </div> */}
         <Row className="g-5 g-lg-5">
-          {/* <Col
-            xs={12}
-            md={6}
-            className="mb-5 mb-md-0 text-center text-md-start"
-          >
-            <HelpCenter />
-          </Col> */}
           <center>
             <Col xs={12} md={8} className="text-center text-md-start">
               <QueryForm />
