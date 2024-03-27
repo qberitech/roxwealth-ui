@@ -1,9 +1,9 @@
-import { faClock, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faClock, faHeart } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
-import Badge from 'components/base/Badge';
-import Button from 'components/base/Button';
-import Rating from 'components/base/Rating';
+// import Badge from 'components/base/Badge';
+// import Button from 'components/base/Button';
+// import Rating from 'components/base/Rating';
 import { Product as ProductType } from 'components/sliders/EcomTopElectronics';
 // import { currencyFormat } from 'helpers/utils';
 // import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
@@ -28,7 +28,11 @@ const ProductCard = ({ product }: { product: ProductType }) => {
                 </>
               )}
             </Button> */}
-            <img src={product.pictureUrl[0]} alt="Image Not Available!" className="img-fluid" />
+            <img
+              src={product.pictureUrl[0]}
+              alt="Image Not Available!"
+              className="img-fluid"
+            />
             {/* {product.verified && (
               <Badge bg="success" className="fs-10 product-verified-badge">
                 Verified
@@ -52,19 +56,19 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             </p>
           )} */}
         </div>
-        <div className='mt-5'>
+        <div className="mt-5">
           {product.medicalEquipmentName && (
-            <p className='text-900 fw-bold fs-8 lh-1'>
+            <p className="text-900 fw-bold fs-8 lh-1">
               {product.medicalEquipmentName}
             </p>
           )}
           {product.cellQuantity && (
-            <p className='text-700 fw-semi-bold fs-9 lh-1'>
+            <p className="text-700 fw-semi-bold fs-9 lh-1">
               Cell Quantity: {product.cellQuantity}
             </p>
           )}
           {product.cellCapacity && (
-            <p className='text-700 fw-semi-bold fs-9 lh-1'>
+            <p className="text-700 fw-semi-bold fs-9 lh-1">
               Capacity: {product.cellCapacity}
             </p>
           )}
@@ -98,9 +102,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
             </p>
           )}
           <div className="d-flex align-items-center mb-1">
-            <h3 className="text-1100 mb-0">
-              {product.price}
-            </h3>
+            <h3 className="text-1100 mb-0">{product.price}</h3>
           </div>
           {/* {product.dealEndTime && (
             <p className="text-success fw-bold fs-9 lh-1 mb-0">

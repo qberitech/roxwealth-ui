@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthSocialButtons from 'components/common/AuthSocialButtons';
 import axios from 'axios';
 import validateSession from 'Actions/validateSession';
+import redirect from 'Actions/Redirect';
 
 const addProfile = async (name: string, email: string, mobile: string) => {
   const URL = 'https://engine.qberi.com/api/addProfile';
@@ -36,7 +37,8 @@ const SignUpForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
     document.title = 'Qberi | Sign Up';
     // check if user is already logged in
     if (validateSession()) {
-      navigate('/dashboard/roxwealth');
+      const nextPath = redirect();
+      navigate(nextPath);
     }
   }, []);
 

@@ -5,7 +5,7 @@
 import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import UpdateProfile from 'components/Admins/UpdateProfile';
+import UpdateProfile from 'Actions/UpdateProfile';
 // import { useNavigate } from 'react-router-dom';
 
 interface SessionData {

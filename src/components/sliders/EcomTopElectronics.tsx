@@ -20,25 +20,25 @@ export type Product = {
   // wishListed?: boolean;
   // offer?: string;
 
-        id: string,
-        productName: string,
-        modelNumber: string,
-        colour:string,
-        cellQuantity: string,
-        cellCapacity: string,
-        cellType: string,
-        cellBrand: string,
-        voltage: string,
-        compatibleDevice: [],
-        otherCompatibleModels: [],
-        pictureUrl: ['img'],
-        medicalEquipmentName: string,
-        weight: string,
-        dimensions: string,
-        price: string,
-        isEnabled: true,
-        isDeleted: false
-}
+  id: string;
+  productName: string;
+  modelNumber: string;
+  colour: string;
+  cellQuantity: string;
+  cellCapacity: string;
+  cellType: string;
+  cellBrand: string;
+  voltage: string;
+  compatibleDevice: [];
+  otherCompatibleModels: [];
+  pictureUrl: ['img'];
+  medicalEquipmentName: string;
+  weight: string;
+  dimensions: string;
+  price: string;
+  isEnabled: true;
+  isDeleted: false;
+};
 
 const EcomTopElectronics = ({ products }: { products: Product[] }) => {
   return (

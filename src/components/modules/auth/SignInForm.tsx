@@ -7,45 +7,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import validateSession from 'Actions/validateSession';
-import UpdateProfile from 'components/Admins/UpdateProfile';
-
-// Define interface for session data
-interface SessionData {
-  isLoggedIn: boolean;
-  sessionToken: string;
-  email: string;
-  created_at: string;
-  updated_at: string;
-  expire_on: string;
-}
-
-// List of admin emails
-// const admins = [
-//   'nitish2@qberi.com',
-//   'rohan2@qberi.com',
-//   'pranab@qberi.com',
-//   'jaco@qberi.com'
-// ];
-
-// Function to update session in localStorage
-const updateSession = (
-  sessionToken: string,
-  email: string,
-  expire_on: string
-) => {
-  const date = new Date();
-  const session: SessionData = {
-    sessionToken: sessionToken,
-    isLoggedIn: true,
-    email: email,
-    created_at: date.toISOString(),
-    updated_at: date.toISOString(),
-    expire_on: expire_on
-  };
-
-  // Save session to localStorage
-  localStorage.setItem('session', JSON.stringify(session));
-};
+import onSuccessLogin from 'Actions/login';
+import redirect from 'Actions/Redirect';
 
 // SignInForm component
 const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
@@ -59,7 +22,8 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
   useEffect(() => {
     document.title = 'Qberi | Sign In';
     if (validateSession()) {
-      history('/dashboard/roxwealth');
+      const nextPath = redirect();
+      history(nextPath);
     }
   }, [history]);
 
@@ -94,20 +58,11 @@ const SignInForm = ({ layout }: { layout: 'simple' | 'card' | 'split' }) => {
         response.status === 204
       ) {
         const responseData = response.data;
-        const sessionToken = responseData.split('=')[1].split(';')[0];
-        const expire_on = responseData.split(';')[3].split('=')[1];
-        if (!sessionToken) {
-          setError('Invalid email or password');
-          return;
-        }
-        localStorage.setItem('sessionToken', sessionToken);
-        updateSession(sessionToken, email, expire_on); // Update session in localStorage
-        // updateUserData(email, sessionToken); // Update user data in localStorage
-
-        setSuccessMessage('Logged in successfully');
-        UpdateProfile();
+        onSuccessLogin(responseData, email);
+        setSuccessMessage('Login successful. Redirecting...');
         setTimeout(() => {
-          history('/dashboard/roxwealth');
+          const nextPath = redirect();
+          history(nextPath);
         }, 1000);
       } else {
         return setError('Invalid email or password');

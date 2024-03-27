@@ -61,6 +61,7 @@
     "react-flatpickr": "^3.10.13",
     "react-leaflet": "^4.2.1",
     "react-live": "^3.1.2",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.3",

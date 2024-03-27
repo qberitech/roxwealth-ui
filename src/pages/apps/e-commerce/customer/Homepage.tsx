@@ -13,7 +13,7 @@ import { Container } from 'react-bootstrap';
 // import EcomTopDeals from 'components/sliders/EcomTopDeals';
 import EcomTopElectronics from 'components/sliders/EcomTopElectronics';
 // import EcomBestOffers from 'components/sliders/EcomBestOffers';
-import EcomBecomeMember from 'components/cta/EcomBecomeMember';
+// import EcomBecomeMember from 'components/cta/EcomBecomeMember';
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -25,7 +25,6 @@ const headers = {
 };
 
 const Homepage = () => {
-
   const [allEnabledData, setAllEnabledData] = useState([]);
 
   const fetchData = useCallback(async () => {
@@ -33,11 +32,10 @@ const Homepage = () => {
       const response = await axios.get(URL, { headers });
       setAllEnabledData(response.data);
       console.log('Response:', response.data);
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error:', error);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     fetchData();

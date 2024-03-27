@@ -7,8 +7,10 @@ import bg1 from 'assets/img/bg/bg-36.png';
 import bg2 from 'assets/img/bg/34-2.png';
 import bg3 from 'assets/img/bg/34-2.png';
 import bg4 from 'assets/img/bg/bg-39.png';
+import redirect from 'Actions/Redirect';
 
 const HeroHeader = () => {
+  const nextPath = redirect();
   return (
     <section id="home" className="pb-8 overflow-hidden">
       <div className="hero-header-container-alternate position-relative">
@@ -41,7 +43,7 @@ const HeroHeader = () => {
               </Button>
               <Button
                 as={Link}
-                to="/dashboard/roxwealth"
+                to={nextPath}
                 variant="link"
                 endIcon={
                   <FontAwesomeIcon icon={faAngleRight} className="ms-2 fs-9" />
