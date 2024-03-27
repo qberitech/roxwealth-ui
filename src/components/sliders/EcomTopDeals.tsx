@@ -48,11 +48,11 @@ const EcomTopDeals = ({ products }: { products: Product[] }) => {
           }
         }}
       >
-        {products.map(product => (
+        {/* {products.map(product => (
           <SwiperSlide key={product.id}>
             <ProductCard product={product} />
           </SwiperSlide>
-        ))}
+        ))} */}
       </Swiper>
     </>
   );

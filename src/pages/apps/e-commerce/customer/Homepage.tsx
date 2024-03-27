@@ -4,18 +4,45 @@ import { Container } from 'react-bootstrap';
 // import EcomWhopingBanner from 'components/banners/EcomWhopingBanner';
 // import EcomGiftItemsBanner from 'components/banners/EcomGiftItemsBanner';
 // import EcomBestInMarketBanner from 'components/banners/EcomBestInMarketBanner';
-import {
-  bestOfferProducts,
-  // topDealsProducts,
-  topElectronicProducts
-} from 'hospitalmerch/data/products';
+// import {
+//   bestOfferProducts,
+//   // topDealsProducts,
+//   topElectronicProducts
+// } from 'hospitalmerch/data/products';
 // import ecom4 from 'assets/img/e-commerce/4.png';
 // import EcomTopDeals from 'components/sliders/EcomTopDeals';
 import EcomTopElectronics from 'components/sliders/EcomTopElectronics';
-import EcomBestOffers from 'components/sliders/EcomBestOffers';
+// import EcomBestOffers from 'components/sliders/EcomBestOffers';
 import EcomBecomeMember from 'components/cta/EcomBecomeMember';
+import { useCallback, useEffect, useState } from 'react';
+import axios from 'axios';
+
+const URL = 'https://engine.qberi.com/api/allEnabledBatteryDetails';
+const session = JSON.parse(localStorage.getItem('session') || '{}');
+const headers = {
+  'Content-Type': 'application/json',
+  Authorization: `Bearer ${session?.sessionToken}`
+};
 
 const Homepage = () => {
+
+  const [allEnabledData, setAllEnabledData] = useState([]);
+
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await axios.get(URL, { headers });
+      setAllEnabledData(response.data);
+      console.log('Response:', response.data);
+    }
+    catch (error) {
+      console.error('Error:', error);
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   return (
     <div className="ecommerce-homepage pt-5 mb-9">
       {/* <section className="py-0">
@@ -39,12 +66,12 @@ const Homepage = () => {
             </Col>
           </Row> */}
           <div className="mb-6">
-            <EcomTopElectronics products={topElectronicProducts} />
+            <EcomTopElectronics products={allEnabledData} />
           </div>
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <EcomBestOffers products={bestOfferProducts} />
-          </div>
-          <EcomBecomeMember />
+          </div> */}
+          {/* <EcomBecomeMember /> */}
         </Container>
       </section>
     </div>

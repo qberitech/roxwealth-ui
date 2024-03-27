@@ -274,7 +274,7 @@ const AddEquipment: React.FC<AddEquipmentProps> = ({ type }) => {
                             name="enabled"
                             label={formData.enabled ? 'Enabled' : 'Disabled'}
                             // its value is true or false
-                            defaultChecked={formData.enabled}
+                            checked={formData.enabled}
                             onChange={handleSwitchChange}
                           />
                         </Form.Group>

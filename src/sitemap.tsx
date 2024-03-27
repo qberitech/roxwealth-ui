@@ -115,7 +115,7 @@ export const routes: RouteItems[] = [
         name: 'Hospital Merch',
         active: true,
         icon: 'shopping-cart',
-        path: '/hospitalmerch/products'
+        path: '/hospitalmerch/home'
       }
       // {
       //   name: 'Account Summary',
