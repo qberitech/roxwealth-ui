@@ -55,6 +55,60 @@ if (session) {
   }
 }
 
+const HospitalMerchRoutes: RouteItems[] = [
+  {
+    label: 'Hospital Merch',
+    icon: UilCube,
+    pages: [
+      {
+        name: 'Home',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/hospitalmerch/home'
+      },
+      {
+        name: 'Products',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/hospitalmerch/products'
+      },
+      {
+        name: 'Orders',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/hospitalmerch/orders'
+      },
+      {
+        name: 'Customers',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/hospitalmerch/customers'
+      }
+    ]
+  }
+];
+
+const AdminsRoutes: RouteItems[] = [
+  {
+    label: 'Admin',
+    icon: UilCube,
+    pages: [
+      {
+        name: 'Users',
+        active: true,
+        icon: 'lock',
+        path: '/admin/users'
+      },
+      {
+        name: 'Groups & Roles',
+        active: true,
+        icon: 'trello',
+        path: '/admin/groups-roles'
+      }
+    ]
+  }
+];
+
 export const routes: RouteItems[] = [
   // {
   //   label: 'dashboard',
@@ -132,25 +186,25 @@ export const routes: RouteItems[] = [
       //   icon: 'clipboard'
       // }
     ]
-  },
-  {
-    label: 'Settings',
-    icon: UilCube,
-    pages: [
-      {
-        name: 'Profile',
-        active: true,
-        icon: 'bookmark',
-        path: '/profile'
-      },
-      {
-        name: 'Admin',
-        active: isAdmin,
-        icon: 'lock',
-        path: '/admin'
-      }
-    ]
   }
+  // {
+  //   label: 'Settings',
+  //   icon: UilCube,
+  //   pages: [
+  //     {
+  //       name: 'Profile',
+  //       active: true,
+  //       icon: 'bookmark',
+  //       path: '/profile'
+  //     },
+  //     {
+  //       name: 'Admin',
+  //       active: isAdmin,
+  //       icon: 'lock',
+  //       path: '/admin'
+  //     }
+  //   ]
+  // }
   // {
   //   label: 'apps',
   //   icon: UilCube,
@@ -1506,3 +1560,13 @@ export const routes: RouteItems[] = [
   //   ]
   // }
 ];
+
+if (isAdmin) {
+  // Extend the routes for admin
+  AdminsRoutes.forEach(route => {
+    routes.push(route);
+  });
+  HospitalMerchRoutes.forEach(route => {
+    routes.push(route);
+  });
+}

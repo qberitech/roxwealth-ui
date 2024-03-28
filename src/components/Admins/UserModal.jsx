@@ -1,13 +1,8 @@
-import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Button, Modal, Row } from 'react-bootstrap';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import axios from 'axios';
 import PropTypes from 'prop-types';
-
-ViewModal.propTypes = {
-  user: PropTypes.object.isRequired
-};
 
 const ViewModal = ({ user }) => {
   const roles = user.roles || {};
@@ -42,63 +37,39 @@ const ViewModal = ({ user }) => {
   );
 };
 
-// validate the props
-UserModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  canEdit: PropTypes.bool.isRequired
+ViewModal.propTypes = {
+  user: PropTypes.object.isRequired
 };
 
-const UserModal = ({ isOpen, handleClose, user, canEdit }) => {
-  const roles = user.roles || {};
-  const hospitalMerchRoles = roles.HospitalMerch || [];
-  const QberiRoles = roles.Qberi || [];
-  const [UserData, setUserData] = useState({});
+const allRoles = ['ADMIN', 'MODERATOR', 'VERIFIED USERS', 'USERS'];
+const allGroups = ['HospitalMerch', 'Qberi', 'Bummel', 'MediaSpoor'];
 
-  const onChange = e => {
-    const { name, value } = e.target;
-    setUserData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+const UserModal = ({ isOpen, handleClose, user, canEdit }) => {
+  const [sharePercentage, setSharePercentage] = useState(
+    user.sharePercentage || 0
+  );
+  const [userRoles, setUserRoles] = useState({});
+
+  useEffect(() => {
+    const roles = user.roles || {};
+    const myRoles = {};
+    allGroups.forEach(group => {
+      myRoles[group] = roles[group] || [];
+    });
+    setUserRoles(myRoles);
+  }, [user]);
 
   const handleSave = () => {
-    let hRoles = UserData.hospitalMerchRoles || hospitalMerchRoles.join(', ');
-    let qberiRoles = UserData.qberiRoles || QberiRoles.join(', ');
-    hRoles = hRoles.split(',').map(role => role.trim());
-    qberiRoles = qberiRoles.split(',').map(role => role.trim());
     const updatedUser = {
-      ...UserData,
-      userId: user.id,
-      roles: {
-        HospitalMerch: hRoles,
-        Qberi: qberiRoles
-      }
+      userId: [user.id],
+      sharePercentage: [sharePercentage],
+      HospitalMerch: userRoles.HospitalMerch || [],
+      Qberi: userRoles.Qberi || [],
+      Bummel: userRoles.Bummel || [],
+      MediaSpoor: userRoles.MediaSpoor || []
     };
 
-    const URL = `https://engine.qberi.com/api/editUser`;
-    const session = JSON.parse(localStorage.getItem('session')) || {};
-    const token = session.sessionToken || '';
-
-    if (!window.confirm('Are you sure you want to update this user?')) return;
     console.log(updatedUser);
-
-    axios
-      .post(URL, updatedUser, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then(res => {
-        console.log(res);
-        handleClose();
-      })
-      .catch(err => {
-        console.error(err);
-      });
   };
 
   return (
@@ -129,41 +100,68 @@ const UserModal = ({ isOpen, handleClose, user, canEdit }) => {
                 />
               </Form.Group>
               <Form.Group>
-                <Form.Label>Phone</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="phone"
-                  value={user.phone}
-                  readOnly
-                />
-              </Form.Group>
-              <Form.Group>
                 <Form.Label>Share Percentage</Form.Label>
                 <Form.Control
                   type="number"
                   name="sharePercentage"
-                  value={user.sharePercentage}
-                  onChange={onChange}
+                  value={sharePercentage}
+                  onChange={e => setSharePercentage(e.target.value)}
                 />
               </Form.Group>
-              <Form.Group>
-                <Form.Label>Hospital Merch Roles</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="hospitalMerchRoles"
-                  defaultValue={hospitalMerchRoles.join(', ')}
-                  onChange={onChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Qberi Roles</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="qberiRoles"
-                  defaultValue={QberiRoles.join(', ')}
-                  onChange={onChange}
-                />
-              </Form.Group>
+              {/* <p>
+                <h5>HospitalMerch Roles</h5>
+                {allRoles.map(role => (
+                  <Form.Check
+                    key={role}
+                    type="checkbox"
+                    label={role}
+                    name="HospitalMerch"
+                    value={role}
+                    checked={userRoles.HospitalMerch && userRoles.HospitalMerch.includes(role)}
+                    onChange={e => {
+                      const { value } = e.target;
+                      setUserRoles(prevState => ({
+                        ...prevState,
+                        HospitalMerch: prevState.HospitalMerch && prevState.HospitalMerch.includes(value)
+                          ? prevState.HospitalMerch.filter(role => role !== value)
+                          : [...prevState.HospitalMerch, value]
+                      }));
+                    }}
+                  />
+                ))}
+              </p> */}
+              <Row>
+                {allGroups.map(group => (
+                  <Form.Group key={group}>
+                    <Form.Label>{group} Roles</Form.Label>
+                    {allRoles.map(role => (
+                      <Form.Check
+                        key={role}
+                        type="checkbox"
+                        label={role}
+                        name={group}
+                        value={role}
+                        checked={
+                          userRoles[group] && userRoles[group].includes(role)
+                        }
+                        onChange={e => {
+                          const { value } = e.target;
+                          setUserRoles(prevState => ({
+                            ...prevState,
+                            [group]:
+                              prevState[group] &&
+                              prevState[group].includes(value)
+                                ? prevState[group].filter(
+                                    role => role !== value
+                                  )
+                                : [...prevState[group], value]
+                          }));
+                        }}
+                      />
+                    ))}
+                  </Form.Group>
+                ))}
+              </Row>
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -177,6 +175,13 @@ const UserModal = ({ isOpen, handleClose, user, canEdit }) => {
       )}
     </Modal>
   );
+};
+
+UserModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  user: PropTypes.any,
+  canEdit: PropTypes.bool.isRequired
 };
 
 export default UserModal;

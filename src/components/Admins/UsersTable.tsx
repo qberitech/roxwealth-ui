@@ -64,12 +64,12 @@ const UsersList = () => {
         return <>{original.mobile || 'N/A'}</>;
       },
       meta: {
-        headerProps: { style: { width: 100 } }
+        headerProps: { style: { width: 200 } }
       }
     },
     {
-      accessorKey: 'HospitalMerch-Roles',
-      header: 'HospitalMerch Roles',
+      accessorKey: 'HM-Roles',
+      header: 'HM-Roles',
       cell: ({ row: { original } }) => {
         const roles = original.roles || { HospitalMerch: [], Qberi: [] };
         const hospitalmerchRoles = roles.HospitalMerch || [];
@@ -84,12 +84,12 @@ const UsersList = () => {
         );
       },
       meta: {
-        headerProps: { style: { width: 100 } }
+        headerProps: { style: { width: 80 } }
       }
     },
     {
-      accessorKey: 'Qberi-Roles',
-      header: 'Qberi Roles',
+      accessorKey: 'Q-Roles',
+      header: 'Q Roles',
       cell: ({ row: { original } }) => {
         const roles = original.roles || { HospitalMerch: [], Qberi: [] };
         const qberiRoles = roles.Qberi || [];
@@ -107,27 +107,27 @@ const UsersList = () => {
         );
       },
       meta: {
-        headerProps: { style: { width: 100 } }
+        headerProps: { style: { width: 80 } }
       }
     },
     {
       accessorKey: 'sharePercentage',
-      header: 'Share Percentage',
+      header: 'Share %',
       cell: ({ row: { original } }) => {
         return <>{original.sharePercentage || 0}</>;
       },
       meta: {
-        headerProps: { style: { width: 100 } }
+        headerProps: { style: { width: 50 } }
       }
     },
     {
       accessorKey: 'netShareValue',
-      header: 'Net Share Value (in USD)',
+      header: 'NSV (in USD)',
       cell: ({ row: { original } }) => {
         return <>{(original.sharePercentage || 0 / 100) * 100}</>;
       },
       meta: {
-        headerProps: { style: { width: 100 } }
+        headerProps: { style: { width: 50 } }
       }
     },
     {

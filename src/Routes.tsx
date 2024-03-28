@@ -183,7 +183,7 @@ import Terms from 'pages/pages/Mains/Terms';
 import BusinessUnits from 'pages/pages/Mains/Business-Units';
 import QberiInSA from 'pages/pages/Businesses/Qberi_in_SA';
 // import CustomerDetails from 'pages/apps/e-commerce/admin/CustomerDetails';
-import Admin from 'pages/pages/Mains/Admin';
+// import Admin from 'pages/pages/Mains/Admin';
 // import AddProduct from 'pages/apps/e-commerce/admin/AddProduct';
 import AddBattery from 'pages/apps/e-commerce/admin/AddBattery';
 import AddEquipment from 'pages/apps/e-commerce/admin/AddEquipment';
@@ -192,6 +192,8 @@ import Homepage from 'pages/apps/e-commerce/customer/Homepage';
 import Creators from 'pages/pages/landing/Creators';
 // import Error500 from 'pages/error/Error500';
 import Thank from 'pages/pages/Mains/Thank';
+import UsersList from 'components/Admins/UsersTable';
+import GroupsRoles from 'components/Admins/GroupsRoles';
 // import { id } from 'components/tables/ProductsTable';
 
 // const FontAwesomeExample = lazy(
@@ -346,7 +348,16 @@ const routes: RouteObject[] = [
           },
           {
             path: 'admin',
-            element: <Admin />
+            children: [
+              {
+                path: 'users',
+                element: <UsersList />
+              },
+              {
+                path: 'groups-roles',
+                element: <GroupsRoles />
+              }
+            ]
           },
           {
             path: 'ecommerce',

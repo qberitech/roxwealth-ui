@@ -11,7 +11,7 @@ const EcomProfilePersonalInfo = ({ details }: any) => {
     try {
       const session = JSON.parse(localStorage.getItem('session') || '{}');
       const sessionToken = session.sessionToken;
-      const URL = 'https://engine.qberi.com/api/editUser';
+      const URL = 'https://engine.qberi.com/api/editMyProfile';
       const headers = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${sessionToken}`

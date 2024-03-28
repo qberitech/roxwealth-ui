@@ -35,16 +35,6 @@ const Thank = () => {
                 />
               </Col>
               <Col xs={12} lg={6} className="text-center text-lg-start">
-                {/* <img
-                  src={error500}
-                  className="img-fluid mb-6 w-50 w-lg-75 d-dark-none"
-                  alt=""
-                />
-                <img
-                  src={darkError500}
-                  className="img-fluid mb-6 w-50 w-lg-75 d-light-none"
-                  alt=""
-                /> */}
                 <h2 className="text-800 fw-bolder mb-3">
                   Thank you for register with us!
                 </h2>
@@ -53,6 +43,14 @@ const Thank = () => {
                 </p>
                 <Button variant="primary" size="lg" as={Link} to="/">
                   Go Home
+                </Button>
+                <Button
+                  variant="outline-primary"
+                  size="lg"
+                  as={Link}
+                  to="/auth/sign-out"
+                >
+                  Sign-Out
                 </Button>
               </Col>
             </Row>
