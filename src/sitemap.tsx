@@ -104,6 +104,112 @@ const AdminsRoutes: RouteItems[] = [
         active: true,
         icon: 'trello',
         path: '/admin/groups-roles'
+      },
+      {
+        name: 'RoxWealth',
+        icon: 'tag',
+        active: true,
+        pages: [
+          {
+            name: 'Admin Option 1',
+            active: true,
+            path: '/roxwealth/*',
+            icon: 'trello'
+          },
+          {
+            name: 'Admin Option 2',
+            active: true,
+            path: '*',
+            icon: 'trello'
+          },
+          {
+            name: 'Admin Option 3',
+            active: true,
+            path: '*',
+            icon: 'trello'
+          }
+        ]
+      },
+      {
+        name: 'Hospital Merch',
+        icon: 'tag',
+        active: true,
+        pages: [
+          {
+            name: 'Home',
+            path: '/dashboard/hospitalmerch/home',
+            active: true,
+            icon: 'home'
+          },
+          {
+            name: 'Medical Equipment Battery',
+            path: '/dashboard/hospitalmerch/products',
+            active: true,
+            icon: 'tag'
+          },
+          {
+            name: 'Add Batteries',
+            path: '/dashboard/hospitalmerch/add-product-batteries',
+            active: true,
+            icon: 'trello'
+          },
+          {
+            name: 'Medical Equipments',
+            path: '/dashboard/hospitalmerch/add-product-equipments',
+            active: true,
+            icon: 'layout'
+          }
+        ]
+      },
+      {
+        name: 'Bummel',
+        icon: 'tag',
+        active: true,
+        pages: [
+          {
+            name: 'Admin Option 1',
+            active: true,
+            path: '/Bummel/*',
+            icon: 'trello'
+          },
+          {
+            name: 'Admin Option 2',
+            active: true,
+            path: '*',
+            icon: 'trello'
+          },
+          {
+            name: 'Admin Option 3',
+            active: true,
+            path: '*',
+            icon: 'trello'
+          }
+        ]
+      },
+      {
+        name: 'Media Spoor',
+        icon: 'tag',
+        active: true,
+        pages: [
+          {
+            name: 'Admin Option 1',
+            active: true,
+            path: '/mediaspoor/*',
+            icon: 'trello'
+          },
+          {
+            name: 'Admin Option 2',
+            active: true,
+            path: '*',
+            icon: 'trello'
+          },
+          {
+            name: 'Admin Option 3',
+            active: true,
+            path: '*',
+            icon: 'trello'
+          }
+        ]
       }
     ]
   }
@@ -169,7 +275,19 @@ export const routes: RouteItems[] = [
         name: 'Hospital Merch',
         active: true,
         icon: 'shopping-cart',
-        path: '/hospitalmerch/home'
+        path: '/dashboard/hospitalmerch/home'
+      },
+      {
+        name: 'Bummel',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/dashboard/bummel/*'
+      },
+      {
+        name: 'Media Spoor',
+        active: true,
+        icon: 'shopping-cart',
+        path: '/dashboard/mediaspoor/*'
       }
       // {
       //   name: 'Account Summary',

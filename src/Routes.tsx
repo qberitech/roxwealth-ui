@@ -287,32 +287,7 @@ const routes: RouteObject[] = [
       //   path: 'ecommerce/product-details',
       //   element: <ProductDetails />
       // },
-      {
-        path: 'hospitalmerch',
-        element: <EcommerceLayout />,
-        children: [
-          {
-            path: 'products',
-            element: <Products />
-          },
-          {
-            path: `product-details/` + ':id',
-            element: <ProductDetails />
-          },
-          {
-            path: 'add-product-batteries',
-            element: <AddBattery type="battery" />
-          },
-          {
-            path: 'add-product-equipments',
-            element: <AddEquipment type="equipment" />
-          },
-          {
-            path: 'home',
-            element: <Homepage />
-          }
-        ]
-      },
+      
       {
         path: '/',
         element: (
@@ -339,6 +314,32 @@ const routes: RouteObject[] = [
               {
                 path: 'roxwealth',
                 element: <Ecommerce2 />
+              },
+              {
+                path: 'hospitalmerch',
+                // element: <EcommerceLayout />,
+                children: [
+                  {
+                    path: 'products',
+                    element: <Products />
+                  },
+                  {
+                    path: `product-details/` + ':id',
+                    element: <ProductDetails />
+                  },
+                  {
+                    path: 'add-product-batteries',
+                    element: <AddBattery type="battery" />
+                  },
+                  {
+                    path: 'add-product-equipments',
+                    element: <AddEquipment type="equipment" />
+                  },
+                  {
+                    path: 'home',
+                    element: <Homepage />
+                  }
+                ]
               }
             ]
           },
